@@ -9,6 +9,8 @@ title: Duy Anh GitHub Page
 
 Sample of a really marvelous documentation. (Period of course.)
 
+Is GitHub Pages still crash?
+
 ## 1.2. Another subheading
 
 List of _beautiful minds_:
