@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Duy Anh Site
+title: Anh
 email: dduyanhhoang@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   D Duy Anh Hoang's webpage - major in AI at FPT Uni Vietnam. My updates, shares, archives about technologies and learning.
