@@ -21,4 +21,4 @@ I had stumbled on some problems in my local macbook (symlink and ruby, gem versi
 - _Jekyll documentation_, <https://jekyllrb.com/docs/home>
 - _Jekyll's GitHub repo_, <https://github.com/jekyll/jekyll>
 - _Jekyll talk_, <https://talk.jekyllrb.com/>
-- Giraffe Academy, _Jekyll - Static Site Generator | Tutorial_, <https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB>
+- Giraffe Academy, _Jekyll - Static Site Generator \| Tutorial_, <https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB>
