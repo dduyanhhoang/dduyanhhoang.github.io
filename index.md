@@ -9,7 +9,7 @@ title: Duy Anh GitHub Page
 
 Sample of a really marvelous documentation. (Period of course.)
 
-Is GitHub Pages still crash?
+Does GitHub Pages still crash?
 
 <script src="https://gist.github.com/dduyanhhoang/2de3f4ee208d08cf6e61360f0b589e33.js"></script>
 
