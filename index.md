@@ -11,6 +11,8 @@ Sample of a really marvelous documentation. (Period of course.)
 
 Is GitHub Pages still crash?
 
+https://gist.github.com/dduyanhhoang/2de3f4ee208d08cf6e61360f0b589e33
+
 ## 1.2. Another subheading
 
 List of _beautiful minds_:
