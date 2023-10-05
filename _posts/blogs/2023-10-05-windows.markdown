@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Why Windows?"
-date:   2023-10-05 18:42:00 +7000
-categories: blog
+date:   2023-10-05 1:00:00 +7000
+categories: blog archive
 permalink:  /:categories/:year/:month/:day/:title.html
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Jekyll Notes"
-date:   2023-09-23 10:11:19 +0000
+date:   2023-09-23 10:11:19 +7000
 categories: jekyll archive
 permalink:  /:categories/:year/:month/:day/:title.html
 ---
