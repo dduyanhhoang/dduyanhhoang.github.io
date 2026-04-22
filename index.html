@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoang Dinh Duy Anh — Resume</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1a73e8;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      background: #f3f4f6;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.1);
+      padding: 3rem 3.5rem;
+    }
+
+    /* ── Header ── */
+    header { text-align: center; margin-bottom: 1.8rem; }
+    header h1 { font-size: 2rem; letter-spacing: .04em; text-transform: uppercase; }
+    header .location { color: var(--muted); margin: .25rem 0 .6rem; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.2rem; }
+    .contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+    .contact-links a:hover { text-decoration: underline; }
+    .icon { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── Sections ── */
+    section { margin-bottom: 1.6rem; }
+    h2 {
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: .3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Summary ── */
+    .summary { color: var(--text); }
+
+    /* ── Entry (experience / education / cert) ── */
+    .entry { margin-bottom: 1rem; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .2rem;
+    }
+    .entry-title { font-weight: 700; }
+    .entry-date { font-size: .85rem; color: var(--muted); white-space: nowrap; }
+    .entry-sub {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-style: italic;
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: .35rem;
+    }
+    ul.bullets { padding-left: 1.2rem; }
+    ul.bullets li { margin-bottom: .15rem; font-size: .9rem; }
+
+    /* ── Skills ── */
+    .skills-grid { display: flex; flex-direction: column; gap: .4rem; }
+    .skill-row { font-size: .9rem; }
+    .skill-row strong { color: var(--text); }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { box-shadow: none; border-radius: 0; padding: 1.5cm 2cm; }
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 2rem 1.4rem; }
+      .entry-header, .entry-sub { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <header>
+    <h1>Hoang Dinh Duy Anh</h1>
+    <p class="location">Hanoi, Vietnam</p>
+    <nav class="contact-links">
+      <a href="tel:+84343375473">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6.6 10.8a15.2 15.2 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.57.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.57 3.57 1 1 0 01-.25 1z"/></svg>
+        +84-343-375-473
+      </a>
+      <a href="mailto:dduyanhhoang@gmail.com">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm8 7L4 6v12h16V6z" opacity=".3"/><path d="M20 6H4l8 5z"/></svg>
+        dduyanhhoang@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/dduyanhhoang/" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-4a2 2 0 110 4 2 2 0 010-4z"/></svg>
+        dduyanhhoang
+      </a>
+      <a href="https://github.com/dduyanhhoang" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7C6.73 19.91 6.14 18 6.14 18c-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+        dduyanhhoang
+      </a>
+    </nav>
+  </header>
+
+  <!-- ── Summary ── -->
+  <section>
+    <h2>Summary</h2>
+    <p class="summary">Artificial Intelligence student with a strong foundation in Applied Math and Machine Learning. Experienced in implementing advanced algorithms (Quantum ML, Optimization) and modern AI applications.</p>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section>
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">QSVM-EEG</span>
+        <span class="entry-date">Dec 2025 — Present</span>
+      </div>
+      <div class="entry-sub">
+        <span>Research Assistance</span>
+        <span>QMOS Lab — FPT University Hanoi</span>
+      </div>
+      <ul class="bullets">
+        <li>Implemented a kernel-based Quantum Support Vector Regressor using PennyLane with GPU acceleration (lightning.gpu) to predict patient BIS values from EEG signals.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Time Tabling Optimization</span>
+        <span class="entry-date">Sep 2025 — Present</span>
+      </div>
+      <div class="entry-sub">
+        <span>Research Assistance</span>
+        <span>QMOS Lab — FPT University Hanoi</span>
+      </div>
+      <ul class="bullets">
+        <li>Benchmarked and applied established approaches to minimize the number of required qubits.</li>
+        <li>Refined soft and hard Hamiltonian constraints to improve the solution viability.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Vietnamese Lip Reading</span>
+        <span class="entry-date">Jun 2024 — Sep 2024</span>
+      </div>
+      <div class="entry-sub">
+        <span>Research Assistance</span>
+        <span>VuonAI Lab — FPT University HCM</span>
+      </div>
+      <ul class="bullets">
+        <li>Built a comprehensive audio-visual dataset for Vietnamese Lip Reading by processing raw video/speech data.</li>
+        <li>Designed data pipelines to benchmark research solutions, ensuring high-quality input for model training.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Data Science Program</span>
+        <span class="entry-date">Mar 2024 — May 2024</span>
+      </div>
+      <div class="entry-sub">
+        <span>Teaching Assistance</span>
+        <span>FPT University HCM</span>
+      </div>
+      <ul class="bullets">
+        <li>Mentored government employees in Data Analysis using Excel and Google Looker Studio.</li>
+        <li>Translated technical data concepts into practical business insights for non-technical stakeholders.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section>
+    <h2>Related Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-row"><strong>Mathematics:</strong> Linear algebra, analytic geometry, vector calculus, probability &amp; statistics, optimization</div>
+      <div class="skill-row"><strong>Languages &amp; Libraries:</strong> Python (TensorFlow, scikit-learn, NumPy, pandas, PennyLane), SQL</div>
+    </div>
+  </section>
+
+  <!-- ── Leadership ── -->
+  <section>
+    <h2>Leadership / Extracurricular</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">TEDxFPTUniversityHCMC 2024</span>
+        <span class="entry-date">Jan 2024 — Jun 2024</span>
+      </div>
+      <div class="entry-sub">
+        <span>Account</span>
+        <span>FPT University</span>
+      </div>
+      <ul class="bullets">
+        <li>Managed task allocation and progress across a team of 50 people.</li>
+        <li>Handled accounting responsibilities and facilitated communication between the team, the university, and external providers and performers.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Education ── -->
+  <section>
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">FPT University (Hoa Lac Campus)</span>
+        <span class="entry-date">Sep 2023 — Present</span>
+      </div>
+      <div class="entry-sub">
+        <span>Bachelor of Information Technology — Artificial Intelligence</span>
+        <span>Hanoi, Vietnam</span>
+      </div>
+      <ul class="bullets">
+        <li>CGPA: 3.44 / 4.0</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Certification ── -->
+  <section>
+    <h2>Certification</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">British Council — IELTS</span>
+        <span class="entry-date">Sep 2023 — Aug 2025</span>
+      </div>
+      <div class="entry-sub">
+        <span>International English Language Testing System</span>
+        <span>Ho Chi Minh, Vietnam</span>
+      </div>
+      <ul class="bullets">
+        <li>Overall band score: 7.0</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
