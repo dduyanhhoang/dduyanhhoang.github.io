@@ -1,187 +1,165 @@
 /* =============================================
-   DESIGN TOKENS
-   Edit colors and theme values here.
+   RESUME PAGE — all selectors scoped to
+   .resume-page so nothing leaks into the
+   landing page when CSS is bundled together.
    ============================================= */
 
-:root {
-  --accent:   #1a73e8;
-  --text:     #1f2937;
-  --muted:    #6b7280;
-  --border:   #e5e7eb;
-  --bg:       #ffffff;
-  --body-bg:  #f3f4f6;
-  --shadow:   rgba(0,0,0,0.10);
+/* Variables live on .resume-page, not :root,
+   so they don't overwrite landing page tokens. */
+.resume-page {
+  --ra: #1a73e8;       /* accent */
+  --rt: #1f2937;       /* text */
+  --rm: #6b7280;       /* muted */
+  --rb: #e5e7eb;       /* border */
+  --rbg: #ffffff;      /* card bg */
+  --rbbg: #f3f4f6;     /* body bg */
+  --rsh: rgba(0,0,0,0.10); /* shadow */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --accent:   #818cf8;
-    --text:     #f1f5f9;
-    --muted:    #94a3b8;
-    --border:   #334155;
-    --bg:       #1e293b;
-    --body-bg:  #0f172a;
-    --shadow:   rgba(0,0,0,0.45);
+  .resume-page {
+    --ra: #818cf8;
+    --rt: #f1f5f9;
+    --rm: #94a3b8;
+    --rb: #334155;
+    --rbg: #1e293b;
+    --rbbg: #0f172a;
+    --rsh: rgba(0,0,0,0.45);
   }
 }
 
-
-/* =============================================
-   RESET & BASE
-   ============================================= */
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
+/* ── Wrapper ── */
+.resume-page {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--text);
-  background: var(--body-bg);
+  color: var(--rt);
+  background: var(--rbbg);
   padding: 2rem 1rem;
+  min-height: 100vh;
 }
 
-
-/* =============================================
-   BACK LINK
-   ============================================= */
-
-.back-link {
+/* ── Back link ── */
+.resume-page .back-link {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--accent);
+  color: var(--ra);
   text-decoration: none;
   font-size: 0.875rem;
   max-width: 800px;
   margin: 0 auto 1.2rem;
 }
-.back-link:hover { text-decoration: underline; }
+.resume-page .back-link:hover { text-decoration: underline; }
 
-
-/* =============================================
-   PAGE CARD
-   ============================================= */
-
-.page {
+/* ── Page card ── */
+.resume-page .page {
   max-width: 800px;
   margin: 0 auto;
-  background: var(--bg);
+  background: var(--rbg);
   border-radius: 8px;
-  box-shadow: 0 1px 4px var(--shadow);
+  box-shadow: 0 1px 4px var(--rsh);
   padding: 3rem 3.5rem;
 }
 
+/* ── Header ── */
+.resume-page header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+.resume-page header h1 {
+  font-size: 2rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--rt);
+}
+.resume-page header .location {
+  color: var(--rm);
+  margin: .25rem 0 .6rem;
+}
 
-/* =============================================
-   HEADER
-   ============================================= */
-
-header { text-align: center; margin-bottom: 1.8rem; }
-header h1 { font-size: 2rem; letter-spacing: .04em; text-transform: uppercase; }
-header .location { color: var(--muted); margin: .25rem 0 .6rem; }
-
-.contact-links {
+.resume-page .contact-links {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: .5rem 1.2rem;
 }
-.contact-links a {
-  color: var(--accent);
+.resume-page .contact-links a {
+  color: var(--ra);
   text-decoration: none;
   font-size: .9rem;
   display: flex;
   align-items: center;
   gap: .3rem;
 }
-.contact-links a:hover { text-decoration: underline; }
-.icon { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+.resume-page .contact-links a:hover { text-decoration: underline; }
+.resume-page .icon {
+  width: 14px; height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
 
+/* ── Sections ── */
+.resume-page section { margin-bottom: 1.6rem; }
 
-/* =============================================
-   SECTION HEADINGS
-   ============================================= */
-
-section { margin-bottom: 1.6rem; }
-
-h2 {
+.resume-page h2 {
   font-size: .85rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--text);
-  border-bottom: 1.5px solid var(--border);
+  color: var(--rt);
+  border-bottom: 1.5px solid var(--rb);
   padding-bottom: .3rem;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
+/* ── Entries ── */
+.resume-page .summary { color: var(--rt); }
 
-/* =============================================
-   ENTRIES — experience / education / cert
-   ============================================= */
+.resume-page .entry { margin-bottom: 1rem; }
 
-.summary { color: var(--text); }
-
-.entry { margin-bottom: 1rem; }
-
-.entry-header {
+.resume-page .entry-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
   gap: .2rem;
 }
-.entry-title { font-weight: 700; }
-.entry-date  { font-size: .85rem; color: var(--muted); white-space: nowrap; }
+.resume-page .entry-title { font-weight: 700; color: var(--rt); }
+.resume-page .entry-date  { font-size: .85rem; color: var(--rm); white-space: nowrap; }
 
-.entry-sub {
+.resume-page .entry-sub {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   font-style: italic;
   font-size: .9rem;
-  color: var(--muted);
+  color: var(--rm);
   margin-bottom: .35rem;
 }
 
-ul.bullets { padding-left: 1.2rem; }
-ul.bullets li { margin-bottom: .15rem; font-size: .9rem; }
+.resume-page ul.bullets { padding-left: 1.2rem; }
+.resume-page ul.bullets li { margin-bottom: .15rem; font-size: .9rem; color: var(--rt); }
 
+/* ── Skills ── */
+.resume-page .skills-grid { display: flex; flex-direction: column; gap: .4rem; }
+.resume-page .skill-row   { font-size: .9rem; color: var(--rt); }
+.resume-page .skill-row strong { color: var(--rt); }
 
-/* =============================================
-   SKILLS
-   ============================================= */
-
-.skills-grid { display: flex; flex-direction: column; gap: .4rem; }
-.skill-row   { font-size: .9rem; }
-.skill-row strong { color: var(--text); }
-
-
-/* =============================================
-   RESPONSIVE
-   ============================================= */
-
+/* ── Responsive ── */
 @media (max-width: 600px) {
-  .page { padding: 2rem 1.4rem; }
-  .entry-header, .entry-sub { flex-direction: column; }
+  .resume-page .page { padding: 2rem 1.4rem; }
+  .resume-page .entry-header,
+  .resume-page .entry-sub { flex-direction: column; }
 }
 
-
-/* =============================================
-   PRINT
-   Always render light regardless of system theme.
-   ============================================= */
-
+/* ── Print ── */
 @media print {
-  :root {
-    --body-bg: #fff;
-    --bg:      #fff;
-    --text:    #1f2937;
-    --muted:   #6b7280;
-    --border:  #e5e7eb;
-    --shadow:  none;
+  .resume-page {
+    --ra: #1a73e8; --rt: #1f2937; --rm: #6b7280;
+    --rb: #e5e7eb; --rbg: #fff; --rbbg: #fff; --rsh: none;
+    padding: 0;
   }
-  body { padding: 0; }
-  .page { box-shadow: none; border-radius: 0; padding: 1.5cm 2cm; }
-  .back-link { display: none; }
+  .resume-page .page { box-shadow: none; border-radius: 0; padding: 1.5cm 2cm; }
+  .resume-page .back-link { display: none; }
 }

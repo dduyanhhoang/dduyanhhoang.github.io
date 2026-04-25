@@ -19,42 +19,28 @@ function Entry({ title, date, role, org, bullets }) {
   );
 }
 
-// ── Data ────────────────────────────────────────────────────────────────────
-
 const EXPERIENCE = [
   {
-    title: 'QSVM-EEG',
-    date: 'Dec 2025 — Present',
-    role: 'Research Assistance',
-    org: 'QMOS Lab — FPT University Hanoi',
-    bullets: [
-      'Implemented a kernel-based Quantum Support Vector Regressor using PennyLane with GPU acceleration (lightning.gpu) to predict patient BIS values from EEG signals.',
-    ],
+    title: 'QSVM-EEG', date: 'Dec 2025 — Present',
+    role: 'Research Assistance', org: 'QMOS Lab — FPT University Hanoi',
+    bullets: ['Implemented a kernel-based Quantum Support Vector Regressor using PennyLane with GPU acceleration (lightning.gpu) to predict patient BIS values from EEG signals.'],
   },
   {
-    title: 'Time Tabling Optimization',
-    date: 'Sep 2025 — Present',
-    role: 'Research Assistance',
-    org: 'QMOS Lab — FPT University Hanoi',
+    title: 'Time Tabling Optimization', date: 'Sep 2025 — Present',
+    role: 'Research Assistance', org: 'QMOS Lab — FPT University Hanoi',
     bullets: [
       'Benchmarked and applied established approaches to minimize the number of required qubits.',
       'Refined soft and hard Hamiltonian constraints to improve the solution viability.',
     ],
   },
   {
-    title: 'Vietnamese Lip Reading',
-    date: 'Jun 2024 — Sep 2024',
-    role: 'Research Assistance',
-    org: 'VuonAI Lab — FPT University HCM',
-    bullets: [
-      'Assited researching existing Vietnamese voice and lip reading dataset.',
-    ],
+    title: 'Vietnamese Lip Reading', date: 'Jun 2024 — Sep 2024',
+    role: 'Research Assistance', org: 'VuonAI Lab — FPT University HCM',
+    bullets: ['Assisted researching existing Vietnamese voice and lip reading dataset.'],
   },
   {
-    title: 'Data Science Program',
-    date: 'Mar 2024 — May 2024',
-    role: 'Teaching Assistance',
-    org: 'FPT University HCM',
+    title: 'Data Science Program', date: 'Mar 2024 — May 2024',
+    role: 'Teaching Assistance', org: 'FPT University HCM',
     bullets: [
       'Mentored government employees in Data Analysis using Excel and Google Looker Studio.',
       'Translated technical data concepts into practical business insights for non-technical stakeholders.',
@@ -64,10 +50,8 @@ const EXPERIENCE = [
 
 const LEADERSHIP = [
   {
-    title: 'TEDxFPTUniversityHCMC 2024',
-    date: 'Jan 2024 — Jun 2024',
-    role: 'Account',
-    org: 'FPT University',
+    title: 'TEDxFPTUniversityHCMC 2024', date: 'Jan 2024 — Jun 2024',
+    role: 'Account', org: 'FPT University',
     bullets: [
       'Managed task allocation and progress across a team of 50 people.',
       'Handled accounting responsibilities and facilitated communication between the team, the university, and external providers and performers.',
@@ -75,11 +59,9 @@ const LEADERSHIP = [
   },
 ];
 
-// ── Component ────────────────────────────────────────────────────────────────
-
 export default function Resume() {
   return (
-    <>
+    <div className="resume-page">
       <Link to="/" className="back-link">
         <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Home
@@ -162,6 +144,6 @@ export default function Resume() {
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 }

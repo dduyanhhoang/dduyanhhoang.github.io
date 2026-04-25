@@ -1,4 +1,3 @@
-// Add or remove entries here to update the research section
 const PROJECTS = [
   {
     icon: (
@@ -6,10 +5,10 @@ const PROJECTS = [
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
-    meta: 'Dec 2025 — Present · QMOS Lab',
+    meta:  'Dec 2025 — Present · QMOS Lab',
     title: 'QSVM-EEG',
-    desc: 'Kernel-based Quantum Support Vector Regressor using PennyLane with GPU acceleration (lightning.gpu) to predict patient BIS values from EEG biosignals.',
-    tags: ['Quantum ML', 'PennyLane', 'EEG'],
+    desc:  'Kernel-based Quantum Support Vector Regressor using PennyLane with GPU acceleration (lightning.gpu) to predict patient BIS values from EEG biosignals.',
+    tags:  ['Quantum ML', 'PennyLane', 'EEG'],
   },
   {
     icon: (
@@ -20,10 +19,10 @@ const PROJECTS = [
         <line x1="3"  y1="10" x2="21" y2="10" />
       </svg>
     ),
-    meta: 'Sep 2025 — Present · QMOS Lab',
+    meta:  'Sep 2025 — Present · QMOS Lab',
     title: 'Timetabling Optimization',
-    desc: 'Benchmarked quantum approaches to minimize qubit requirements. Refined soft and hard Hamiltonian constraints to improve solution viability in combinatorial scheduling.',
-    tags: ['QUBO', 'Optimization', 'Hamiltonian'],
+    desc:  'Benchmarked quantum approaches to minimize qubit requirements. Refined soft and hard Hamiltonian constraints to improve solution viability in combinatorial scheduling.',
+    tags:  ['QUBO', 'Optimization', 'Hamiltonian'],
   },
   {
     icon: (
@@ -32,10 +31,10 @@ const PROJECTS = [
         <circle cx="12" cy="12" r="3" />
       </svg>
     ),
-    meta: 'Jun 2024 — Sep 2024 · VuonAI Lab',
+    meta:  'Jun 2024 — Sep 2024 · VuonAI Lab',
     title: 'Vietnamese Lip Reading',
-    desc: 'Assisted in researching and curating Vietnamese voice and lip-reading datasets for multimodal speech recognition research.',
-    tags: ['Computer Vision', 'NLP', 'Dataset'],
+    desc:  'Assisted in researching and curating Vietnamese voice and lip-reading datasets for multimodal speech recognition research.',
+    tags:  ['Computer Vision', 'NLP', 'Dataset'],
   },
 ];
 
