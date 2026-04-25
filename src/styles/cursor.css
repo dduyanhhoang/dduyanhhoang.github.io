@@ -1,0 +1,54 @@
+/* =============================================
+   CUSTOM CURSOR — global, all pages
+   Own color tokens so it works independently
+   of whichever page CSS is loaded.
+   ============================================= */
+
+:root {
+  --cursor-color:       #818cf8;
+  --cursor-hover-color: #38bdf8;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --cursor-color:       #6366f1;
+    --cursor-hover-color: #0284c7;
+  }
+}
+
+@media (pointer: fine) {
+  * { cursor: none !important; }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    margin: -3px 0 0 -3px;
+    background: var(--cursor-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    will-change: transform;
+    transition: opacity 0.3s, background 0.2s;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 34px; height: 34px;
+    margin: -17px 0 0 -17px;
+    border: 1.5px solid var(--cursor-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    will-change: transform;
+    transition: opacity 0.3s, border-color 0.2s;
+  }
+
+  .cursor-dot.cur-visible  { opacity: 1; }
+  .cursor-ring.cur-visible { opacity: 0.45; }
+
+  .cursor-ring.cur-hovering { opacity: 0.75; border-color: var(--cursor-hover-color); }
+  .cursor-dot.cur-hovering  { background: var(--cursor-hover-color); }
+}
