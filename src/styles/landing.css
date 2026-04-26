@@ -874,6 +874,94 @@ body {
 
 
 /* =============================================
+   GITHUB ACTIVITY
+   ============================================= */
+
+.gh-feed {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gh-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1rem 1.2rem;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.gh-item:hover {
+  background: var(--surface2);
+  border-color: rgba(129,140,248,0.2);
+  transform: translateX(4px);
+}
+
+.gh-icon {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: rgba(129,140,248,0.1);
+  border: 1px solid rgba(129,140,248,0.18);
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+}
+.gh-icon svg { width: 15px; height: 15px; }
+
+.gh-body { flex: 1; min-width: 0; }
+
+.gh-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gh-action { color: var(--muted2); }
+.gh-repo {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+.gh-repo:hover { text-decoration: underline; }
+.gh-detail {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.gh-time {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  font-family: ui-monospace, "Fira Code", monospace;
+}
+
+/* Skeleton loading */
+.gh-placeholder { display: flex; flex-direction: column; gap: 0.75rem; }
+.gh-skeleton {
+  height: 58px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+.gh-empty {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+
+/* =============================================
    FOOTER
    ============================================= */
 

@@ -8,6 +8,7 @@ import About                from '../components/About.jsx';
 import Research             from '../components/Research.jsx';
 import Skills               from '../components/Skills.jsx';
 import Acknowledgements     from '../components/Acknowledgements.jsx';
+import GitHubActivity       from '../components/GitHubActivity.jsx';
 import Footer               from '../components/Footer.jsx';
 
 export default function Home() {
@@ -36,6 +37,8 @@ export default function Home() {
         <Skills />
         <div className="section-divider" aria-hidden="true" />
         <Acknowledgements />
+        <div className="section-divider" aria-hidden="true" />
+        <GitHubActivity />
       </div>
 
       <Footer />
