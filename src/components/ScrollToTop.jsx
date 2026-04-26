@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function ScrollToTop() {
-  const [visible, setVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    const threshold = isHome ? 400 : 80;
+    const onScroll = () => setScrolled(window.scrollY > threshold);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isHome]);
+
+  const visible = scrolled;
 
   return (
     <button
