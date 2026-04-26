@@ -191,6 +191,12 @@ body {
 }
 .nav-resume:hover { background: rgba(129,140,248,0.1) !important; }
 
+.nav-links {
+  color: var(--secondary) !important;
+  border-color: rgba(56,189,248,0.3) !important;
+}
+.nav-links:hover { background: rgba(56,189,248,0.08) !important; }
+
 .hamburger {
   display: none;
   flex-direction: column;

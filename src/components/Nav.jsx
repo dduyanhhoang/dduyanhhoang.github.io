@@ -68,6 +68,7 @@ export default function Nav() {
               </li>
             ))}
             <li><Link to="/resume" className="nav-resume" onClick={close}>Resume</Link></li>
+            <li><Link to="/links" className="nav-resume nav-links" onClick={close}>Links</Link></li>
           </ul>
         </div>
       )}
@@ -103,6 +104,7 @@ export default function Nav() {
             </li>
           ))}
           {isHome && <li><Link to="/resume" className="nav-resume">Resume</Link></li>}
+          {isHome && <li><Link to="/links" className="nav-resume nav-links">Links</Link></li>}
         </ul>
       </nav>
     </>
