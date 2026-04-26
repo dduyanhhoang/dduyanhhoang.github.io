@@ -56,19 +56,21 @@ export default function Nav() {
 
   return (
     <>
-      {/* Mobile fullscreen overlay */}
-      <div className={`nav-overlay${open ? ' open' : ''}`} aria-hidden={!open}>
-        <ul role="list">
-          {isHome && LINKS.map(({ href, label }) => (
-            <li key={href}>
-              <a href={href} className={active === href.slice(1) ? 'active' : ''} onClick={close}>
-                {label}
-              </a>
-            </li>
-          ))}
-          {isHome && <li><Link to="/resume" className="nav-resume" onClick={close}>Resume</Link></li>}
-        </ul>
-      </div>
+      {/* Mobile fullscreen overlay — home only */}
+      {isHome && (
+        <div className={`nav-overlay${open ? ' open' : ''}`} aria-hidden={!open}>
+          <ul role="list">
+            {LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <a href={href} className={active === href.slice(1) ? 'active' : ''} onClick={close}>
+                  {label}
+                </a>
+              </li>
+            ))}
+            <li><Link to="/resume" className="nav-resume" onClick={close}>Resume</Link></li>
+          </ul>
+        </div>
+      )}
 
       {/* Fixed nav bar */}
       <nav className={`site-nav${scrolled ? ' nav-scrolled' : ''}`}>
@@ -80,14 +82,17 @@ export default function Nav() {
           Duy Anh
         </Link>
 
-        <button
-          className={`hamburger${open ? ' is-open' : ''}`}
-          onClick={() => setOpen(o => !o)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          <span /><span /><span />
-        </button>
+        {/* Hamburger — home only, no links to show on other pages */}
+        {isHome && (
+          <button
+            className={`hamburger${open ? ' is-open' : ''}`}
+            onClick={() => setOpen(o => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            <span /><span /><span />
+          </button>
+        )}
 
         <ul className="nav-menu" role="list">
           {isHome && LINKS.map(({ href, label }) => (

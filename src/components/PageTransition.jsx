@@ -9,6 +9,11 @@ export default function PageTransition({ children }) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Scroll to top on every route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   useEffect(() => {
     // Intercept clicks on internal <a> elements so we can play exit animation
     const handler = e => {
