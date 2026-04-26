@@ -17,12 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch public activity
+      - name: Fetch activity
         run: |
           curl -s \
             -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/users/dduyanhhoang/events/public?per_page=30" \
+            "https://api.github.com/users/dduyanhhoang/events?per_page=30" \
             > public/github-activity.json
 
       - name: Commit if changed
@@ -31,5 +31,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/github-activity.json
           git diff --cached --quiet \
-            || git commit -m "chore: update github activity [skip ci]"
+            || git commit -m "chore: update github activity"
           git push
