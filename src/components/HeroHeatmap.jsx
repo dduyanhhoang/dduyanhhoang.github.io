@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
-const WEEKS    = 26;
 const RELEVANT = new Set(['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent', 'ForkEvent']);
+
+function getWeeks() {
+  return window.matchMedia('(max-width: 640px)').matches ? 16 : 26;
+}
 
 // ── Heatmap builder ───────────────────────────────────────────────────────────
 
-function buildHeatmap(data) {
+function buildHeatmap(data, weeks) {
   const lookup   = {};
   let   total    = 0;
   data.forEach(({ date, count }) => { lookup[date] = count; total += count; });
@@ -13,9 +16,9 @@ function buildHeatmap(data) {
 
   const today = new Date();
   const end   = new Date(today);
-  end.setDate(today.getDate() + (6 - today.getDay()));
+  end.setDate(today.getDate() + (6 - today.getDay())); // this Saturday
   const start = new Date(end);
-  start.setDate(end.getDate() - WEEKS * 7 + 1);
+  start.setDate(end.getDate() - weeks * 7 + 1);
 
   const days = [];
   const cur  = new Date(start);
@@ -50,7 +53,7 @@ function parseEvent(event) {
     case 'PullRequestEvent':
       return { icon: '◎', label: `PR in ${repo}`, detail: event.payload.pull_request?.title ?? '' };
     case 'ReleaseEvent':
-      return { icon: '◇', label: `released ${event.payload.release?.tag_name ?? ''} in ${repo}`, detail: '' };
+      return { icon: '◇', label: `released in ${repo}`, detail: event.payload.release?.tag_name ?? '' };
     case 'ForkEvent':
       return { icon: '⑂', label: `forked ${repo}`, detail: '' };
     default: return null;
@@ -62,7 +65,7 @@ function buildTicker(events) {
   cutoff.setDate(cutoff.getDate() - 3);
   const items = [];
   for (const e of events) {
-    if (new Date(e.created_at) < cutoff) continue;
+    if (new Date(e.created_at) < cutoff) break; // events are newest-first
     if (!RELEVANT.has(e.type)) continue;
     const parsed = parseEvent(e);
     if (parsed) items.push({ ...parsed, id: e.id });
@@ -75,18 +78,37 @@ function buildTicker(events) {
 export default function HeroHeatmap() {
   const [heatmap, setHeatmap] = useState({ days: [], total: 0 });
   const [ticker,  setTicker]  = useState([]);
+  const [weeks,   setWeeks]   = useState(26);
 
   useEffect(() => {
+    const w = getWeeks();
+    setWeeks(w);
+
+    const mq = window.matchMedia('(max-width: 640px)');
+    const onChange = () => setWeeks(getWeeks());
+    mq.addEventListener('change', onChange);
+
     fetch('/github-contributions.json')
       .then(r => r.ok ? r.json() : [])
-      .then(data => { if (data.length) setHeatmap(buildHeatmap(data)); })
+      .then(data => { if (data.length) setHeatmap(buildHeatmap(data, w)); })
       .catch(() => {});
 
     fetch('/github-activity.json')
       .then(r => r.ok ? r.json() : [])
       .then(data => setTicker(buildTicker(data)))
       .catch(() => {});
+
+    return () => mq.removeEventListener('change', onChange);
   }, []);
+
+  // Rebuild heatmap when weeks changes (e.g. resize)
+  useEffect(() => {
+    if (!heatmap.days.length) return;
+    fetch('/github-contributions.json')
+      .then(r => r.ok ? r.json() : [])
+      .then(data => { if (data.length) setHeatmap(buildHeatmap(data, weeks)); })
+      .catch(() => {});
+  }, [weeks]);
 
   if (!heatmap.total) return null;
 
@@ -111,13 +133,10 @@ export default function HeroHeatmap() {
         </span>
       </div>
 
-      {/* Ticker — only when there's recent activity */}
+      {/* Ticker */}
       {ticker.length > 0 && (
         <div className="hero-ticker-col" aria-label="Recent activity">
-          <ul
-            className="hero-ticker-track"
-            style={{ '--count': ticker.length }}
-          >
+          <ul className="hero-ticker-track" style={{ '--count': ticker.length }}>
             {doubled.map(({ icon, label, detail }, i) => (
               <li className="hero-ticker-item" key={i} aria-hidden={i >= ticker.length}>
                 <span className="hero-ticker-icon" aria-hidden="true">{icon}</span>
