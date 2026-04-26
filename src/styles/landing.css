@@ -1324,3 +1324,176 @@ footer { position: relative; z-index: 1; }
   transition: color 0.18s;
 }
 .footer-socials a:hover { color: var(--primary); }
+
+
+/* =============================================
+   VIM NAV — keyboard navigation badge + modal
+   ============================================= */
+
+.vim-badge {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-family: ui-monospace, "Fira Code", monospace;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: color 0.18s, background 0.18s, border-color 0.18s;
+}
+.vim-badge:hover {
+  color: var(--primary);
+  background: var(--surface2);
+  border-color: rgba(129,140,248,0.35);
+}
+
+.vim-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  background: rgba(8,12,20,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.18s ease both;
+}
+
+@media (prefers-color-scheme: light) {
+  .vim-overlay { background: rgba(241,245,249,0.75); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.vim-modal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 1.6rem;
+  width: min(420px, calc(100vw - 3rem));
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  animation: slideUp 0.2s ease both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.vim-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.vim-modal-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.vim-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+.vim-modal-close:hover { color: var(--text); background: var(--surface2); }
+
+.vim-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.vim-group-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-family: ui-monospace, "Fira Code", monospace;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.vim-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.vim-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.vim-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  padding: 0.18rem 0.45rem;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-family: ui-monospace, "Fira Code", monospace;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
+}
+
+.vim-desc {
+  font-size: 0.82rem;
+  color: var(--muted2);
+  margin-left: 0.3rem;
+}
+
+.vim-modal-footer {
+  margin-top: 1.3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.vim-key-inline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-family: ui-monospace, "Fira Code", monospace;
+  font-weight: 600;
+  color: var(--text);
+  font-style: normal;
+}
