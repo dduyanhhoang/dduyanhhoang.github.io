@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Event types worth showing on a portfolio
 const RELEVANT = new Set(['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent']);
@@ -51,6 +51,7 @@ function parseEvent(event) {
 export default function GitHubActivity() {
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState('loading'); // loading | ok | empty | error
+  const feedRef = useRef(null);
 
   useEffect(() => {
     fetch('/github-activity.json')
@@ -67,6 +68,18 @@ export default function GitHubActivity() {
       .catch(() => setStatus('error'));
   }, []);
 
+  // Observe the feed after it renders — the global useScrollReveal runs
+  // before the async fetch resolves, so feed items are never observed.
+  useEffect(() => {
+    if (!feedRef.current) return;
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+      { threshold: 0.05 }
+    );
+    feedRef.current.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, [status]);
+
   return (
     <section id="activity" aria-labelledby="activity-heading">
       <div className="section-inner">
@@ -75,6 +88,7 @@ export default function GitHubActivity() {
           Recent Activity
         </h2>
 
+        <div ref={feedRef}>
         {status === 'loading' && (
           <div className="gh-placeholder reveal reveal-d2">
             {[...Array(4)].map((_, i) => (
@@ -117,6 +131,7 @@ export default function GitHubActivity() {
             ))}
           </ul>
         )}
+        </div>
       </div>
     </section>
   );
