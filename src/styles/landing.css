@@ -1358,6 +1358,10 @@ footer { position: relative; z-index: 1; }
   border-color: rgba(129,140,248,0.35);
 }
 
+@media (max-width: 620px) {
+  .vim-badge { display: none; }
+}
+
 .vim-overlay {
   position: fixed;
   inset: 0;
