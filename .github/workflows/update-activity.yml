@@ -3,7 +3,7 @@ name: Update GitHub Activity
 on:
   schedule:
     - cron: '0 0 * * *'  # midnight UTC daily
-  workflow_dispatch:       # allow manual trigger from Actions tab
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -17,7 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch activity
+      # Recent events (for the ticker)
+      - name: Fetch events
         run: |
           curl -s \
             -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
@@ -25,11 +26,22 @@ jobs:
             "https://api.github.com/users/dduyanhhoang/events?per_page=100" \
             > public/github-activity.json
 
+      # Full contribution calendar via GraphQL (for the heatmap)
+      - name: Fetch contribution calendar
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"query":"{ user(login: \"dduyanhhoang\") { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } } }"}' \
+            https://api.github.com/graphql \
+            | jq '[.data.user.contributionsCollection.contributionCalendar.weeks[].contributionDays[] | {date: .date, count: .contributionCount}]' \
+            > public/github-contributions.json
+
       - name: Commit if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/github-activity.json
+          git add public/github-activity.json public/github-contributions.json
           git diff --cached --quiet \
             || git commit -m "chore: update github activity"
           git push

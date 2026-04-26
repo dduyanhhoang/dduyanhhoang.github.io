@@ -13,24 +13,24 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
-function buildCalendar(events) {
-  const now   = new Date();
-  const year  = now.getFullYear();
-  const month = now.getMonth();
+// contributions = [{date: "2026-04-01", count: 3}, ...]  from GraphQL
+function buildCalendar(contributions) {
+  const now      = new Date();
+  const year     = now.getFullYear();
+  const month    = now.getMonth();
+  const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
 
-  // Count all events per day this month (public + private)
   const counts = {};
-  events.forEach(e => {
-    const d = new Date(e.created_at);
-    if (d.getFullYear() === year && d.getMonth() === month) {
-      const day = d.getDate();
-      counts[day] = (counts[day] || 0) + 1;
+  contributions.forEach(({ date, count }) => {
+    if (date.startsWith(monthStr)) {
+      const day = parseInt(date.slice(8, 10), 10);
+      counts[day] = count;
     }
   });
 
   return {
     label:       now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-    firstDow:    new Date(year, month, 1).getDay(),   // 0 = Sun
+    firstDow:    new Date(year, month, 1).getDay(),
     daysInMonth: new Date(year, month + 1, 0).getDate(),
     today:       now.getDate(),
     counts,
@@ -146,14 +146,21 @@ function Ticker({ items }) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function GitHubActivity() {
-  const [events, setEvents] = useState([]);
-  const [status, setStatus] = useState('loading');
+  const [events,        setEvents]        = useState([]);
+  const [contributions, setContributions] = useState([]);
+  const [status,        setStatus]        = useState('loading');
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    fetch('/github-activity.json')
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-      .then(data => { setEvents(data); setStatus(data.length ? 'ok' : 'empty'); })
+    Promise.all([
+      fetch('/github-activity.json').then(r => r.ok ? r.json() : []),
+      fetch('/github-contributions.json').then(r => r.ok ? r.json() : []),
+    ])
+      .then(([evts, contribs]) => {
+        setEvents(evts);
+        setContributions(contribs);
+        setStatus(evts.length || contribs.length ? 'ok' : 'empty');
+      })
       .catch(() => setStatus('error'));
   }, []);
 
@@ -167,8 +174,8 @@ export default function GitHubActivity() {
     return () => obs.disconnect();
   }, [status]);
 
-  const calData    = useMemo(() => buildCalendar(events),  [events]);
-  const tickerItems = useMemo(() => buildTicker(events),   [events]);
+  const calData     = useMemo(() => buildCalendar(contributions), [contributions]);
+  const tickerItems = useMemo(() => buildTicker(events),          [events]);
 
   return (
     <section id="activity" aria-labelledby="activity-heading">
