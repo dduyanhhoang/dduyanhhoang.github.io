@@ -2,7 +2,6 @@ import '../styles/landing.css';
 import useScrollReveal      from '../hooks/useScrollReveal.js';
 import ParticleNet          from '../components/ParticleNet.jsx';
 import FloatingSymbols      from '../components/FloatingSymbols.jsx';
-import Nav                  from '../components/Nav.jsx';
 import Hero                 from '../components/Hero.jsx';
 import About                from '../components/About.jsx';
 import Research             from '../components/Research.jsx';
@@ -25,7 +24,6 @@ export default function Home() {
       </div>
       <div className="dot-grid" aria-hidden="true" />
 
-      <Nav />
       <Hero />
 
       <div className="content-sections">
