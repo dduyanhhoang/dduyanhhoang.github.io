@@ -879,71 +879,88 @@ body {
 
 .gh-layout {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 260px;
   gap: 1.5rem;
   align-items: start;
 }
 
-/* ── Heatmap ── */
-.gh-heatmap-wrap { display: flex; flex-direction: column; gap: 4px; }
-
-.gh-months {
-  display: grid;
-  padding-left: 0;
-  margin-bottom: 2px;
+/* ── Calendar heatmap ── */
+.cal-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.2rem 1.4rem;
 }
-.gh-month-label {
-  font-size: 0.68rem;
-  color: var(--muted);
+
+.cal-header {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.9rem;
   font-family: ui-monospace, "Fira Code", monospace;
+  letter-spacing: 0.05em;
 }
 
-.gh-heatmap-inner {
-  display: flex;
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   gap: 4px;
 }
 
-.gh-dow {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding-top: 1px;
-}
-.gh-dow span {
-  height: 11px;
+.cal-dow {
   font-size: 0.62rem;
   color: var(--muted);
-  line-height: 11px;
+  text-align: center;
+  padding-bottom: 4px;
   font-family: ui-monospace, "Fira Code", monospace;
-  text-align: right;
-  width: 12px;
 }
 
-.gh-grid {
-  display: grid;
-  grid-template-rows: repeat(7, 11px);
-  grid-auto-flow: column;
-  gap: 3px;
-}
+.cal-empty { aspect-ratio: 1; }
 
-.gh-day {
-  width: 11px; height: 11px;
-  border-radius: 2px;
+.cal-day {
+  aspect-ratio: 1;
+  border-radius: 6px;
   background: var(--surface2);
   border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   cursor: default;
-  transition: transform 0.1s;
+  position: relative;
+  transition: transform 0.15s;
+  gap: 2px;
 }
-.gh-day:hover { transform: scale(1.3); z-index: 1; position: relative; }
+.cal-day:hover { transform: scale(1.12); z-index: 1; }
 
-.gh-day[data-level="1"] { background: rgba(129,140,248,0.25); border-color: rgba(129,140,248,0.3); }
-.gh-day[data-level="2"] { background: rgba(129,140,248,0.50); border-color: rgba(129,140,248,0.55); }
-.gh-day[data-level="3"] { background: rgba(129,140,248,0.78); border-color: rgba(129,140,248,0.8); }
-.gh-day[data-level="4"] { background: var(--primary);          border-color: var(--primary); }
+.cal-today { border-color: var(--primary) !important; }
 
-/* ── Ticker ── */
+.cal-num {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--muted2);
+  line-height: 1;
+}
+.cal-day[data-level="0"] .cal-num { color: var(--muted); }
+.cal-day[data-level="3"] .cal-num,
+.cal-day[data-level="4"] .cal-num { color: #fff; }
+
+.cal-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.cal-day[data-level="0"] { background: var(--surface2); }
+.cal-day[data-level="1"] { background: rgba(129,140,248,0.2);  border-color: rgba(129,140,248,0.25); color: var(--primary); }
+.cal-day[data-level="2"] { background: rgba(129,140,248,0.45); border-color: rgba(129,140,248,0.5);  color: var(--primary); }
+.cal-day[data-level="3"] { background: rgba(129,140,248,0.75); border-color: rgba(129,140,248,0.8);  color: #fff; }
+.cal-day[data-level="4"] { background: var(--primary);         border-color: var(--primary);         color: #fff; }
+
+/* ── Vertical ticker ── */
 .gh-ticker-wrap {
-  height: 220px;
+  height: 300px;
   overflow: hidden;
   position: relative;
   background: var(--surface);
@@ -956,22 +973,16 @@ body {
   content: '';
   position: absolute;
   left: 0; right: 0;
-  height: 36px;
+  height: 40px;
   z-index: 1;
   pointer-events: none;
 }
-.gh-ticker-wrap::before {
-  top: 0;
-  background: linear-gradient(to bottom, var(--bg), transparent);
-}
-.gh-ticker-wrap::after {
-  bottom: 0;
-  background: linear-gradient(to top, var(--bg), transparent);
-}
+.gh-ticker-wrap::before { top: 0;    background: linear-gradient(to bottom, var(--bg), transparent); }
+.gh-ticker-wrap::after  { bottom: 0; background: linear-gradient(to top,    var(--bg), transparent); }
 
 .gh-ticker-track {
   list-style: none;
-  animation: tickUp calc(var(--count, 6) * 3.5s) linear infinite;
+  animation: tickUp calc(var(--count, 8) * 3s) linear infinite;
 }
 .gh-ticker-track:hover { animation-play-state: paused; }
 
@@ -983,8 +994,8 @@ body {
 .gh-ticker-item {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  padding: 0.6rem 0.9rem;
+  gap: 0.65rem;
+  padding: 0.55rem 0.9rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1003,9 +1014,7 @@ body {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
 }
-
 .gh-ticker-label {
   font-size: 0.78rem;
   font-weight: 600;
@@ -1015,15 +1024,14 @@ body {
   text-overflow: ellipsis;
 }
 .gh-ticker-detail {
-  font-size: 0.7rem;
+  font-size: 0.69rem;
   color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .gh-ticker-time {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: var(--muted);
   white-space: nowrap;
   font-family: ui-monospace, "Fira Code", monospace;
@@ -1045,7 +1053,7 @@ body {
 
 @media (max-width: 720px) {
   .gh-layout { grid-template-columns: 1fr; }
-  .gh-ticker-wrap { height: 180px; }
+  .gh-ticker-wrap { height: 220px; }
 }
 
 

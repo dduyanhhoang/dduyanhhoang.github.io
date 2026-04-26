@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 const RELEVANT = new Set(['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent', 'ForkEvent']);
-const WEEKS    = 14; // columns in heatmap
+const DOW      = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -13,28 +13,28 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
-function buildHeatmap(events) {
+function buildCalendar(events) {
+  const now   = new Date();
+  const year  = now.getFullYear();
+  const month = now.getMonth();
+
+  // Count all events per day this month (public + private)
   const counts = {};
   events.forEach(e => {
-    const day = e.created_at.slice(0, 10);
-    counts[day] = (counts[day] || 0) + 1;
+    const d = new Date(e.created_at);
+    if (d.getFullYear() === year && d.getMonth() === month) {
+      const day = d.getDate();
+      counts[day] = (counts[day] || 0) + 1;
+    }
   });
 
-  // Build grid starting from the Sunday WEEKS weeks ago
-  const today    = new Date();
-  const startDay = new Date(today);
-  startDay.setDate(today.getDate() - today.getDay() - (WEEKS - 1) * 7);
-
-  const days = [];
-  for (let i = 0; i < WEEKS * 7; i++) {
-    const d = new Date(startDay);
-    d.setDate(startDay.getDate() + i);
-    const key   = d.toISOString().slice(0, 10);
-    const count = counts[key] || 0;
-    const level = count === 0 ? 0 : count <= 2 ? 1 : count <= 4 ? 2 : count <= 7 ? 3 : 4;
-    days.push({ key, count, level, month: d.getMonth(), date: d.getDate(), dow: d.getDay() });
-  }
-  return days;
+  return {
+    label:       now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+    firstDow:    new Date(year, month, 1).getDay(),   // 0 = Sun
+    daysInMonth: new Date(year, month + 1, 0).getDate(),
+    today:       now.getDate(),
+    counts,
+  };
 }
 
 function parseEvent(event) {
@@ -42,20 +42,19 @@ function parseEvent(event) {
   switch (event.type) {
     case 'PushEvent': {
       const commits = event.payload.commits ?? [];
-      const count   = commits.length || 1;
       const msg     = commits[0]?.message?.split('\n')[0] ?? 'pushed changes';
       return { icon: <IconCommit />, label: `pushed to ${repo}`, detail: msg };
     }
     case 'CreateEvent':
       return event.payload.ref_type === 'repository'
-        ? { icon: <IconRepo />,    label: `created ${repo}`,               detail: event.payload.description ?? '' }
-        : { icon: <IconBranch />,  label: `new branch in ${repo}`,         detail: event.payload.ref ?? '' };
+        ? { icon: <IconRepo />,   label: `created ${repo}`,          detail: '' }
+        : { icon: <IconBranch />, label: `new branch in ${repo}`,    detail: event.payload.ref ?? '' };
     case 'PullRequestEvent':
       return { icon: <IconPR />,   label: `${event.payload.action} PR in ${repo}`, detail: event.payload.pull_request?.title ?? '' };
     case 'ReleaseEvent':
-      return { icon: <IconTag />,  label: `released ${event.payload.release?.tag_name ?? ''} in ${repo}`, detail: '' };
+      return { icon: <IconTag />,  label: `released in ${repo}`,     detail: event.payload.release?.tag_name ?? '' };
     case 'ForkEvent':
-      return { icon: <IconFork />, label: `forked ${repo}`,                detail: '' };
+      return { icon: <IconFork />, label: `forked ${repo}`,          detail: '' };
     default:
       return null;
   }
@@ -72,54 +71,52 @@ function buildTicker(events) {
   return items;
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
+// ── Calendar heatmap ─────────────────────────────────────────────────────────
 
-function Heatmap({ days }) {
-  // Month labels: detect when month changes across columns
-  const months = [];
-  for (let col = 0; col < WEEKS; col++) {
-    const firstDay = days[col * 7];
-    if (!firstDay) continue;
-    const prev = col > 0 ? days[(col - 1) * 7] : null;
-    if (!prev || prev.month !== firstDay.month) {
-      months.push({ col, label: new Date(firstDay.key).toLocaleDateString('en-US', { month: 'short' }) });
-    }
-  }
-
-  const DOW_LABELS = ['', 'M', '', 'W', '', 'F', ''];
+function Calendar({ data }) {
+  const { label, firstDow, daysInMonth, today, counts } = data;
+  const maxCount = Math.max(1, ...Object.values(counts));
 
   return (
-    <div className="gh-heatmap-wrap">
-      {/* Month labels */}
-      <div className="gh-months" style={{ gridTemplateColumns: `14px repeat(${WEEKS}, 1fr)` }}>
-        <span />
-        {Array.from({ length: WEEKS }, (_, col) => {
-          const m = months.find(m => m.col === col);
-          return <span key={col} className="gh-month-label">{m ? m.label : ''}</span>;
-        })}
-      </div>
+    <div className="cal-wrap">
+      <div className="cal-header">{label}</div>
 
-      <div className="gh-heatmap-inner">
-        {/* Day-of-week labels */}
-        <div className="gh-dow">
-          {DOW_LABELS.map((l, i) => <span key={i}>{l}</span>)}
-        </div>
+      <div className="cal-grid">
+        {DOW.map(d => <div key={d} className="cal-dow">{d}</div>)}
 
-        {/* Grid */}
-        <div className="gh-grid">
-          {days.map(({ key, count, level }) => (
+        {/* Empty cells before month start */}
+        {Array.from({ length: firstDow }, (_, i) => (
+          <div key={`empty-${i}`} className="cal-empty" />
+        ))}
+
+        {/* Day cells */}
+        {Array.from({ length: daysInMonth }, (_, i) => {
+          const day   = i + 1;
+          const count = counts[day] || 0;
+          const level = count === 0 ? 0
+            : count <= Math.ceil(maxCount * 0.25) ? 1
+            : count <= Math.ceil(maxCount * 0.5)  ? 2
+            : count <= Math.ceil(maxCount * 0.75) ? 3 : 4;
+          const isToday = day === today;
+
+          return (
             <div
-              key={key}
-              className="gh-day"
+              key={day}
+              className={`cal-day${isToday ? ' cal-today' : ''}`}
               data-level={level}
-              title={`${key}${count ? ` — ${count} event${count !== 1 ? 's' : ''}` : ''}`}
-            />
-          ))}
-        </div>
+              title={`${label.split(' ')[0]} ${day}${count ? ` — ${count} event${count !== 1 ? 's' : ''}` : ''}`}
+            >
+              <span className="cal-num">{day}</span>
+              {count > 0 && <span className="cal-dot" />}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+// ── Vertical ticker ───────────────────────────────────────────────────────────
 
 function Ticker({ items }) {
   if (!items.length) return null;
@@ -130,7 +127,6 @@ function Ticker({ items }) {
       <ul
         className="gh-ticker-track"
         style={{ '--count': items.length }}
-        aria-label="Recent GitHub events"
       >
         {doubled.map(({ icon, label, detail, date }, i) => (
           <li className="gh-ticker-item" key={i} aria-hidden={i >= items.length}>
@@ -147,7 +143,7 @@ function Ticker({ items }) {
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
+// ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function GitHubActivity() {
   const [events, setEvents] = useState([]);
@@ -161,7 +157,6 @@ export default function GitHubActivity() {
       .catch(() => setStatus('error'));
   }, []);
 
-  // Observe async-rendered reveals
   useEffect(() => {
     if (!sectionRef.current || status === 'loading') return;
     const obs = new IntersectionObserver(
@@ -172,14 +167,16 @@ export default function GitHubActivity() {
     return () => obs.disconnect();
   }, [status]);
 
-  const heatmapDays = useMemo(() => buildHeatmap(events), [events]);
-  const tickerItems = useMemo(() => buildTicker(events),  [events]);
+  const calData    = useMemo(() => buildCalendar(events),  [events]);
+  const tickerItems = useMemo(() => buildTicker(events),   [events]);
 
   return (
     <section id="activity" aria-labelledby="activity-heading">
       <div className="section-inner" ref={sectionRef}>
         <div className="label reveal">GitHub</div>
-        <h2 className="section-title reveal reveal-d1" id="activity-heading">Recent Activity</h2>
+        <h2 className="section-title reveal reveal-d1" id="activity-heading">
+          This Month
+        </h2>
 
         {status === 'loading' && (
           <div className="gh-skeleton-wrap reveal reveal-d2">
@@ -188,13 +185,13 @@ export default function GitHubActivity() {
         )}
 
         {(status === 'error' || status === 'empty') && (
-          <p className="gh-empty reveal reveal-d2">No recent public activity yet.</p>
+          <p className="gh-empty reveal reveal-d2">No activity data yet.</p>
         )}
 
         {status === 'ok' && (
           <div className="gh-layout reveal reveal-d2">
-            <Heatmap days={heatmapDays} />
-            <Ticker items={tickerItems} />
+            <Calendar data={calData} />
+            <Ticker   items={tickerItems} />
           </div>
         )}
       </div>
@@ -208,7 +205,7 @@ function IconCommit() {
   return <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg>;
 }
 function IconRepo() {
-  return <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" rx="2"/><path d="M3 9h18M9 21V9"/></svg>;
+  return <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>;
 }
 function IconBranch() {
   return <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>;
