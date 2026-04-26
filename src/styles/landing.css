@@ -434,7 +434,13 @@ body {
   border: 1px solid var(--border);
   transition: transform 0.1s;
 }
-.hero-heatmap-cell:hover { transform: scale(1.4); z-index: 1; position: relative; }
+.hero-heatmap-cell:hover {
+  transform: scale(1.9);
+  z-index: 1;
+  position: relative;
+  box-shadow: 0 0 6px 2px rgba(129,140,248,0.55);
+  border-color: var(--primary) !important;
+}
 .hero-heatmap-cell[data-level="0"] { background: var(--surface2); }
 .hero-heatmap-cell[data-level="1"] { background: rgba(129,140,248,0.25); border-color: rgba(129,140,248,0.3); }
 .hero-heatmap-cell[data-level="2"] { background: rgba(129,140,248,0.50); border-color: rgba(129,140,248,0.55); }
@@ -574,13 +580,6 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 5.5rem 2rem;
-}
-
-.section-divider {
-  max-width: 960px;
-  margin: 0 auto;
-  height: 1px;
-  background: var(--border);
 }
 
 .label {
@@ -1199,6 +1198,29 @@ body {
 @media (max-width: 720px) {
   .gh-layout { grid-template-columns: 1fr; }
   .gh-ticker-wrap { height: 220px; }
+}
+
+
+/* =============================================
+   PAGE LINE — section-border scroll trace
+   ============================================= */
+
+/* Give the page-wrap a positioning context so the SVG can anchor to it */
+#page-wrap { position: relative; }
+
+.page-line-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+/* Only show on wide screens */
+@media (max-width: 900px) {
+  .page-line-svg { display: none; }
 }
 
 

@@ -1,5 +1,6 @@
 import '../styles/landing.css';
 import useScrollReveal      from '../hooks/useScrollReveal.js';
+import PageLine             from '../components/PageLine.jsx';
 import ParticleNet          from '../components/ParticleNet.jsx';
 import FloatingSymbols      from '../components/FloatingSymbols.jsx';
 import Hero                 from '../components/Hero.jsx';
@@ -24,15 +25,13 @@ export default function Home() {
       </div>
       <div className="dot-grid" aria-hidden="true" />
 
+      <PageLine />
       <Hero />
 
       <div className="content-sections">
         <About />
-        <div className="section-divider" aria-hidden="true" />
         <Research />
-        <div className="section-divider" aria-hidden="true" />
         <Skills />
-        <div className="section-divider" aria-hidden="true" />
         <Acknowledgements />
       </div>
 
