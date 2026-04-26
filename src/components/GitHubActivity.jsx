@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const RELEVANT = new Set(['PushEvent', 'CreateEvent', 'PullRequestEvent', 'ReleaseEvent', 'ForkEvent']);
-const DOW      = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -9,32 +8,7 @@ function formatDate(iso) {
   const diff = (Date.now() - new Date(iso)) / 1000;
   if (diff < 3600)   return `${Math.floor(diff / 60)}m ago`;
   if (diff < 86400)  return `${Math.floor(diff / 3600)}h ago`;
-  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
   return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-
-// contributions = [{date: "2026-04-01", count: 3}, ...]  from GraphQL
-function buildCalendar(contributions) {
-  const now      = new Date();
-  const year     = now.getFullYear();
-  const month    = now.getMonth();
-  const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
-
-  const counts = {};
-  contributions.forEach(({ date, count }) => {
-    if (date.startsWith(monthStr)) {
-      const day = parseInt(date.slice(8, 10), 10);
-      counts[day] = count;
-    }
-  });
-
-  return {
-    label:       now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-    firstDow:    new Date(year, month, 1).getDay(),
-    daysInMonth: new Date(year, month + 1, 0).getDate(),
-    today:       now.getDate(),
-    counts,
-  };
 }
 
 function parseEvent(event) {
@@ -47,87 +21,39 @@ function parseEvent(event) {
     }
     case 'CreateEvent':
       return event.payload.ref_type === 'repository'
-        ? { icon: <IconRepo />,   label: `created ${repo}`,          detail: '' }
-        : { icon: <IconBranch />, label: `new branch in ${repo}`,    detail: event.payload.ref ?? '' };
+        ? { icon: <IconRepo />,   label: `created ${repo}`,       detail: '' }
+        : { icon: <IconBranch />, label: `new branch in ${repo}`, detail: event.payload.ref ?? '' };
     case 'PullRequestEvent':
-      return { icon: <IconPR />,   label: `${event.payload.action} PR in ${repo}`, detail: event.payload.pull_request?.title ?? '' };
+      return { icon: <IconPR />,  label: `${event.payload.action} PR in ${repo}`, detail: event.payload.pull_request?.title ?? '' };
     case 'ReleaseEvent':
-      return { icon: <IconTag />,  label: `released in ${repo}`,     detail: event.payload.release?.tag_name ?? '' };
+      return { icon: <IconTag />, label: `released in ${repo}`,   detail: event.payload.release?.tag_name ?? '' };
     case 'ForkEvent':
-      return { icon: <IconFork />, label: `forked ${repo}`,          detail: '' };
-    default:
-      return null;
+      return { icon: <IconFork />,label: `forked ${repo}`,        detail: '' };
+    default: return null;
   }
 }
 
 function buildTicker(events) {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 3); // last 3 days only
+
   const items = [];
   for (const e of events) {
+    if (new Date(e.created_at) < cutoff) continue;
     if (!RELEVANT.has(e.type)) continue;
     const parsed = parseEvent(e);
     if (parsed) items.push({ ...parsed, date: e.created_at, id: e.id });
-    if (items.length >= 12) break;
   }
   return items;
 }
 
-// ── Calendar heatmap ─────────────────────────────────────────────────────────
-
-function Calendar({ data }) {
-  const { label, firstDow, daysInMonth, today, counts } = data;
-  const maxCount = Math.max(1, ...Object.values(counts));
-
-  return (
-    <div className="cal-wrap">
-      <div className="cal-header">{label}</div>
-
-      <div className="cal-grid">
-        {DOW.map(d => <div key={d} className="cal-dow">{d}</div>)}
-
-        {/* Empty cells before month start */}
-        {Array.from({ length: firstDow }, (_, i) => (
-          <div key={`empty-${i}`} className="cal-empty" />
-        ))}
-
-        {/* Day cells */}
-        {Array.from({ length: daysInMonth }, (_, i) => {
-          const day   = i + 1;
-          const count = counts[day] || 0;
-          const level = count === 0 ? 0
-            : count <= Math.ceil(maxCount * 0.25) ? 1
-            : count <= Math.ceil(maxCount * 0.5)  ? 2
-            : count <= Math.ceil(maxCount * 0.75) ? 3 : 4;
-          const isToday = day === today;
-
-          return (
-            <div
-              key={day}
-              className={`cal-day${isToday ? ' cal-today' : ''}`}
-              data-level={level}
-              title={`${label.split(' ')[0]} ${day}${count ? ` — ${count} event${count !== 1 ? 's' : ''}` : ''}`}
-            >
-              <span className="cal-num">{day}</span>
-              {count > 0 && <span className="cal-dot" />}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-// ── Vertical ticker ───────────────────────────────────────────────────────────
+// ── Ticker ────────────────────────────────────────────────────────────────────
 
 function Ticker({ items }) {
-  if (!items.length) return null;
   const doubled = [...items, ...items];
-
   return (
     <div className="gh-ticker-wrap">
-      <ul
-        className="gh-ticker-track"
-        style={{ '--count': items.length }}
-      >
+      <ul className="gh-ticker-track" style={{ '--count': items.length }}>
         {doubled.map(({ icon, label, detail, date }, i) => (
           <li className="gh-ticker-item" key={i} aria-hidden={i >= items.length}>
             <span className="gh-ticker-icon" aria-hidden="true">{icon}</span>
@@ -146,24 +72,22 @@ function Ticker({ items }) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function GitHubActivity() {
-  const [events,        setEvents]        = useState([]);
-  const [contributions, setContributions] = useState([]);
-  const [status,        setStatus]        = useState('loading');
+  const [items,  setItems]  = useState([]);
+  const [status, setStatus] = useState('loading');
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    Promise.all([
-      fetch('/github-activity.json').then(r => r.ok ? r.json() : []),
-      fetch('/github-contributions.json').then(r => r.ok ? r.json() : []),
-    ])
-      .then(([evts, contribs]) => {
-        setEvents(evts);
-        setContributions(contribs);
-        setStatus(evts.length || contribs.length ? 'ok' : 'empty');
+    fetch('/github-activity.json')
+      .then(r => r.ok ? r.json() : [])
+      .then(data => {
+        const ticker = buildTicker(data);
+        setItems(ticker);
+        setStatus(ticker.length ? 'ok' : 'empty');
       })
       .catch(() => setStatus('error'));
   }, []);
 
+  // Observe async-rendered reveals
   useEffect(() => {
     if (!sectionRef.current || status === 'loading') return;
     const obs = new IntersectionObserver(
@@ -174,15 +98,14 @@ export default function GitHubActivity() {
     return () => obs.disconnect();
   }, [status]);
 
-  const calData     = useMemo(() => buildCalendar(contributions), [contributions]);
-  const tickerItems = useMemo(() => buildTicker(events),          [events]);
+  if (status === 'empty' || status === 'error') return null;
 
   return (
     <section id="activity" aria-labelledby="activity-heading">
       <div className="section-inner" ref={sectionRef}>
         <div className="label reveal">GitHub</div>
         <h2 className="section-title reveal reveal-d1" id="activity-heading">
-          This Month
+          Last 3 Days
         </h2>
 
         {status === 'loading' && (
@@ -191,14 +114,9 @@ export default function GitHubActivity() {
           </div>
         )}
 
-        {(status === 'error' || status === 'empty') && (
-          <p className="gh-empty reveal reveal-d2">No activity data yet.</p>
-        )}
-
         {status === 'ok' && (
-          <div className="gh-layout reveal reveal-d2">
-            <Calendar data={calData} />
-            <Ticker   items={tickerItems} />
+          <div className="reveal reveal-d2">
+            <Ticker items={items} />
           </div>
         )}
       </div>

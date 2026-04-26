@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import HeroHeatmap from './HeroHeatmap.jsx';
 
 // Edit these to change the cycling typewriter text
 const PHRASES = [
@@ -62,6 +63,8 @@ export default function Hero() {
             Get in Touch
           </a>
         </div>
+
+        <HeroHeatmap />
       </div>
 
       <div className="scroll-hint" aria-hidden="true">

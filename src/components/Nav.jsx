@@ -6,7 +6,6 @@ const LINKS = [
   { href: '#research',         label: 'Research' },
   { href: '#skills',           label: 'Skills' },
   { href: '#acknowledgements', label: 'Thanks' },
-  { href: '#activity',         label: 'Activity' },
 ];
 
 export default function Nav() {
