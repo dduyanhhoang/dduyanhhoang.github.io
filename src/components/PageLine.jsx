@@ -96,7 +96,18 @@ export default function PageLine() {
   useEffect(() => {
     const t = setTimeout(build, 250);
     window.addEventListener('resize', build);
-    return () => { clearTimeout(t); window.removeEventListener('resize', build); };
+    window.addEventListener('load', build);
+
+    // Rebuild if content height changes (images, fonts finish loading)
+    const ro = new ResizeObserver(build);
+    ro.observe(document.body);
+
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', build);
+      window.removeEventListener('load', build);
+      ro.disconnect();
+    };
   }, []);
 
   // ── Animation ────────────────────────────────────────────────────────────
