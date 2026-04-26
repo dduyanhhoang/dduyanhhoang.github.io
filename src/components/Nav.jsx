@@ -35,7 +35,7 @@ export default function Nav() {
 
       {/* ── Fixed nav bar ─────────────────────────────────────────────── */}
       <nav className="site-nav">
-        <Link to="/" className="nav-logo" onClick={close}>Duy Anh</Link>
+        <Link to="/" className="nav-logo" onClick={() => { close(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Duy Anh</Link>
 
         <button
           className={`hamburger${open ? ' is-open' : ''}`}
