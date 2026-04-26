@@ -1,16 +1,25 @@
 import { useEffect } from 'react';
 
-/**
- * Observes all .reveal elements and adds the .in class when they
- * enter the viewport, triggering their CSS fade-up transition.
- */
 export default function useScrollReveal() {
   useEffect(() => {
-    const obs = new IntersectionObserver(
+    const revealObs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
       { threshold: 0.12 }
     );
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Mirror Nav's active-section logic to glow only the navbar-active heading
+    const ids = ['about', 'research', 'skills', 'acknowledgements'];
+    const glowObs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        const title = e.target.querySelector('.section-title');
+        if (title) title.classList.toggle('glow', e.isIntersecting);
+      }),
+      { rootMargin: '-70px 0px -55% 0px', threshold: 0 }
+    );
+    ids.map(id => document.getElementById(id)).filter(Boolean)
+       .forEach(el => glowObs.observe(el));
+
+    return () => { revealObs.disconnect(); glowObs.disconnect(); };
   }, []);
 }

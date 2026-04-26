@@ -603,6 +603,12 @@ body {
   line-height: 1.15;
   margin-bottom: 0.9rem;
 }
+.section-title {
+  transition: text-shadow 0.6s ease;
+}
+.section-title.glow {
+  text-shadow: 0 0 22px rgba(129,140,248,0.55), 0 0 8px rgba(129,140,248,0.3);
+}
 
 .section-sub {
   color: var(--muted2);
