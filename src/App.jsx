@@ -12,6 +12,7 @@ import Skills         from './pages/Skills.jsx';
 import Resume         from './pages/Resume.jsx';
 import Links          from './pages/Links.jsx';
 import Thanks         from './pages/Thanks.jsx';
+import Writings       from './pages/Writings.jsx';
 
 export default function App() {
   return (
@@ -29,7 +30,8 @@ export default function App() {
           <Route path="/skills"   element={<Skills />} />
           <Route path="/resume"   element={<Resume />} />
           <Route path="/links"    element={<Links />} />
-          <Route path="/thanks"   element={<Thanks />} />
+          <Route path="/thanks"    element={<Thanks />} />
+          <Route path="/writings" element={<Writings />} />
         </Routes>
       </PageTransition>
     </>

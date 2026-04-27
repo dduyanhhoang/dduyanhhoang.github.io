@@ -15,13 +15,14 @@ export default function Research() {
       </div>
       <div className="dot-grid" aria-hidden="true" />
 
-      <main className="under-construction">
-        <div className="label">Research</div>
-        <h1 className="uc-title">Under Construction</h1>
-        <p className="uc-sub">This page is on its way.</p>
-      </main>
-
-      <Footer />
+      <div className="page-layout">
+        <main className="under-construction">
+          <div className="label">Research</div>
+          <h1 className="uc-title">Under Construction</h1>
+          <p className="uc-sub">This page is on its way.</p>
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

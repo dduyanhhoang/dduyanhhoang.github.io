@@ -3,7 +3,7 @@ import ParticleNet     from '../components/ParticleNet.jsx';
 import FloatingSymbols from '../components/FloatingSymbols.jsx';
 import Footer          from '../components/Footer.jsx';
 
-export default function About() {
+export default function Writings() {
   return (
     <>
       <ParticleNet />
@@ -17,7 +17,7 @@ export default function About() {
 
       <div className="page-layout">
         <main className="under-construction">
-          <div className="label">About</div>
+          <div className="label">Writings</div>
           <h1 className="uc-title">Under Construction</h1>
           <p className="uc-sub">This page is on its way.</p>
         </main>

@@ -77,7 +77,6 @@ export default function PageLine() {
     if (!sections.length) return;
 
     const vw  = window.innerWidth;
-    const ph  = document.documentElement.scrollHeight;
     const boxes = sections.map(el => {
       const r = el.getBoundingClientRect();
       return { l: r.left, r: r.right, t: r.top + window.scrollY, b: r.bottom + window.scrollY };
@@ -89,6 +88,7 @@ export default function PageLine() {
     const hr     = hero?.getBoundingClientRect();
     const startY = hr ? hr.bottom + window.scrollY - 10 : boxes[0].t;
 
+    const ph = boxes[boxes.length - 1].b;
     const waypoints = buildWaypoints(boxes, L, R, vw / 2, startY);
     setPath({ d: buildRoundedPath(waypoints, CORNER_R), w: vw, h: ph });
   };

@@ -115,6 +115,7 @@ export default function Links() {
       </div>
       <div className="dot-grid" aria-hidden="true" />
 
+    <div className="page-layout">
     <main className="links-page">
       <div className="links-card">
         {/* Avatar */}
@@ -166,6 +167,7 @@ export default function Links() {
       </div>
     </main>
     <Footer />
+    </div>
     </>
   );
 }

@@ -20,11 +20,12 @@ export default function Thanks() {
       </div>
       <div className="dot-grid" aria-hidden="true" />
 
-      <div className="content-sections">
-        <Acknowledgements />
+      <div className="page-layout">
+        <div className="content-sections">
+          <Acknowledgements />
+        </div>
+        <Footer />
       </div>
-
-      <Footer />
     </>
   );
 }

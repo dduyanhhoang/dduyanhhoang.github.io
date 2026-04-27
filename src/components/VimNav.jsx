@@ -19,6 +19,7 @@ const PAGES = [
   { label: 'Achievements', href: '/achievements' },
   { label: 'Links',        href: '/links' },
   { label: 'Thanks',       href: '/thanks' },
+  { label: 'Writings',     href: '/writings' },
 ];
 
 const PAGE_KEYS = {
@@ -27,20 +28,22 @@ const PAGE_KEYS = {
   '3': '/research',
   '4': '/skills',
   '5': '/resume',
+  '6': '/writings',
   '8': '/achievements',
   '9': '/links',
   '0': '/thanks',
 };
 
 function getCurrentSection(sections) {
+  const navH = 80;
   let current = sections[0];
-  let maxVisible = -1;
   for (const id of sections) {
     const el = document.getElementById(id);
     if (!el) continue;
     const { top, bottom } = el.getBoundingClientRect();
-    const visible = Math.max(0, Math.min(window.innerHeight, bottom) - Math.max(0, top));
-    if (visible > maxVisible) { maxVisible = visible; current = id; }
+    // The section that straddles the navbar line is the active one.
+    // Exactly one section satisfies this at any scroll position.
+    if (top <= navH && bottom > navH) { current = id; break; }
   }
   return current;
 }
@@ -311,6 +314,10 @@ export default function VimNav() {
                   <div className="vim-row">
                     <span className="vim-key">5</span>
                     <span className="vim-desc">Resume</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">6</span>
+                    <span className="vim-desc">Writings</span>
                   </div>
                   <div className="vim-row">
                     <span className="vim-key">8</span>
