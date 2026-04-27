@@ -5,8 +5,13 @@ import Nav            from './components/Nav.jsx';
 import VimNav         from './components/VimNav.jsx';
 import PageTransition from './components/PageTransition.jsx';
 import Home           from './pages/Home.jsx';
+import Achievements   from './pages/Achievements.jsx';
+import About          from './pages/About.jsx';
+import Research       from './pages/Research.jsx';
+import Skills         from './pages/Skills.jsx';
 import Resume         from './pages/Resume.jsx';
 import Links          from './pages/Links.jsx';
+import Thanks         from './pages/Thanks.jsx';
 
 export default function App() {
   return (
@@ -17,9 +22,14 @@ export default function App() {
       <Nav />
       <PageTransition>
         <Routes>
-          <Route path="/"       element={<Home />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/links"  element={<Links />} />
+          <Route path="/"              element={<Home />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/about"    element={<About />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/skills"   element={<Skills />} />
+          <Route path="/resume"   element={<Resume />} />
+          <Route path="/links"    element={<Links />} />
+          <Route path="/thanks"   element={<Thanks />} />
         </Routes>
       </PageTransition>
     </>

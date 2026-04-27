@@ -7,7 +7,7 @@ import Hero                 from '../components/Hero.jsx';
 import About                from '../components/About.jsx';
 import Research             from '../components/Research.jsx';
 import Skills               from '../components/Skills.jsx';
-import Acknowledgements     from '../components/Acknowledgements.jsx';
+import ExploreMore          from '../components/ExploreMore.jsx';
 import Footer               from '../components/Footer.jsx';
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
         <About />
         <Research />
         <Skills />
-        <Acknowledgements />
+        <ExploreMore />
       </div>
 
       <Footer />

@@ -1,0 +1,45 @@
+/* =============================================
+   FOOTER — shared across all pages
+   ============================================= */
+
+/* Fallback tokens for pages that don't load landing.css */
+:root {
+  --footer-muted:   #64748b;
+  --footer-primary: #818cf8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --footer-muted:   #94a3b8;
+    --footer-primary: #6366f1;
+  }
+}
+
+footer { position: relative; z-index: 1; }
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy { font-size: 0.82rem; color: var(--muted, var(--footer-muted)); }
+
+.footer-right { display: flex; gap: 0.9rem; align-items: center; }
+.footer-right a {
+  color: var(--muted, var(--footer-muted));
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 0.18s;
+}
+.footer-right a:hover { color: var(--primary, var(--footer-primary)); }
+.footer-right .footer-sep {
+  color: var(--muted, var(--footer-muted));
+  font-size: 0.82rem;
+  opacity: 0.4;
+  user-select: none;
+}

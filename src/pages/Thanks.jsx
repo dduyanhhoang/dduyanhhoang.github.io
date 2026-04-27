@@ -1,0 +1,30 @@
+import '../styles/landing.css';
+import useScrollReveal  from '../hooks/useScrollReveal.js';
+import ParticleNet      from '../components/ParticleNet.jsx';
+import FloatingSymbols  from '../components/FloatingSymbols.jsx';
+import Acknowledgements from '../components/Acknowledgements.jsx';
+import Footer           from '../components/Footer.jsx';
+
+export default function Thanks() {
+  useScrollReveal();
+
+  return (
+    <>
+      <ParticleNet />
+      <FloatingSymbols />
+
+      <div className="bg-layer" aria-hidden="true">
+        <div className="blob blob-a" />
+        <div className="blob blob-b" />
+        <div className="blob blob-c" />
+      </div>
+      <div className="dot-grid" aria-hidden="true" />
+
+      <div className="content-sections">
+        <Acknowledgements />
+      </div>
+
+      <Footer />
+    </>
+  );
+}

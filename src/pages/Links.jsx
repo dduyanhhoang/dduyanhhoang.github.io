@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import '../styles/links.css';
 import ParticleNet     from '../components/ParticleNet.jsx';
 import FloatingSymbols from '../components/FloatingSymbols.jsx';
+import Footer          from '../components/Footer.jsx';
 
 const MAIN_LINKS = [
   {
@@ -164,6 +165,7 @@ export default function Links() {
 
       </div>
     </main>
+    <Footer />
     </>
   );
 }

@@ -1,15 +1,12 @@
-import { Link } from 'react-router-dom';
+import '../styles/footer.css';
 
 export default function Footer() {
   return (
     <footer>
       <div className="footer-inner">
         <p className="footer-copy">© 2026 Hoang Dinh Duy Anh &nbsp;·&nbsp; Hanoi, Vietnam</p>
-        <nav className="footer-socials" aria-label="Social links">
-          <a href="https://github.com/dduyanhhoang" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/dduyanhhoang/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:dduyanhhoang@gmail.com">Email</a>
-          <Link to="/resume">Resume</Link>
+        <nav className="footer-right" aria-label="Footer links">
+          <a href="mailto:dduyanhhoang@gmail.com">dduyanhhoang@gmail.com</a>
         </nav>
       </div>
     </footer>

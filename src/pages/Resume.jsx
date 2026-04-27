@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../styles/resume.css';
+import Footer from '../components/Footer.jsx';
 
 function Entry({ title, date, role, org, bullets }) {
   return (
@@ -61,6 +62,7 @@ const LEADERSHIP = [
 
 export default function Resume() {
   return (
+    <>
     <div className="resume-page">
       <Link to="/" className="back-link">
         <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -145,5 +147,7 @@ export default function Resume() {
         </section>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

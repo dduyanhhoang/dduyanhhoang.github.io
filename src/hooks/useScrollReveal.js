@@ -9,7 +9,7 @@ export default function useScrollReveal() {
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
     // Mirror Nav's active-section logic to glow only the navbar-active heading
-    const ids = ['about', 'research', 'skills', 'acknowledgements'];
+    const ids = ['about', 'research', 'skills', 'explore'];
     const glowObs = new IntersectionObserver(
       entries => entries.forEach(e => {
         const title = e.target.querySelector('.section-title');

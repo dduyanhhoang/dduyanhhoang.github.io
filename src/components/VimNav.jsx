@@ -1,36 +1,95 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const HOME_SECTIONS = ['hero', 'about', 'research', 'skills', 'acknowledgements'];
+// Ordered page sequence for [ / ] navigation
+const PAGE_SEQUENCE = ['/thanks', '/', '/about', '/research', '/skills', '/resume'];
 
-function getCurrentSection() {
-  let closest = HOME_SECTIONS[0];
-  let closestDist = Infinity;
-  for (const id of HOME_SECTIONS) {
+// Sections per page for { / } navigation
+const PAGE_SECTIONS = {
+  '/':       ['hero', 'about', 'research', 'skills', 'explore'],
+  '/thanks': ['acknowledgements'],
+};
+
+const PAGES = [
+  { label: 'Home',         href: '/' },
+  { label: 'About',        href: '/about' },
+  { label: 'Research',     href: '/research' },
+  { label: 'Skills',       href: '/skills' },
+  { label: 'Resume',       href: '/resume' },
+  { label: 'Achievements', href: '/achievements' },
+  { label: 'Links',        href: '/links' },
+  { label: 'Thanks',       href: '/thanks' },
+];
+
+const PAGE_KEYS = {
+  '1': '/',
+  '2': '/about',
+  '3': '/research',
+  '4': '/skills',
+  '5': '/resume',
+  '8': '/achievements',
+  '9': '/links',
+  '0': '/thanks',
+};
+
+function getCurrentSection(sections) {
+  let current = sections[0];
+  let maxVisible = -1;
+  for (const id of sections) {
     const el = document.getElementById(id);
     if (!el) continue;
-    const dist = Math.abs(el.getBoundingClientRect().top);
-    if (dist < closestDist) { closestDist = dist; closest = id; }
+    const { top, bottom } = el.getBoundingClientRect();
+    const visible = Math.max(0, Math.min(window.innerHeight, bottom) - Math.max(0, top));
+    if (visible > maxVisible) { maxVisible = visible; current = id; }
   }
-  return closest;
+  return current;
 }
 
 export default function VimNav() {
-  const [helpOpen, setHelpOpen] = useState(false);
+  const [helpOpen,    setHelpOpen]    = useState(false);
+  const [searchOpen,  setSearchOpen]  = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchIdx,   setSearchIdx]   = useState(0);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const isHome = pathname === '/';
-  const gPending = useRef(false);
-  const gTimer = useRef(null);
+  const gPending      = useRef(false);
+  const gTimer        = useRef(null);
+  const searchInputRef = useRef(null);
+
+  const filtered = PAGES.filter(p =>
+    p.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Auto-focus input when search opens
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 0);
+      setSearchIdx(0);
+    }
+  }, [searchOpen]);
+
+  // Reset selection when query changes
+  useEffect(() => { setSearchIdx(0); }, [searchQuery]);
+
+  const closeSearch = () => { setSearchOpen(false); setSearchQuery(''); };
+
+  const confirmSearch = (idx) => {
+    const target = filtered[idx ?? searchIdx];
+    if (target) { navigate(target.href); closeSearch(); }
+  };
 
   useEffect(() => {
     const handler = (e) => {
+      // Let search input handle its own keys
+      if (searchOpen) return;
+
       const tag = document.activeElement?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
       if (e.metaKey || e.altKey) return;
 
       const { key, ctrlKey } = e;
 
+      // Scroll
       if (key === 'j' && !ctrlKey) {
         e.preventDefault();
         window.scrollBy({ top: 220, behavior: 'smooth' });
@@ -56,22 +115,44 @@ export default function VimNav() {
           gPending.current = true;
           gTimer.current = setTimeout(() => { gPending.current = false; }, 600);
         }
-      } else if (key === ']' && isHome) {
+
+      // Prev / next page
+      } else if (key === '[') {
         e.preventDefault();
-        const idx = HOME_SECTIONS.indexOf(getCurrentSection());
-        document.getElementById(HOME_SECTIONS[Math.min(idx + 1, HOME_SECTIONS.length - 1)])
-          ?.scrollIntoView({ behavior: 'smooth' });
-      } else if (key === '[' && isHome) {
+        const idx = PAGE_SEQUENCE.indexOf(pathname);
+        if (idx > 0) navigate(PAGE_SEQUENCE[idx - 1]);
+      } else if (key === ']') {
         e.preventDefault();
-        const idx = HOME_SECTIONS.indexOf(getCurrentSection());
-        document.getElementById(HOME_SECTIONS[Math.max(idx - 1, 0)])
-          ?.scrollIntoView({ behavior: 'smooth' });
-      } else if (key === '1') {
-        navigate('/');
-      } else if (key === '2') {
-        navigate('/resume');
-      } else if (key === '3') {
-        navigate('/links');
+        const idx = PAGE_SEQUENCE.indexOf(pathname);
+        if (idx !== -1 && idx < PAGE_SEQUENCE.length - 1) navigate(PAGE_SEQUENCE[idx + 1]);
+
+      // Prev / next section within page
+      } else if (key === '{') {
+        e.preventDefault();
+        const sections = PAGE_SECTIONS[pathname];
+        if (sections) {
+          const idx = sections.indexOf(getCurrentSection(sections));
+          if (idx > 0) document.getElementById(sections[idx - 1])?.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (key === '}') {
+        e.preventDefault();
+        const sections = PAGE_SECTIONS[pathname];
+        if (sections) {
+          const idx = sections.indexOf(getCurrentSection(sections));
+          document.getElementById(sections[Math.min(idx + 1, sections.length - 1)])?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+      // Page shortcuts
+      } else if (PAGE_KEYS[key]) {
+        navigate(PAGE_KEYS[key]);
+
+      // Search
+      } else if (key === '/') {
+        e.preventDefault();
+        setHelpOpen(false);
+        setSearchOpen(true);
+
+      // Help modal
       } else if (key === '?') {
         setHelpOpen(v => !v);
       } else if (key === 'Escape') {
@@ -81,10 +162,71 @@ export default function VimNav() {
 
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [isHome, navigate]);
+  }, [pathname, navigate, searchOpen]);
+
+  const handleSearchKey = (e) => {
+    if (e.key === 'Escape') {
+      closeSearch();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      confirmSearch();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSearchIdx(i => Math.min(i + 1, filtered.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSearchIdx(i => Math.max(i - 1, 0));
+    }
+  };
 
   return (
     <>
+      {/* Search palette */}
+      {searchOpen && (
+        <div className="vim-overlay" onClick={closeSearch}>
+          <div className="search-palette" onClick={e => e.stopPropagation()}>
+            <div className="search-input-wrap">
+              <span className="search-slash" aria-hidden="true">/</span>
+              <input
+                ref={searchInputRef}
+                className="search-input"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearchKey}
+                placeholder="Search pages…"
+                aria-label="Search pages"
+                autoComplete="off"
+                spellCheck={false}
+              />
+            </div>
+            <ul className="search-results" role="listbox">
+              {filtered.length > 0 ? filtered.map((page, i) => (
+                <li
+                  key={page.href}
+                  role="option"
+                  aria-selected={i === searchIdx}
+                  className={`search-result${i === searchIdx ? ' active' : ''}${page.href === pathname ? ' current' : ''}`}
+                  onMouseEnter={() => setSearchIdx(i)}
+                  onClick={() => confirmSearch(i)}
+                >
+                  <span className="search-result-label">{page.label}</span>
+                  <span className="search-result-path">{page.href}</span>
+                  {page.href === pathname && <span className="search-result-badge">current</span>}
+                </li>
+              )) : (
+                <li className="search-empty">No pages match</li>
+              )}
+            </ul>
+            <div className="search-footer">
+              <span><kbd className="vim-key-inline">↑↓</kbd> navigate</span>
+              <span><kbd className="vim-key-inline">↵</kbd> go</span>
+              <span><kbd className="vim-key-inline">Esc</kbd> close</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Help modal */}
       {helpOpen && (
         <div className="vim-overlay" onClick={() => setHelpOpen(false)}>
           <div className="vim-modal" onClick={e => e.stopPropagation()}>
@@ -122,16 +264,16 @@ export default function VimNav() {
                 </div>
               </div>
 
-              {isHome && (
+              {PAGE_SECTIONS[pathname] && (
                 <div className="vim-group">
                   <div className="vim-group-label">Sections</div>
                   <div className="vim-rows">
                     <div className="vim-row">
-                      <span className="vim-key">]</span>
+                      <span className="vim-key">{'}'}</span>
                       <span className="vim-desc">next section</span>
                     </div>
                     <div className="vim-row">
-                      <span className="vim-key">[</span>
+                      <span className="vim-key">{'{'}</span>
                       <span className="vim-desc">prev section</span>
                     </div>
                   </div>
@@ -139,19 +281,48 @@ export default function VimNav() {
               )}
 
               <div className="vim-group">
-                <div className="vim-group-label">Pages</div>
+                <div className="vim-group-label">Navigate</div>
                 <div className="vim-rows">
+                  <div className="vim-row">
+                    <span className="vim-key">[</span>
+                    <span className="vim-key">]</span>
+                    <span className="vim-desc">prev / next page</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">/</span>
+                    <span className="vim-desc">search pages</span>
+                  </div>
                   <div className="vim-row">
                     <span className="vim-key">1</span>
                     <span className="vim-desc">Home</span>
                   </div>
                   <div className="vim-row">
                     <span className="vim-key">2</span>
-                    <span className="vim-desc">Resume</span>
+                    <span className="vim-desc">About</span>
                   </div>
                   <div className="vim-row">
                     <span className="vim-key">3</span>
+                    <span className="vim-desc">Research</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">4</span>
+                    <span className="vim-desc">Skills</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">5</span>
+                    <span className="vim-desc">Resume</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">8</span>
+                    <span className="vim-desc">Achievements</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">9</span>
                     <span className="vim-desc">Links</span>
+                  </div>
+                  <div className="vim-row">
+                    <span className="vim-key">0</span>
+                    <span className="vim-desc">Thanks</span>
                   </div>
                 </div>
               </div>
