@@ -1,5 +1,421 @@
 [
   {
+    "id": "11066709808",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33358417265,
+      "ref": "refs/heads/main",
+      "head": "0464058cd82e80951d86cc2968fe87000d7238e4",
+      "before": "0ecf9c27c04ead3ce19889cab345f165f3197224"
+    },
+    "public": true,
+    "created_at": "2026-04-26T17:10:26Z"
+  },
+  {
+    "id": "11066553954",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33358261088,
+      "ref": "refs/heads/main",
+      "head": "0ecf9c27c04ead3ce19889cab345f165f3197224",
+      "before": "5951062518a6682d04110ed1aec0f1c351c29564"
+    },
+    "public": true,
+    "created_at": "2026-04-26T17:03:31Z"
+  },
+  {
+    "id": "11066220876",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33357927882,
+      "ref": "refs/heads/main",
+      "head": "5951062518a6682d04110ed1aec0f1c351c29564",
+      "before": "6fa09e01c5258e298a466f7849dcc9f61e32fe4e"
+    },
+    "public": true,
+    "created_at": "2026-04-26T16:48:59Z"
+  },
+  {
+    "id": "11066174246",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33357880932,
+      "ref": "refs/heads/main",
+      "head": "6fa09e01c5258e298a466f7849dcc9f61e32fe4e",
+      "before": "a8c2c5f2421974daad508561282812387e490349"
+    },
+    "public": true,
+    "created_at": "2026-04-26T16:46:47Z"
+  },
+  {
+    "id": "11064676968",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33356381672,
+      "ref": "refs/heads/main",
+      "head": "a8c2c5f2421974daad508561282812387e490349",
+      "before": "9eaa7532dd372e4b55fd31ae076d7c5f0ef23617"
+    },
+    "public": true,
+    "created_at": "2026-04-26T15:40:40Z"
+  },
+  {
+    "id": "11064232779",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33355936820,
+      "ref": "refs/heads/main",
+      "head": "9eaa7532dd372e4b55fd31ae076d7c5f0ef23617",
+      "before": "72e6a577aadf988c639ab4cd68515aa58c70b374"
+    },
+    "public": true,
+    "created_at": "2026-04-26T15:21:11Z"
+  },
+  {
+    "id": "11064189392",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33355893331,
+      "ref": "refs/heads/main",
+      "head": "72e6a577aadf988c639ab4cd68515aa58c70b374",
+      "before": "16b4e4dba5b3d918028766f4f5aa5742044ed6e0"
+    },
+    "public": true,
+    "created_at": "2026-04-26T15:19:20Z"
+  },
+  {
+    "id": "11063879957",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33355583540,
+      "ref": "refs/heads/main",
+      "head": "16b4e4dba5b3d918028766f4f5aa5742044ed6e0",
+      "before": "6ace588b1513e3dbe2f1bc9760f929d478e13d0c"
+    },
+    "public": true,
+    "created_at": "2026-04-26T15:06:03Z"
+  },
+  {
+    "id": "11061740637",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33353441986,
+      "ref": "refs/heads/main",
+      "head": "6ace588b1513e3dbe2f1bc9760f929d478e13d0c",
+      "before": "e9e33fdd6e463c42fbe7a2995af64093f2a629d0"
+    },
+    "public": true,
+    "created_at": "2026-04-26T13:31:47Z"
+  },
+  {
+    "id": "11061664663",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33353366245,
+      "ref": "refs/heads/main",
+      "head": "e9e33fdd6e463c42fbe7a2995af64093f2a629d0",
+      "before": "e5463dc0c6f4076844b091c54b13585636315378"
+    },
+    "public": true,
+    "created_at": "2026-04-26T13:28:17Z"
+  },
+  {
+    "id": "11056809053",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33348503857,
+      "ref": "refs/heads/main",
+      "head": "e5463dc0c6f4076844b091c54b13585636315378",
+      "before": "bb30e50d8c87157fb3d11df50bb522e5d7a09c05"
+    },
+    "public": true,
+    "created_at": "2026-04-26T09:20:45Z"
+  },
+  {
+    "id": "11056740030",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33348434674,
+      "ref": "refs/heads/main",
+      "head": "bb30e50d8c87157fb3d11df50bb522e5d7a09c05",
+      "before": "78fd9553524324d3f1025f70afedc2d2f3d1dbe6"
+    },
+    "public": true,
+    "created_at": "2026-04-26T09:16:51Z"
+  },
+  {
+    "id": "11056286743",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33347980553,
+      "ref": "refs/heads/main",
+      "head": "78fd9553524324d3f1025f70afedc2d2f3d1dbe6",
+      "before": "b573394b1735e0583eb3f79f22eae916a5a75dbb"
+    },
+    "public": true,
+    "created_at": "2026-04-26T08:52:48Z"
+  },
+  {
+    "id": "11056022193",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33347715544,
+      "ref": "refs/heads/main",
+      "head": "b573394b1735e0583eb3f79f22eae916a5a75dbb",
+      "before": "040baaa64fbd18fb1dd32e060aac017c3b07a8d1"
+    },
+    "public": true,
+    "created_at": "2026-04-26T08:38:01Z"
+  },
+  {
+    "id": "11055809546",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33347502257,
+      "ref": "refs/heads/main",
+      "head": "040baaa64fbd18fb1dd32e060aac017c3b07a8d1",
+      "before": "6e787717e9b8884c43fe7ee260ed314639119adc"
+    },
+    "public": true,
+    "created_at": "2026-04-26T08:26:12Z"
+  },
+  {
+    "id": "11055435990",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33347127924,
+      "ref": "refs/heads/main",
+      "head": "6e787717e9b8884c43fe7ee260ed314639119adc",
+      "before": "bb6bc62e902fc21a7327ea1d6fd1a197e03b1960"
+    },
+    "public": true,
+    "created_at": "2026-04-26T08:05:01Z"
+  },
+  {
     "id": "11051533632",
     "type": "PushEvent",
     "actor": {
@@ -2592,217 +3008,5 @@
     },
     "public": true,
     "created_at": "2026-04-16T08:00:38Z"
-  },
-  {
-    "id": "10648959539",
-    "type": "PushEvent",
-    "actor": {
-      "id": 137117837,
-      "login": "dduyanhhoang",
-      "display_login": "dduyanhhoang",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/dduyanhhoang",
-      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
-    },
-    "repo": {
-      "id": 1212006347,
-      "name": "dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-      "url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064"
-    },
-    "payload": {
-      "repository_id": 1212006347,
-      "push_id": 32940787798,
-      "ref": "refs/heads/main",
-      "head": "4f762d0110c471fd32cf4f0da9aa5182b9511394",
-      "before": "5141688e2e62568e8933cd47b06a6fde5341b5d6"
-    },
-    "public": true,
-    "created_at": "2026-04-16T07:55:50Z"
-  },
-  {
-    "id": "10643011346",
-    "type": "PushEvent",
-    "actor": {
-      "id": 137117837,
-      "login": "dduyanhhoang",
-      "display_login": "dduyanhhoang",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/dduyanhhoang",
-      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
-    },
-    "repo": {
-      "id": 1212006347,
-      "name": "dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-      "url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064"
-    },
-    "payload": {
-      "repository_id": 1212006347,
-      "push_id": 32934836359,
-      "ref": "refs/heads/main",
-      "head": "5141688e2e62568e8933cd47b06a6fde5341b5d6",
-      "before": "b760f14d6584b8337e782f370307b189ef143ad4"
-    },
-    "public": true,
-    "created_at": "2026-04-16T04:32:26Z"
-  },
-  {
-    "id": "10643005371",
-    "type": "PushEvent",
-    "actor": {
-      "id": 137117837,
-      "login": "dduyanhhoang",
-      "display_login": "dduyanhhoang",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/dduyanhhoang",
-      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
-    },
-    "repo": {
-      "id": 1212006347,
-      "name": "dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-      "url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064"
-    },
-    "payload": {
-      "repository_id": 1212006347,
-      "push_id": 32934830339,
-      "ref": "refs/heads/main",
-      "head": "b760f14d6584b8337e782f370307b189ef143ad4",
-      "before": "c631ec266015a8f3dce99021701df3d9f734392f"
-    },
-    "public": true,
-    "created_at": "2026-04-16T04:32:10Z"
-  },
-  {
-    "id": "8465968033",
-    "type": "ForkEvent",
-    "actor": {
-      "id": 137117837,
-      "login": "dduyanhhoang",
-      "display_login": "dduyanhhoang",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/dduyanhhoang",
-      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
-    },
-    "repo": {
-      "id": 1209535523,
-      "name": "VinUni-AI20k/Day-11-Guardrails-HITL-Responsible-AI",
-      "url": "https://api.github.com/repos/VinUni-AI20k/Day-11-Guardrails-HITL-Responsible-AI"
-    },
-    "payload": {
-      "action": "forked",
-      "forkee": {
-        "id": 1212006347,
-        "node_id": "R_kgDOSD2_yw",
-        "name": "lab11-HoangDinhDuyAnh-2A202600064",
-        "full_name": "dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-        "private": false,
-        "owner": {
-          "login": "dduyanhhoang",
-          "id": 137117837,
-          "node_id": "U_kgDOCCxAjQ",
-          "avatar_url": "https://avatars.githubusercontent.com/u/137117837?v=4",
-          "gravatar_id": "",
-          "url": "https://api.github.com/users/dduyanhhoang",
-          "html_url": "https://github.com/dduyanhhoang",
-          "followers_url": "https://api.github.com/users/dduyanhhoang/followers",
-          "following_url": "https://api.github.com/users/dduyanhhoang/following{/other_user}",
-          "gists_url": "https://api.github.com/users/dduyanhhoang/gists{/gist_id}",
-          "starred_url": "https://api.github.com/users/dduyanhhoang/starred{/owner}{/repo}",
-          "subscriptions_url": "https://api.github.com/users/dduyanhhoang/subscriptions",
-          "organizations_url": "https://api.github.com/users/dduyanhhoang/orgs",
-          "repos_url": "https://api.github.com/users/dduyanhhoang/repos",
-          "events_url": "https://api.github.com/users/dduyanhhoang/events{/privacy}",
-          "received_events_url": "https://api.github.com/users/dduyanhhoang/received_events",
-          "type": "User",
-          "user_view_type": "public",
-          "site_admin": false
-        },
-        "html_url": "https://github.com/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-        "description": "NGÀY 11 — Guardrails, HITL & Responsible AI: Làm sao để ứng dụng agent an toàn?",
-        "fork": true,
-        "url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-        "forks_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/forks",
-        "keys_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/keys{/key_id}",
-        "collaborators_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/collaborators{/collaborator}",
-        "teams_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/teams",
-        "hooks_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/hooks",
-        "issue_events_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/issues/events{/number}",
-        "events_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/events",
-        "assignees_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/assignees{/user}",
-        "branches_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/branches{/branch}",
-        "tags_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/tags",
-        "blobs_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/git/blobs{/sha}",
-        "git_tags_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/git/tags{/sha}",
-        "git_refs_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/git/refs{/sha}",
-        "trees_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/git/trees{/sha}",
-        "statuses_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/statuses/{sha}",
-        "languages_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/languages",
-        "stargazers_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/stargazers",
-        "contributors_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/contributors",
-        "subscribers_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/subscribers",
-        "subscription_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/subscription",
-        "commits_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/commits{/sha}",
-        "git_commits_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/git/commits{/sha}",
-        "comments_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/comments{/number}",
-        "issue_comment_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/issues/comments{/number}",
-        "contents_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/contents/{+path}",
-        "compare_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/compare/{base}...{head}",
-        "merges_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/merges",
-        "archive_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/{archive_format}{/ref}",
-        "downloads_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/downloads",
-        "issues_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/issues{/number}",
-        "pulls_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/pulls{/number}",
-        "milestones_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/milestones{/number}",
-        "notifications_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/notifications{?since,all,participating}",
-        "labels_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/labels{/name}",
-        "releases_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/releases{/id}",
-        "deployments_url": "https://api.github.com/repos/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064/deployments",
-        "created_at": "2026-04-16T01:11:02Z",
-        "updated_at": "2026-04-16T08:03:40Z",
-        "pushed_at": "2026-04-16T08:00:49Z",
-        "git_url": "git://github.com/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064.git",
-        "ssh_url": "git@github.com:dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064.git",
-        "clone_url": "https://github.com/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064.git",
-        "svn_url": "https://github.com/dduyanhhoang/lab11-HoangDinhDuyAnh-2A202600064",
-        "homepage": null,
-        "size": 345,
-        "stargazers_count": 0,
-        "watchers_count": 0,
-        "language": "Python",
-        "has_issues": false,
-        "has_projects": true,
-        "has_downloads": true,
-        "has_wiki": false,
-        "has_pages": false,
-        "has_discussions": false,
-        "forks_count": 0,
-        "mirror_url": null,
-        "archived": false,
-        "disabled": false,
-        "open_issues_count": 0,
-        "license": null,
-        "allow_forking": true,
-        "is_template": false,
-        "web_commit_signoff_required": false,
-        "has_pull_requests": true,
-        "pull_request_creation_policy": "all",
-        "topics": [
-
-        ],
-        "visibility": "public",
-        "forks": 0,
-        "open_issues": 0,
-        "watchers": 0,
-        "default_branch": "main"
-      }
-    },
-    "public": true,
-    "created_at": "2026-04-16T01:11:02Z",
-    "org": {
-      "id": 271981762,
-      "login": "VinUni-AI20k",
-      "gravatar_id": "",
-      "url": "https://api.github.com/orgs/VinUni-AI20k",
-      "avatar_url": "https://avatars.githubusercontent.com/u/271981762?"
-    }
   }
 ]
