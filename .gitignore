@@ -1,3 +1,36 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+
+# OS files
 .DS_Store
+
+# Claude Code - Local AI assistant files (NEVER commit)
+# See: https://code.claude.com/docs/en/configuration
+.claude/
+**/.claude/
+**/.claude/**
+
+# Claude-specific
+.claudeignore
+.claude_settings.json
+**/CLAUDE.md
+**/CLAUDE.local.md
+
+# Hooks and subagents
+.claude/hooks/
+.claude/agents/
+.claude/skills/
+.claude/commands/
+.claude/output-styles/
+
+# Claude session data
+.claude/scheduled_tasks.json
+.claude/settings.local.json
+
+# Safety net: catch any Claude-related file names
+*CLAUDE*.md
+*claude*.json
+*claude*.yml

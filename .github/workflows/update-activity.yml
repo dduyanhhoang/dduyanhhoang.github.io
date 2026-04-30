@@ -19,25 +19,45 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
 
-      # Recent events (for the ticker)
+      # Recent events (for the ticker) - public events don't require auth
       - name: Fetch events
         run: |
-          curl -s \
-            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/users/dduyanhhoang/events?per_page=100" \
-            > public/github-activity.json
+          response=$(curl -sS \
+            "https://api.github.com/users/dduyanhhoang/events?per_page=100")
 
-      # Full contribution calendar via GraphQL (for the heatmap)
+          # Validate response is a non-empty array
+          if echo "$response" | jq -e 'type == "array" and length > 0' > /dev/null; then
+            echo "$response" > public/github-activity.json
+            count=$(echo "$response" | jq 'length')
+            echo "✅ Fetched $count events for ticker"
+          else
+            echo "❌ Failed: Expected non-empty array, got:"
+            echo "$response" | head -c 500
+            exit 1
+          fi
+
+      # Full contribution calendar via GraphQL (for the heatmap - needs auth for private contributions)
       - name: Fetch contribution calendar
         run: |
-          curl -s -X POST \
+          response=$(curl -sS -X POST \
             -H "Authorization: Bearer ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{"query":"{ user(login: \"dduyanhhoang\") { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } } }"}' \
-            https://api.github.com/graphql \
-            | jq '[.data.user.contributionsCollection.contributionCalendar.weeks[].contributionDays[] | {date: .date, count: .contributionCount}]' \
-            > public/github-contributions.json
+            https://api.github.com/graphql)
+
+          # Extract the data array
+          data=$(echo "$response" | jq '[.data.user.contributionsCollection.contributionCalendar.weeks[].contributionDays[] | {date: .date, count: .contributionCount}]')
+
+          # Validate
+          if echo "$data" | jq -e 'type == "array" and length > 0' > /dev/null; then
+            echo "$data" > public/github-contributions.json
+            total=$(echo "$data" | jq '[.[].count] | add')
+            echo "✅ Fetched contribution calendar with $total total contributions"
+          else
+            echo "❌ Failed: Expected non-empty contributions array"
+            echo "Response: $response" | head -c 500
+            exit 1
+          fi
 
       - name: Commit if changed
         run: |
