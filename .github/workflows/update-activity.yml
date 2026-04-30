@@ -29,9 +29,9 @@ jobs:
           if echo "$response" | jq -e 'type == "array" and length > 0' > /dev/null; then
             echo "$response" > public/github-activity.json
             count=$(echo "$response" | jq 'length')
-            echo "✅ Fetched $count events for ticker"
+            echo "Fetched $count events for ticker"
           else
-            echo "❌ Failed: Expected non-empty array, got:"
+            echo "Failed: Expected non-empty array, got:"
             echo "$response" | head -c 500
             exit 1
           fi
@@ -52,9 +52,9 @@ jobs:
           if echo "$data" | jq -e 'type == "array" and length > 0' > /dev/null; then
             echo "$data" > public/github-contributions.json
             total=$(echo "$data" | jq '[.[].count] | add')
-            echo "✅ Fetched contribution calendar with $total total contributions"
+            echo "Fetched contribution calendar with $total total contributions"
           else
-            echo "❌ Failed: Expected non-empty contributions array"
+            echo "Failed: Expected non-empty contributions array"
             echo "Response: $response" | head -c 500
             exit 1
           fi
