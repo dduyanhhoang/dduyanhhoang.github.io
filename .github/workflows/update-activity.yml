@@ -16,16 +16,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
-      # Recent events (for the ticker) - public events don't require auth
       - name: Fetch events
         run: |
           response=$(curl -sS \
             "https://api.github.com/users/dduyanhhoang/events?per_page=100")
 
-          # Validate response is a non-empty array
           if echo "$response" | jq -e 'type == "array" and length > 0' > /dev/null; then
             echo "$response" > public/github-activity.json
             count=$(echo "$response" | jq 'length')
@@ -36,19 +32,18 @@ jobs:
             exit 1
           fi
 
-      # Full contribution calendar via GraphQL (for the heatmap - needs auth for private contributions)
       - name: Fetch contribution calendar
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           response=$(curl -sS -X POST \
-            -H "Authorization: Bearer ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}" \
+            -H "Authorization: Bearer $GH_TOKEN" \
             -H "Content-Type: application/json" \
             -d '{"query":"{ user(login: \"dduyanhhoang\") { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } } }"}' \
             https://api.github.com/graphql)
 
-          # Extract the data array
           data=$(echo "$response" | jq '[.data.user.contributionsCollection.contributionCalendar.weeks[].contributionDays[] | {date: .date, count: .contributionCount}]')
 
-          # Validate
           if echo "$data" | jq -e 'type == "array" and length > 0' > /dev/null; then
             echo "$data" > public/github-contributions.json
             total=$(echo "$data" | jq '[.[].count] | add')
@@ -61,7 +56,7 @@ jobs:
 
       - name: Commit if changed
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/github-activity.json public/github-contributions.json
           git diff --cached --quiet \
