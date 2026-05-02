@@ -1,5 +1,31 @@
 [
   {
+    "id": "11318081160",
+    "type": "PushEvent",
+    "actor": {
+      "id": 137117837,
+      "login": "dduyanhhoang",
+      "display_login": "dduyanhhoang",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dduyanhhoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
+    },
+    "repo": {
+      "id": 656326069,
+      "name": "dduyanhhoang/dduyanhhoang.github.io",
+      "url": "https://api.github.com/repos/dduyanhhoang/dduyanhhoang.github.io"
+    },
+    "payload": {
+      "repository_id": 656326069,
+      "push_id": 33609450957,
+      "ref": "refs/heads/main",
+      "head": "737a2b6f9899272276bea7f7591d7dd5a0231eec",
+      "before": "2658eec3d38be05f1bd01edb9d393bcf35819e9d"
+    },
+    "public": true,
+    "created_at": "2026-05-02T05:44:22Z"
+  },
+  {
     "id": "11317826378",
     "type": "PushEvent",
     "actor": {
@@ -3374,48 +3400,5 @@
       "url": "https://api.github.com/orgs/A20C1E402G4",
       "avatar_url": "https://avatars.githubusercontent.com/u/274456560?"
     }
-  },
-  {
-    "id": "8619248954",
-    "type": "MemberEvent",
-    "actor": {
-      "id": 137117837,
-      "login": "dduyanhhoang",
-      "display_login": "dduyanhhoang",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/dduyanhhoang",
-      "avatar_url": "https://avatars.githubusercontent.com/u/137117837?"
-    },
-    "repo": {
-      "id": 1215703488,
-      "name": "trannhatvi-ai/Lab13-Observability",
-      "url": "https://api.github.com/repos/trannhatvi-ai/Lab13-Observability"
-    },
-    "payload": {
-      "member": {
-        "login": "dduyanhhoang",
-        "id": 137117837,
-        "node_id": "U_kgDOCCxAjQ",
-        "avatar_url": "https://avatars.githubusercontent.com/u/137117837?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/dduyanhhoang",
-        "html_url": "https://github.com/dduyanhhoang",
-        "followers_url": "https://api.github.com/users/dduyanhhoang/followers",
-        "following_url": "https://api.github.com/users/dduyanhhoang/following{/other_user}",
-        "gists_url": "https://api.github.com/users/dduyanhhoang/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/dduyanhhoang/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/dduyanhhoang/subscriptions",
-        "organizations_url": "https://api.github.com/users/dduyanhhoang/orgs",
-        "repos_url": "https://api.github.com/users/dduyanhhoang/repos",
-        "events_url": "https://api.github.com/users/dduyanhhoang/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/dduyanhhoang/received_events",
-        "type": "User",
-        "user_view_type": "public",
-        "site_admin": false
-      },
-      "action": "added"
-    },
-    "public": true,
-    "created_at": "2026-04-21T05:06:44Z"
   }
 ]
