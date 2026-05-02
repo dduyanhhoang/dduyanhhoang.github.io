@@ -34,10 +34,10 @@ jobs:
 
       - name: Fetch contribution calendar
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_CONTRIBUTIONS_TOKEN: ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}
         run: |
           response=$(curl -sS -X POST \
-            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Authorization: Bearer $GH_CONTRIBUTIONS_TOKEN" \
             -H "Content-Type: application/json" \
             -d '{"query":"{ user(login: \"dduyanhhoang\") { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } } }"}' \
             https://api.github.com/graphql)
