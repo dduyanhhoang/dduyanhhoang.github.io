@@ -36,17 +36,13 @@ jobs:
         env:
           GH_CONTRIBUTIONS_TOKEN: ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}
         run: |
-          echo "Fetching contribution calendar..."
           response=$(curl -sS -X POST \
             -H "Authorization: Bearer $GH_CONTRIBUTIONS_TOKEN" \
             -H "Content-Type: application/json" \
             -d '{"query":"{ user(login: \"dduyanhhoang\") { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } } }"}' \
             https://api.github.com/graphql)
 
-          echo "GraphQL response (first 500 chars):"
-          echo "$response" | head -c 500
-
-          # Check for errors
+          # Check for GraphQL errors
           if echo "$response" | jq -e '.errors' > /dev/null; then
             echo "GraphQL errors:"
             echo "$response" | jq '.errors'
@@ -55,9 +51,6 @@ jobs:
 
           # Extract the data array
           data=$(echo "$response" | jq '[.data.user.contributionsCollection.contributionCalendar.weeks[].contributionDays[] | {date: .date, count: .contributionCount}]')
-
-          echo "Extracted $(echo "$data" | jq 'length') contribution days"
-          echo "Date range: $(echo "$data" | jq -r '.[0].date + " to " + .[-1].date')"
 
           if echo "$data" | jq -e 'type == "array" and length > 0' > /dev/null; then
             echo "$data" > public/github-contributions.json
