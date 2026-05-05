@@ -48,8 +48,8 @@
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--surface2);
+  border: 1px solid var(--border2);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -58,7 +58,7 @@
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .project-card-content {
@@ -73,7 +73,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
-  color: #fff;
+  color: var(--text);
   letter-spacing: -0.01em;
 }
 
@@ -81,7 +81,7 @@
   font-size: 0.9375rem;
   line-height: 1.6;
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--muted);
   flex-grow: 1;
 }
 
@@ -95,12 +95,12 @@
 .tech-tag {
   display: inline-block;
   padding: 4px 12px;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text);
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -109,13 +109,13 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #fff;
+  color: var(--text);
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   margin-top: 8px;
   transition: background 0.2s ease, border-color 0.2s ease;
@@ -123,8 +123,8 @@
 }
 
 .project-link:hover {
-  background: rgba(255, 255, 255, 0.24);
-  border-color: rgba(255, 255, 255, 0.38);
+  background: var(--surface2);
+  border-color: var(--border2);
 }
 
 .project-link svg {
