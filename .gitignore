@@ -34,3 +34,9 @@ dist/
 *CLAUDE*.md
 *claude*.json
 *claude*.yml
+
+.playwright-mcp/
+.playwright-mcp/**
+
+docs/superpowers/
+docs/superpowers/**
