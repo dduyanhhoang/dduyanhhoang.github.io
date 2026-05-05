@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Ordered page sequence for [ / ] navigation
-const PAGE_SEQUENCE = ['/thanks', '/', '/about', '/research', '/skills', '/resume'];
+const PAGE_SEQUENCE = ['/thanks', '/', '/about', '/research', '/projects', '/resume'];
 
 // Sections per page for { / } navigation
 const PAGE_SECTIONS = {
@@ -14,7 +14,7 @@ const PAGES = [
   { label: 'Home',         href: '/' },
   { label: 'About',        href: '/about' },
   { label: 'Research',     href: '/research' },
-  { label: 'Skills',       href: '/skills' },
+  { label: 'Projects',     href: '/projects' },
   { label: 'Resume',       href: '/resume' },
   { label: 'Achievements', href: '/achievements' },
   { label: 'Links',        href: '/links' },
@@ -26,7 +26,7 @@ const PAGE_KEYS = {
   '1': '/',
   '2': '/about',
   '3': '/research',
-  '4': '/skills',
+  '4': '/projects',
   '5': '/resume',
   '6': '/writings',
   '8': '/achievements',
@@ -309,7 +309,7 @@ export default function VimNav() {
                   </div>
                   <div className="vim-row">
                     <span className="vim-key">4</span>
-                    <span className="vim-desc">Skills</span>
+                    <span className="vim-desc">Projects</span>
                   </div>
                   <div className="vim-row">
                     <span className="vim-key">5</span>
