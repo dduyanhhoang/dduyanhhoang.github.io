@@ -52,7 +52,6 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   height: 100%;
   position: relative;
 }
@@ -65,17 +64,6 @@
   right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border2);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-.project-card:hover::before {
   opacity: 1;
 }
 
