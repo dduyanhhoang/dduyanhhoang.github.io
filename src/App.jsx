@@ -8,7 +8,7 @@ import Home           from './pages/Home.jsx';
 import Achievements   from './pages/Achievements.jsx';
 import About          from './pages/About.jsx';
 import Research       from './pages/Research.jsx';
-import Skills         from './pages/Skills.jsx';
+import Projects        from './pages/Projects.jsx';
 import Resume         from './pages/Resume.jsx';
 import Links          from './pages/Links.jsx';
 import Thanks         from './pages/Thanks.jsx';
@@ -27,7 +27,7 @@ export default function App() {
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/about"    element={<About />} />
           <Route path="/research" element={<Research />} />
-          <Route path="/skills"   element={<Skills />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/resume"   element={<Resume />} />
           <Route path="/links"    element={<Links />} />
           <Route path="/thanks"    element={<Thanks />} />
