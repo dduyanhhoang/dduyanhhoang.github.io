@@ -56,7 +56,9 @@ export default function Projects() {
 
       <div className="page-layout">
         <main className="projects-page">
-          <h1 className="projects-title">Projects</h1>
+          <div className="projects-label">Projects</div>
+          <h1 className="uc-title">Projects</h1>
+          <p className="projects-sub">Showcase of my work</p>
           <div className="projects-grid">
             {PROJECTS.map(project => (
               <ProjectCard key={project.id} project={project} />
