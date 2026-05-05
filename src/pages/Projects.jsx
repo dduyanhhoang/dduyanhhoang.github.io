@@ -13,6 +13,22 @@ const PROJECTS = [
     techStack: ['Python', 'PennyLane', 'scikit-learn', 'NumPy'],
     githubUrl: 'https://github.com/dduyanhhoang/psipose',
   },
+  {
+    id: 'project-2',
+    title: 'Project Two',
+    type: 'Coming Soon',
+    description: 'This project is currently in development. Stay tuned for updates on my latest work in AI and machine learning.',
+    techStack: ['Python', 'TensorFlow', 'PyTorch'],
+    githubUrl: 'https://github.com/dduyanhhoang',
+  },
+  {
+    id: 'project-3',
+    title: 'Project Three',
+    type: 'Coming Soon',
+    description: 'Another exciting project under construction. Check back later for details and demos.',
+    techStack: ['React', 'Node.js', 'MongoDB'],
+    githubUrl: 'https://github.com/dduyanhhoang',
+  },
 ];
 
 function ProjectCard({ project }) {
