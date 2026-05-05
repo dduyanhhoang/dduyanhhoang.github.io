@@ -198,6 +198,46 @@
   font-weight: 500;
 }
 
+/* Light mode overrides for better card definition */
+@media (prefers-color-scheme: light) {
+  .project-card {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .project-card:hover {
+    border-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  }
+
+  .project-type {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .tech-tag {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .tech-tag:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.18);
+  }
+
+  .project-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .project-link {
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .project-link-count {
+    color: rgba(0, 0, 0, 0.55);
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .projects-page {
