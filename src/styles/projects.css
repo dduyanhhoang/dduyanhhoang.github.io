@@ -109,7 +109,8 @@
   font-size: 0.9375rem;
   line-height: 1.7;
   margin: 0;
-  color: var(--muted);
+  color: var(--text);
+  opacity: 0.85;
   flex-grow: 1;
 }
 
@@ -195,7 +196,10 @@
 
   .project-card:hover {
     border-color: rgba(0, 0, 0, 0.25);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  }
+
+  .project-description {
+    color: rgba(0, 0, 0, 0.8);
   }
 
   .project-type {
