@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T00:00:00Z",
+  "title": "Design System: The Preprint",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#262626", "#3d3d3d", "#575757", "#737373", "#919191", "#b0b0b0", "#d0d0d0", "#ffffff"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Near-Black Ink",
+        "canonical": "#1a1a1a",
+        "tonalRamp": ["#0d0d0d", "#1a1a1a", "#333333", "#4d4d4d", "#737373", "#999999", "#c4c4c4", "#ededed"]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#565656",
+        "tonalRamp": ["#1c1c1c", "#2e2e2e", "#414141", "#565656", "#767676", "#9a9a9a", "#c2c2c2", "#ececec"]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "#c9c9c9",
+        "tonalRamp": ["#232323", "#383838", "#4f4f4f", "#6a6a6a", "#8a8a8a", "#a9a9a9", "#c9c9c9", "#efefef"]
+      },
+      "link": {
+        "role": "primary",
+        "displayName": "Hyperref Blue",
+        "canonical": "#0b3c8c",
+        "tonalRamp": ["#04173a", "#072556", "#0b3c8c", "#1252bb", "#3a75d8", "#6d99e6", "#a4c1f0", "#dbe7fa"]
+      },
+      "mark": {
+        "role": "tertiary",
+        "displayName": "Highlighter Yellow",
+        "canonical": "#fdf2b0",
+        "tonalRamp": ["#3a3208", "#5c4f10", "#82701c", "#a89231", "#cbb555", "#e4d283", "#fdf2b0", "#fffbe2"]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Warm Dark Paper",
+        "canonical": "#14161a",
+        "tonalRamp": ["#0a0b0d", "#14161a", "#23262d", "#343943", "#4d535f", "#727884", "#a3a8b2", "#d7dae0"]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Warm Off-White Ink",
+        "canonical": "#e6e4de",
+        "tonalRamp": ["#1e1d1a", "#33312d", "#4c4944", "#6a665f", "#8e8a81", "#b3afa6", "#d0ccc4", "#e6e4de"]
+      },
+      "faint-dark": {
+        "role": "neutral",
+        "displayName": "Faint Warm Grey",
+        "canonical": "#a5a29a",
+        "tonalRamp": ["#1c1b19", "#302e2b", "#46443f", "#605d57", "#7f7c74", "#a5a29a", "#c6c3bc", "#e8e6e1"]
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Dark Hairline",
+        "canonical": "#3a3d44",
+        "tonalRamp": ["#15171a", "#23262b", "#3a3d44", "#51555e", "#6d727c", "#8f939c", "#b6b9c0", "#e0e2e6"]
+      },
+      "link-dark": {
+        "role": "primary",
+        "displayName": "Lightened Hyperref Blue",
+        "canonical": "#8fb6ee",
+        "tonalRamp": ["#0d1e38", "#153055", "#1f4880", "#2f65ac", "#5389d1", "#8fb6ee", "#b9d1f4", "#e2ecfb"]
+      }
+    },
+    "typographyMeta": {
+      "title": { "displayName": "Title", "purpose": "The name, centred, once per page. Ceiling of the whole system at 1.95rem." },
+      "headline": { "displayName": "Section Heading", "purpose": "Numbered section heading; bold at 1.12em, number in its own span." },
+      "body": { "displayName": "Body", "purpose": "Author line, reference names, all unmarked prose. 36rem measure." },
+      "abstract": { "displayName": "Abstract", "purpose": "Justified, hyphenated, narrowed to 30rem; ragged-right under 460px." },
+      "label": { "displayName": "Dateline", "purpose": "Faint metadata line under the author line. Carries a place, not a date." },
+      "footnote": { "displayName": "Colophon", "purpose": "Faint footnote-scale text under the single hairline rule." },
+      "mono": { "displayName": "Typewriter", "purpose": "URLs and machine strings only, always spelled out in full." }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      { "name": "narrow", "value": "460px" },
+      { "name": "coarse-pointer", "value": "(pointer: coarse)" }
+    ],
+    "measure": [
+      { "name": "column", "value": "36rem" },
+      { "name": "abstract", "value": "30rem" }
+    ],
+    "unverified": [
+      {
+        "claim": "prefers-color-scheme: dark palette (#14161a / #e6e4de / #a5a29a / #8fb6ee) and its 14.25 / 7.10 / 8.71 contrast figures",
+        "status": "reasoned, never rendered or captured — contrast checked by hand arithmetic only"
+      },
+      {
+        "claim": "@media print block: white paper, black ink, black links, @page 25mm 22mm, and the source-order override of the dark :root",
+        "status": "reasoned from cascade order (paper.css imports after base.css); no print preview has been produced"
+      },
+      {
+        "claim": "the (pointer: coarse) arm of the reference-row density query",
+        "status": "reasoned; only the max-width: 460px arm was exercised by a capture. Phones are covered by width regardless"
+      }
+    ],
+    "measured": [
+      { "name": "reference-row-pitch-desktop", "value": "35.3px" },
+      { "name": "reference-row-pitch-mobile", "value": "46.8px" },
+      { "name": "page-height-desktop", "value": "~856px in a 900px viewport" },
+      { "name": "font-payload", "value": "~87KB, four subset woff2 faces, from 810KB upstream" },
+      { "name": "contrast-light", "value": "ink 17.40 / faint 7.34 / link 10.30 on paper" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Reference Row",
+      "kind": "custom",
+      "refersTo": "reference-row",
+      "description": "The page's only interactive element: a bibliography entry that is also the link. Hanging indent as a two-column grid; hover underlines the URL, not the row.",
+      "html": "<ol class=\"ds-refs\" role=\"list\"><li><a class=\"ds-ref\" href=\"https://orcid.org/0009-0006-9245-8896\"><span class=\"ds-refnum\">[2]</span><span><span class=\"ds-refname\">ORCID. </span><span class=\"ds-url\">orcid.org/0009-0006-9245-8896</span></span></a></li><li><a class=\"ds-ref\" href=\"https://github.com/dduyanhhoang\"><span class=\"ds-refnum\">[3]</span><span><span class=\"ds-refname\">GitHub. </span><span class=\"ds-url\">github.com/dduyanhhoang</span></span></a></li></ol>",
+      "css": ".ds-refs { list-style: none; font-family: \"CMU Serif\", Georgia, serif; font-size: 1.075rem; line-height: 1.55; margin: 0; padding: 0; } .ds-refs li + li { margin-top: 0.55rem; } .ds-ref { display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; column-gap: 0.35rem; color: var(--ink, #1a1a1a); text-decoration: none; } .ds-refnum { color: var(--faint, #565656); font-variant-numeric: tabular-nums; } .ds-refname { font-style: italic; } .ds-url { font-family: \"CMU Typewriter\", ui-monospace, monospace; font-size: 0.9em; color: var(--link, #0b3c8c); word-break: break-word; } .ds-ref:hover { text-decoration: none; } .ds-ref:hover .ds-url { text-decoration: underline; text-underline-offset: 0.18em; } .ds-ref:focus-visible { outline: 2px solid var(--link, #0b3c8c); outline-offset: 2px; } @media (pointer: coarse), (max-width: 460px) { .ds-refs li + li { margin-top: 0; } .ds-ref { padding-block: 0.62rem; } } @media (max-width: 460px) { .ds-ref { grid-template-columns: 2rem 1fr; } }"
+    },
+    {
+      "name": "Title Block",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Centred LaTeX title block: name at the system's largest step, author line at body scale, faint dateline carrying a place rather than a date.",
+      "html": "<header class=\"ds-titleblock\"><h1 class=\"ds-title\">Hoang Dinh Duy Anh</h1><p class=\"ds-authors\">AI Student · Quantum Machine Learning</p><p class=\"ds-dateline\">Vietnam</p></header>",
+      "css": ".ds-titleblock { text-align: center; font-family: \"CMU Serif\", Georgia, serif; color: var(--ink, #1a1a1a); } .ds-title { font-size: clamp(1.5rem, 1.25rem + 1.3vw, 1.95rem); font-weight: 700; line-height: 1.25; letter-spacing: 0.005em; margin: 0; } .ds-authors { margin: 0.85rem 0 0; font-size: 1.075rem; line-height: 1.5; } .ds-dateline { margin: 0.55rem 0 0; font-size: 0.86em; color: var(--faint, #565656); }"
+    },
+    {
+      "name": "Abstract",
+      "kind": "card",
+      "refersTo": "abstract",
+      "description": "Narrowed, justified, hyphenated block with a bold centred heading at body size. Ragged-right below 460px.",
+      "html": "<section class=\"ds-abstract\"><h2>Abstract</h2><p>Undergraduate in Artificial Intelligence, grounded in applied mathematics. I work on quantum machine learning: quantum kernel methods applied to biosignal processing, and Hamiltonian constraint formulation for scheduling optimisation.</p><p>Open to research collaborations and internships.</p></section>",
+      "css": ".ds-abstract { font-family: \"CMU Serif\", Georgia, serif; color: var(--ink, #1a1a1a); max-width: 30rem; margin: 2.5rem auto 0; font-size: 0.925em; line-height: 1.55; } .ds-abstract h2 { font-size: 1em; font-weight: 700; text-align: center; margin: 0 0 0.5rem; } .ds-abstract p { text-align: justify; hyphens: auto; margin: 0; } .ds-abstract p + p { margin-top: 0.5rem; text-indent: 1.5em; } @media (max-width: 460px) { .ds-abstract p { text-align: left; } }"
+    },
+    {
+      "name": "Numbered Section Heading",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "The only heading level below the title. Bold at 1.12em with the section number set in its own span.",
+      "html": "<h2 class=\"ds-sechead\"><span class=\"ds-secnum\">1</span>Links</h2>",
+      "css": ".ds-sechead { font-family: \"CMU Serif\", Georgia, serif; color: var(--ink, #1a1a1a); font-size: 1.12em; font-weight: 700; margin: 0 0 0.9rem; } .ds-secnum { margin-right: 0.55em; }"
+    },
+    {
+      "name": "Colophon",
+      "kind": "custom",
+      "refersTo": "colophon",
+      "description": "Footnote-scale faint text under the system's only drawn line — a 33%-wide hairline generated by ::before.",
+      "html": "<footer class=\"ds-colophon\"><p>© 2026 Hoang Dinh Duy Anh. Set in Computer Modern.</p></footer>",
+      "css": ".ds-colophon { font-family: \"CMU Serif\", Georgia, serif; margin-top: 4rem; font-size: 0.82em; color: var(--faint, #565656); line-height: 1.6; } .ds-colophon::before { content: \"\"; display: block; width: 33%; max-width: 12rem; height: 1px; background: var(--rule, #c9c9c9); margin-bottom: 0.9rem; } .ds-colophon p { margin: 0; }"
+    },
+    {
+      "name": "Inline Link",
+      "kind": "custom",
+      "refersTo": "reference-url",
+      "description": "Global anchor treatment: hyperref blue, undecorated at rest, underlined at 0.18em offset on hover, blue focus ring.",
+      "html": "<a class=\"ds-link\" href=\"#\">orcid.org/0009-0006-9245-8896</a>",
+      "css": ".ds-link { font-family: \"CMU Serif\", Georgia, serif; color: var(--link, #0b3c8c); text-decoration: none; } .ds-link:hover { text-decoration: underline; text-underline-offset: 0.18em; } .ds-link:focus-visible { outline: 2px solid var(--link, #0b3c8c); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Preprint",
+    "overview": "The page is set as the artifact its audience already reads ten of a week: a single-column LaTeX article on white paper. A title block, an abstract at a narrowed measure, a numbered section, a hanging-indent bibliography, a footnote rule with a colophon under it. Nothing is a card, nothing is a button, nothing is a hero. The credibility comes from the form being genuinely the form, not a skin quoting it.\n\nDensity is a document's density, not an interface's: the whole surface is one 36rem measure centred in the viewport, roughly 856 CSS px tall on desktop, and it reads top to bottom in one pass. Depth does not exist here — a sheet of paper has no z-axis — and neither does motion, imagery or iconography. The one non-black ink is the hyperref blue, and it appears only on the seven URLs. The build refuses display scale outright: the largest type on the page is the title at 1.95rem, under twice body size.\n\nThe confirmed anti-reference is the avatar-and-button-stack every link hub ships — a round profile photo over a column of pill buttons with brand-coloured glyph icons. Also rejected, and fully deleted rather than refactored: the prior dark indigo glass / particle-network / gradient-text identity, and an intermediate two-ink risograph poster direction. Neither leaves a token behind.",
+    "keyCharacteristics": [
+      "Computer Modern, self-hosted and subset — no system display face, no webfont CDN",
+      "One accent ink (hyperref blue), on URLs only",
+      "No image, no icon, no shadow, no motion, no radius",
+      "Article scale: nothing exceeds ~1.8× body size",
+      "Justified abstract, hanging-indent references, real footnote rule",
+      "Print is a first-class rendering, not an afterthought"
+    ],
+    "rules": [
+      { "name": "The One Blue Rule", "body": "The hyperref blue appears on URL text and the focus ring. It never fills, never bounds, never headlines. If a new element wants the blue, it is asking to be a link.", "section": "colors" },
+      { "name": "The Single Surface Rule", "body": "There is exactly one background colour on the page. Any element that needs its own background is out of world.", "section": "colors" },
+      { "name": "The Nothing-Is-Large Rule", "body": "No type on any surface exceeds the title's 1.95rem ceiling, and no new element may introduce a display step. Hierarchy is made with weight, centring, measure and white space — not size.", "section": "typography" },
+      { "name": "The Two-Face Rule", "body": "Serif for prose, typewriter for machine strings (URLs, identifiers, code). A third family is a defect.", "section": "typography" },
+      { "name": "The Justified-Measure Rule", "body": "Justification with hyphenation is allowed only in the abstract, and only above 460px; below that the abstract sets ragged-right, because a 30rem justify does not exist on a phone.", "section": "typography" },
+      { "name": "The One Measure Rule", "body": "Every element lives inside the same 36rem column. Narrowing (the abstract's 30rem) is a typographic step; widening is not available.", "section": "layout" },
+      { "name": "The Thumb-Pads-The-Row Rule", "body": "Touch density is bought with padding on the row, never with extra margin between rows — the printed rhythm has to survive the phone.", "section": "layout" },
+      { "name": "The No-Z-Axis Rule", "body": "Paper has one plane. A shadow, a lifted card, a blur or a modal overlay is out of world here regardless of how subtle it is.", "section": "elevation" },
+      { "name": "The One Rule Rule", "body": "The page draws exactly one line: the 33%-wide (max 12rem) hairline above the colophon, the LaTeX footnote rule. Dividers, borders and underlines-as-decoration are not part of the vocabulary; the only other underline in the system is a link hover.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every new element inside the single 36rem measure, and use the abstract's 30rem narrowing as the only permitted step inward.",
+      "Do set machine strings — URLs, identifiers, DOIs — in CMU Typewriter at 0.9em, spelled out in full.",
+      "Do carry new colour needs back to the six existing inks; add a token only if the page genuinely gains a register, and re-ink the dark scheme in the same commit.",
+      "Do buy touch density with block padding on the row (0.62rem) under (pointer: coarse), (max-width: 460px), leaving margins at zero.",
+      "Do re-run npm run fonts when new glyphs enter the copy — the subsets only contain printable ASCII plus a short mark set, and an unsubsetted character falls back to Georgia.",
+      "Do treat print as a shipping rendering: any new block gets a break-inside decision.",
+      "Do state a claim at body scale. This page has no promotional register to escalate into."
+    ],
+    "donts": [
+      "Don't introduce a display step. The title's 1.95rem is the ceiling for every current and future surface.",
+      "Don't add a shadow, a lifted card, a blur, a gradient or a transform. There is no z-axis in this world.",
+      "Don't ship an icon, a glyph font, an avatar, or a brand logo mark — including on the link rows, where every competitor puts them.",
+      "Don't animate. No transition, no reveal-on-scroll, no motion of any kind is declared in this build, and the page is one screen tall on desktop.",
+      "Don't mask a URL behind label-only text, or replace the [n] reference numbers with bullets, dashes or icons.",
+      "Don't use the hyperref blue as a fill, a border or a heading colour.",
+      "Don't add a second background surface — no cards, no panels, no sections with their own paper.",
+      "Don't use a system font stack for anything visible; the four Computer Modern faces are the identity.",
+      "Don't justify text anywhere but the abstract, and never below 460px."
+    ]
+  }
+}

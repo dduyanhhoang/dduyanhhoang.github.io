@@ -1,0 +1,204 @@
+/* =============================================
+   ARTICLE — title block, abstract, references
+   Sizes follow LaTeX article: \LARGE title, \small
+   abstract at a narrowed measure, \footnotesize colophon.
+   ============================================= */
+
+.paper {
+  max-width: 36rem;            /* ~6.5in text block */
+  margin-inline: auto;
+  padding: clamp(2.5rem, 9vh, 5rem) clamp(1.35rem, 6vw, 2rem) 3rem;
+}
+
+/* ---- title block ---- */
+
+.titleblock { text-align: center; }
+
+.title {
+  font-size: clamp(1.5rem, 1.25rem + 1.3vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.005em;
+}
+
+.authors {
+  margin-top: 0.85rem;
+  line-height: 1.5;
+}
+
+.fields {
+  margin-top: 0.15rem;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* ---- the role, set one letter at a time ----
+   The phrase is laid out in full and revealed by a clip, so every
+   phrase sits centred on the line and none of them reflows as it is
+   set. Only the clip edge and the caret move. */
+
+.typed {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+}
+
+.typed-text {
+  display: inline-block;
+  clip-path: inset(0 calc(100% - var(--rev, 0) * 100%) 0 -0.06em);
+}
+
+.caret {
+  position: absolute;
+  top: 0.13em;
+  left: calc(var(--rev, 0) * 100%);
+  width: 1px;
+  height: 0.92em;
+  background: currentColor;
+  animation: caret 1.06s steps(1) infinite;
+}
+
+@keyframes caret {
+  0%, 45%  { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.dateline {
+  margin-top: 0.55rem;
+  font-size: 0.86em;
+  color: var(--faint);
+}
+
+/* ---- abstract: LaTeX narrows the measure and drops a step ---- */
+
+.abstract {
+  margin: clamp(1.75rem, 5vh, 2.5rem) auto 0;
+  max-width: 30rem;
+  font-size: 0.925em;
+}
+
+.abstract h2 {
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.abstract p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.abstract p + p { margin-top: 0.5rem; text-indent: 1.5em; }
+
+/* ---- numbered section ---- */
+
+.section {
+  margin-top: clamp(2rem, 6vh, 3rem);
+}
+
+.section > h2 {
+  font-size: 1.12em;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.secnum { margin-right: 0.55em; }
+
+/* ---- references: hanging indent, the LaTeX thebibliography ---- */
+
+.refs { list-style: none; }
+
+.refs li + li { margin-top: 0.55rem; }
+
+.ref {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: baseline;
+  column-gap: 0.35rem;
+  color: var(--ink);
+}
+
+/* Where a thumb is involved the rows pad out to a ≥44px target, and the
+   padding replaces the margin so the printed rhythm survives. A mouse
+   needs no such thing, and keeps thebibliography's tighter setting. */
+@media (pointer: coarse), (max-width: 460px) {
+  .refs li + li { margin-top: 0; }
+  .ref { padding-block: 0.62rem; }
+}
+
+/* hyperref colours the URL, not the whole entry — but the whole entry
+   is the tap target, because most arrivals are on a phone. */
+.ref .url { color: var(--link); }
+.ref:hover { text-decoration: none; }
+.ref:hover .url { text-decoration: underline; text-underline-offset: 0.18em; }
+
+.refnum {
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.refname { font-style: italic; }
+
+.url {
+  font-family: "CMU Typewriter", ui-monospace, monospace;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
+/* ---- colophon under a real footnote rule ---- */
+
+.colophon {
+  margin-top: clamp(2.5rem, 8vh, 4rem);
+  font-size: 0.82em;
+  color: var(--faint);
+  line-height: 1.6;
+}
+
+.colophon::before {
+  content: "";
+  display: block;
+  width: 33%;
+  max-width: 12rem;
+  height: 1px;
+  background: var(--rule);
+  margin-bottom: 0.9rem;
+}
+
+@media (max-width: 460px) {
+  .ref { grid-template-columns: 2rem 1fr; }
+  .abstract p { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret { animation: none; opacity: 1; }
+}
+
+/* Saving this to PDF is the most native thing a preprint can do, and the
+   URLs are already spelled out, so printing needs nothing but paper. */
+@media print {
+  @page { margin: 25mm 22mm; }
+
+  :root {
+    --paper: #ffffff;
+    --ink: #000000;
+    --faint: #333333;
+    --rule: #999999;
+    --link: #000000;
+  }
+
+  .caret { display: none; }
+  .paper { max-width: none; padding: 0; }
+  .ref { padding-block: 0.15rem; }
+  .refs, .section, .abstract { break-inside: avoid; }
+}

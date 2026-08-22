@@ -1,0 +1,119 @@
+/* =============================================
+   THE PREPRINT — Computer Modern, self-hosted
+   ============================================= */
+
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cmu-serif-500-roman.woff2") format("woff2");
+}
+@font-face {
+  font-family: "CMU Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cmu-serif-500-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/cmu-serif-700-roman.woff2") format("woff2");
+}
+@font-face {
+  font-family: "CMU Typewriter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cmu-typewriter-text-500-roman.woff2") format("woff2");
+}
+
+/* Two themes, both chosen by the system. There is no toggle.
+
+   The tokens are registered as colours rather than left as raw
+   substitutions, because an unregistered custom property cannot
+   interpolate — everything downstream of it snaps. Registered, the
+   variables themselves animate and every mark that resolves through
+   them follows. */
+
+@property --paper { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --ink   { syntax: "<color>"; inherits: true; initial-value: #1a1a1a; }
+@property --faint { syntax: "<color>"; inherits: true; initial-value: #565656; }
+@property --rule  { syntax: "<color>"; inherits: true; initial-value: #c9c9c9; }
+@property --link  { syntax: "<color>"; inherits: true; initial-value: #0b3c8c; }
+
+:root {
+  color-scheme: light dark;
+  --paper: #ffffff;
+  --ink:   #1a1a1a;   /* 17.4:1 on paper */
+  --faint: #565656;   /*  7.3:1 on paper */
+  --rule:  #c9c9c9;
+  --link:  #0b3c8c;   /* 10.3:1 — hyperref urlcolor */
+  --mark:  #fdf2b0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14161a;
+    --ink:   #e6e4de;   /* 14.3:1 on paper */
+    --faint: #a5a29a;   /*  7.1:1 on paper */
+    --rule:  #3a3d44;
+    --link:  #8fb6ee;   /*  8.7:1 on paper */
+    --mark:  #46421f;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: "CMU Serif", "Latin Modern Roman", Georgia, serif;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.075rem);
+  line-height: 1.55;
+  background: var(--paper);
+  color: var(--ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------
+   RE-INKING
+   The system flip is the one moment the whole page changes at once.
+   Staggering it — ground, then the ink, then the quiet marks, then the
+   links last — reads as ink settling into paper rather than a light
+   switch being thrown. Transitioning the registered variables carries
+   every consumer with them, so no element needs its own rule.
+   --------------------------------------------- */
+
+:root {
+  transition:
+    --paper 460ms ease,
+    --ink   460ms ease 60ms,
+    --faint 460ms ease 110ms,
+    --rule  460ms ease 170ms,
+    --link  520ms ease 190ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+}
+
+/* ---- browser surfaces: the parts we did not draw still print ---- */
+
+::selection { background: var(--mark); color: var(--ink); }
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--rule); }
+::-webkit-scrollbar-thumb:hover { background: var(--faint); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 0.22em; }
+
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+img { max-width: 100%; display: block; }

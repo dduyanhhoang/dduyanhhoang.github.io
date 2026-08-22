@@ -40,3 +40,7 @@ dist/
 
 docs/superpowers/
 docs/superpowers/**
+
+# Impeccable build-review screenshots (transient)
+.impeccable/review/
+.impeccable/questions/
