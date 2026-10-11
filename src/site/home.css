@@ -112,6 +112,8 @@ a:not([href]) { color: var(--label-3); cursor: default; }  /* placeholder links 
   object-fit: cover;
   background: var(--bg-grouped);
 }
+/* without JS the scripted <img> never gets a src; the <noscript> one shows instead */
+.hero-img:not([src]) { display: none; }
 .credit { font: var(--caption-1); color: var(--label-3); margin-top: var(--space); }
 
 /* ---------------- blocks: alternating opaque surfaces ---------------- */
