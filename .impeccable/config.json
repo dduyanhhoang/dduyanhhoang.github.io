@@ -20,6 +20,15 @@
         ],
         "createdAt": "2026-10-11T16:28:14.325Z",
         "reason": "Claude triage: hero h1 uses --display-1 clamp(2.5rem..5rem), up to ~80px vs 17px body; block titles up to 56px. Detector does not resolve clamp() sizes; rendered hierarchy is steep in screenshots."
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "home/index.html"
+        ],
+        "createdAt": "2026-10-11T16:43:49.489Z",
+        "reason": "Claude triage: #hero-img has no static src on purpose; an inline script right after it sets src from public/hero/ before load (verified 8 loads in Chrome: image loads, alt set, one request). Without JS it is hidden by CSS and a <noscript> img with a real src shows."
       }
     ]
   }
