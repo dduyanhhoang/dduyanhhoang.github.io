@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>ddah</title>
-  <meta name="description" content="Find a page on D Duy Anh Hoang's site." />
+  <meta name="description" content="A terminal. Type help." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
   <link rel="stylesheet" href="/src/site/terminal.css" />
@@ -13,36 +14,25 @@
 </head>
 <body>
   <main class="term" id="term">
-    <h1 class="banner">ddah: find a page</h1>
-    <p class="muted">Type part of a page name to open it. Type <code>help</code> for commands.</p>
+    <h1 class="sr-only">ddah terminal. Type help for commands.</h1>
 
-    <!-- The page list is the source of truth for the finder: add a page
-         here and the prompt picks it up. It also works without JS. -->
-    <nav aria-label="Pages">
+    <!-- Page registry: every page is a directory in the shell. Add a page
+         here and ls, cd and Tab pick it up. Without JS this list is the
+         whole page. -->
+    <nav aria-label="Pages" id="pages-nav">
       <ul class="ls" id="pages">
-        <li><a href="/home/">home/</a><span class="desc">Portfolio, work in progress</span></li>
-        <li><a href="/research/">research/</a><span class="desc">Profile and links, set as a preprint</span></li>
+        <li><a href="/home/">home/</a></li>
+        <li><a href="/links/">links/</a></li>
+        <li><a href="/research/">research/</a></li>
       </ul>
     </nav>
 
     <div id="log" role="log" aria-live="polite"></div>
 
     <form class="prompt" id="prompt" hidden autocomplete="off">
-      <label for="cmd" class="ps1"><span class="host">ddah</span>:<span class="cwd">~</span>$<span class="sr-only"> command</span></label>
-      <input id="cmd" name="cmd" type="text" role="combobox"
-             aria-autocomplete="list" aria-expanded="false" aria-controls="suggest"
-             autocapitalize="off" spellcheck="false" enterkeyhint="go" autofocus />
-      <ul id="suggest" role="listbox" aria-label="Matching pages" hidden></ul>
+      <label for="cmd" class="ps1"><span class="user">guest@ddah</span>:<span class="cwd">/</span>$<span class="sr-only"> command</span></label>
+      <input id="cmd" name="cmd" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" autofocus />
     </form>
   </main>
-
-  <footer class="keys glass" id="keys" hidden aria-label="Keyboard shortcuts">
-    <span class="key-hint"><kbd>Tab</kbd> complete</span>
-    <span class="key-hint"><kbd>↑</kbd><kbd>↓</kbd> choose</span>
-    <span class="key-hint"><kbd>Enter</kbd> open</span>
-    <button type="button" data-run="help"><kbd>?</kbd> help</button>
-    <button type="button" data-run="ls"><kbd>ls</kbd> list</button>
-    <button type="button" data-run="clear"><kbd>Ctrl L</kbd> clear</button>
-  </footer>
 </body>
 </html>

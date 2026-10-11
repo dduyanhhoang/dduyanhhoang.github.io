@@ -1,7 +1,7 @@
 @import './tokens.css';
 
-/* Root page: a terminal-style page finder. Everything here is the
-   content layer except the key bar, which is the one glass element. */
+/* Root page: an empty terminal. Only a prompt and a blinking cursor until
+   someone types. Pure content layer; there is no glass on this page. */
 
 body {
   font: var(--callout);
@@ -10,46 +10,33 @@ body {
 }
 
 .term {
-  max-width: 72ch;
+  max-width: 80ch;
   margin: 0 auto;
-  padding: calc(4 * var(--space)) calc(2 * var(--space)) calc(14 * var(--space));
+  min-height: 100dvh;
+  padding: calc(3 * var(--space)) calc(2 * var(--space)) calc(6 * var(--space));
   cursor: text;
 }
-
-.banner { font: inherit; font-weight: 600; margin: 0; }
-.muted, .out { color: var(--label-2); margin: calc(0.5 * var(--space)) 0 0; }
-code { font: inherit; color: var(--label); }
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 
-/* ls: two columns, name then description */
-.ls {
-  list-style: none;
-  margin: calc(2 * var(--space)) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  column-gap: calc(3 * var(--space));
-}
-.ls li { display: contents; }
-.ls a, .ls .desc { padding-block: calc(0.25 * var(--space)); }
-.ls .desc { color: var(--label-2); }
-@media (max-width: 30rem) {
-  .ls { grid-template-columns: 1fr; }
-  .ls .desc { padding-top: 0; margin-bottom: var(--space); }
-}
+/* registry list, shown only without JS */
+.ls { list-style: none; margin: 0; padding: 0; }
+.ls a { display: inline-block; padding-block: calc(0.5 * var(--space)); }
 
-#log > * { margin: calc(2 * var(--space)) 0 0; }
+/* output */
 .line { color: var(--label); white-space: pre-wrap; word-break: break-word; }
+.out { font: inherit; margin: 0; white-space: pre-wrap; word-break: break-word; color: var(--label-2); }
 .err { color: var(--destructive); }
-.help { white-space: pre-wrap; color: var(--label-2); }
+.ls-out { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; column-gap: 2ch; }
+.ls-out .dir { color: var(--accent); font-weight: 600; }
+.ls-out .file { color: var(--label); }
 
 /* prompt */
-.prompt { position: relative; display: flex; align-items: baseline; gap: 1ch; margin-top: calc(2 * var(--space)); }
+.prompt { display: flex; align-items: baseline; gap: 1ch; }
 .ps1 { flex: none; white-space: nowrap; }
-.ps1 .host { color: var(--success); }
-.ps1 .cwd { color: var(--accent); }
+.ps1 .user { color: var(--success); font-weight: 600; }
+.ps1 .cwd { color: var(--accent); font-weight: 600; }
 #cmd {
   flex: 1;
   min-width: 0;
@@ -60,83 +47,8 @@ a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
   background: transparent;
   color: var(--label);
   font: inherit;
-  caret-color: var(--accent);
+  caret-color: var(--label);
+  caret-shape: block;   /* a terminal block cursor where supported */
 }
+/* The blinking cursor is the focus indicator, as in a real terminal. */
 #cmd:focus { outline: none; }
-.prompt:focus-within .ps1 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.3em; }
-
-/* suggestions: inline under the prompt, part of the content layer */
-#suggest {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  list-style: none;
-  margin: var(--space) 0 0;
-  padding: 0;
-}
-#suggest li {
-  display: flex;
-  gap: calc(3 * var(--space));
-  align-items: baseline;
-  min-height: var(--hit-min);
-  padding: var(--space) calc(1.5 * var(--space));
-  border-radius: calc(var(--radius-card) / 2);
-  cursor: pointer;
-}
-#suggest .name { color: var(--accent); }
-#suggest .desc { color: var(--label-2); }
-#suggest mark { background: none; color: inherit; font-weight: 700; text-decoration: underline; }
-#suggest [aria-selected="true"] { background: var(--accent); }
-#suggest [aria-selected="true"] .name,
-#suggest [aria-selected="true"] .desc { color: var(--bg); }
-@media (forced-colors: active) {
-  #suggest [aria-selected="true"] { outline: 2px solid Highlight; }
-}
-
-/* key bar: the functional layer, floating, glass */
-.keys {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: max(calc(2 * var(--space)), env(safe-area-inset-bottom));
-  width: fit-content;
-  max-width: calc(100% - 4 * var(--space));
-  margin-inline: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: calc(0.5 * var(--space)) calc(2 * var(--space));
-  padding: calc(0.5 * var(--space)) calc(2 * var(--space));
-  border-radius: var(--radius-capsule);
-  font: var(--footnote);
-  font-family: var(--font-mono);
-  color: var(--label-2);
-}
-.keys > * { display: inline-flex; align-items: center; gap: 0.5ch; min-height: var(--hit-min); white-space: nowrap; }
-.keys button {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: 0;
-  padding: 0 var(--space);
-  border-radius: var(--radius-capsule);
-  cursor: pointer;
-}
-.keys button:hover { color: var(--label); }
-kbd {
-  font: inherit;
-  color: var(--label);
-  padding: 0 0.5ch;
-  border: 1px solid var(--separator);
-  border-radius: calc(0.5 * var(--space));
-}
-
-/* Touch-first screens have no Tab or arrow keys to advertise. */
-@media (pointer: coarse) {
-  .key-hint, .keys kbd { display: none; }
-  .keys button { color: var(--accent); padding: 0 calc(1.5 * var(--space)); }
-}
-@media (max-width: 30rem) {
-  .key-hint { display: none; }
-}

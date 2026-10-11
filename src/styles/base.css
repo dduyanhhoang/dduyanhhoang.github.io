@@ -66,6 +66,25 @@
   }
 }
 
+/* Increased contrast: the same inks, pushed further apart. Accessibility
+   outranks the palette (UI/UX SPEC-001), so every token has four values. */
+@media (prefers-color-scheme: light) and (prefers-contrast: more) {
+  :root {
+    --ink:   #000000;   /* 21:1 */
+    --faint: #333333;   /* 12.6:1 */
+    --rule:  #767676;
+    --link:  #062a66;   /* 13.7:1 */
+  }
+}
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --ink:   #ffffff;
+    --faint: #d0ccc4;
+    --rule:  #6d727c;
+    --link:  #b9d1f4;
+  }
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { -webkit-text-size-adjust: 100%; }

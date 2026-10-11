@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Links · dduyanhhoang</title>
+  <meta name="description" content="Every place to find Anh: email, GitHub, LinkedIn and ORCID." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <link rel="stylesheet" href="/src/site/links.css" />
+</head>
+<!-- Web archetype: content website (UI/UX SPEC-001), same tokens and
+     components as /home. No glass: nothing on this page floats. Links to
+     no other page on this site. -->
+<body>
+  <svg hidden xmlns="http://www.w3.org/2000/svg">
+    <!-- Lucide icon (ISC licence) -->
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  </svg>
+
+  <main id="main">
+    <figure class="hero-figure banner">
+      <img class="hero-img" id="hero-img" alt="" width="2400" height="1200" fetchpriority="high" decoding="async" />
+      <noscript><img class="hero-img" src="/hero/cliffs.webp" width="2400" height="1390" alt="Cosmic Cliffs in the Carina Nebula: glowing orange gas under a blue, star-filled sky." /></noscript>
+      <!-- blocking on purpose: picks the photo before the image is fetched -->
+      <script src="/hero/pick.js"></script>
+    </figure>
+
+    <div class="column">
+      <header class="head">
+        <p class="eyebrow">Undergrad researcher and engineer · Quantum, AI, speech</p>
+        <h1>dduyanhhoang</h1>
+        <p class="lede">sup, I’m Anh. Here’s where to find me.</p>
+      </header>
+
+      <ul class="link-list">
+        <li><a href="mailto:dduyanhhoang@gmail.com">
+          <span class="row-text"><span class="row-title">Email</span><span class="row-sub">dduyanhhoang@gmail.com</span></span>
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></li>
+        <li><a href="https://github.com/dduyanhhoang">
+          <span class="row-text"><span class="row-title">GitHub</span><span class="row-sub">github.com/dduyanhhoang</span></span>
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/dduyanhhoang/">
+          <span class="row-text"><span class="row-title">LinkedIn</span><span class="row-sub">linkedin.com/in/dduyanhhoang</span></span>
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></li>
+        <li><a href="https://orcid.org/0009-0006-9245-8896">
+          <span class="row-text"><span class="row-title">ORCID</span><span class="row-sub">orcid.org/0009-0006-9245-8896</span></span>
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></li>
+      </ul>
+
+      <p class="credit" id="hero-credit">Image: NASA, ESA, CSA, STScI. Public domain.</p>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="column">© 2026 dduyanhhoang.</div></footer>
+</body>
+</html>

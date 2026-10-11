@@ -1,0 +1,45 @@
+@import './home.css';
+
+/* /links: one centred column of link cards under a rotating banner.
+   Reuses /home's tokens, type, hero image, credit and footer; adds only
+   the column and the cards. */
+
+body { background: var(--bg-grouped); }
+
+.banner { margin: 0; }
+.banner .hero-img { aspect-ratio: 3 / 1; min-height: 9rem; max-height: 40vh; }
+
+.column { max-width: 36rem; margin-inline: auto; padding-inline: calc(2 * var(--space)); }
+
+.head { padding-top: calc(5 * var(--space)); }
+.head h1 { font: var(--display-2); letter-spacing: -0.01em; margin: 0; overflow-wrap: anywhere; }
+.head .lede { font: var(--title-3); color: var(--label-2); margin: var(--space) 0 0; }
+
+.link-list {
+  list-style: none;
+  margin: calc(4 * var(--space)) 0 0;
+  padding: 0;
+  display: grid;
+  gap: calc(1.5 * var(--space));
+}
+.link-list a {
+  display: flex;
+  align-items: center;
+  gap: calc(2 * var(--space));
+  min-height: 4.5rem;
+  padding: calc(1.5 * var(--space)) calc(2.5 * var(--space));
+  border-radius: var(--radius-card);
+  background: var(--bg-item);
+  color: var(--label);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.link-list a:hover { background: color-mix(in srgb, var(--label) 5%, var(--bg-item)); }
+.link-list a:active { transform: scale(0.99); }
+.link-list .row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.link-list .row-title { font: var(--headline); }
+.link-list .row-sub { font: var(--subheadline); font-family: var(--font-mono); color: var(--label-2); overflow-wrap: anywhere; }
+.link-list .icon { color: var(--label-3); }
+
+.column > .credit { margin: calc(3 * var(--space)) 0 calc(6 * var(--space)); }
+.footer .column { padding-block: 0; }

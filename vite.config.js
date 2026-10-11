@@ -10,6 +10,7 @@ export default defineConfig({
         main: 'index.html',
         research: 'research/index.html',
         home: 'home/index.html',
+        links: 'links/index.html',
       },
     },
   },
