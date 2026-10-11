@@ -7,7 +7,8 @@
     "fonts": "node scripts/subset-fonts.mjs",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node src/site/finder.test.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

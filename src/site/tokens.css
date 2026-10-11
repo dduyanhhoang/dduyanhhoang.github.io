@@ -1,0 +1,140 @@
+/* =====================================================================
+   Design tokens for the root finder and /home.
+   Source: Notion "[UIUX] SPEC-001 UI/UX standards v0" (Apple-derived).
+
+   PROVISIONAL: the spec leaves every value below TBD. These are
+   placeholders taken from Apple's iOS system colours and text styles,
+   adjusted only where needed to pass WCAG 2.2 AA. Change them here;
+   components must never hard-code a value.
+   ===================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* --- colour: light --------------------------------------------- */
+  --bg:            #ffffff;
+  --bg-grouped:    #f2f2f7;
+  --bg-item:       #ffffff;   /* row/card on a grouped background */
+  --label:         #000000;
+  --label-2:       #3c3c43;   /* secondary text */
+  --label-3:       #6c6c70;   /* tertiary text, still AA */
+  --separator:     #c6c6c8;
+  --accent:        #0066cc;
+  --success:       #1f7a35;
+  --warning:       #a34700;
+  --destructive:   #c8001a;
+  --glass-tint:    rgb(255 255 255 / 0.72);
+  --glass-edge:    rgb(0 0 0 / 0.08);
+  --shadow:        0 8px 32px rgb(0 0 0 / 0.12);
+
+  /* --- type: Apple text styles, iOS default size ------------------ */
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Cantarell, Ubuntu, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "JetBrains Mono", "Noto Sans Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  --large-title: 400 2.125rem/1.206 var(--font-sans);   /* 34/41 */
+  --title-1:     400 1.75rem/1.214 var(--font-sans);    /* 28/34 */
+  --title-2:     400 1.375rem/1.273 var(--font-sans);   /* 22/28 */
+  --title-3:     400 1.25rem/1.25 var(--font-sans);     /* 20/25 */
+  --headline:    600 1.0625rem/1.294 var(--font-sans);  /* 17/22 */
+  --body:        400 1.0625rem/1.294 var(--font-sans);  /* 17/22 */
+  --callout:     400 1rem/1.3125 var(--font-sans);      /* 16/21 */
+  --subheadline: 400 0.9375rem/1.333 var(--font-sans);  /* 15/20 */
+  --footnote:    400 0.8125rem/1.385 var(--font-sans);  /* 13/18 */
+  --caption-1:   400 0.75rem/1.333 var(--font-sans);    /* 12/16 */
+  --caption-2:   400 0.6875rem/1.182 var(--font-sans);  /* 11/13 */
+
+  /* --- layout ----------------------------------------------------- */
+  --space: 0.5rem;               /* single base step; use calc(n * var(--space)) */
+  --content-max: 42rem;
+  --hit-min: 2.75rem;            /* 44px */
+  --radius-container: 1.5rem;
+  --radius-card: 1.25rem;
+  --radius-capsule: 999px;
+
+  /* --- motion ----------------------------------------------------- */
+  --dur-fast: 150ms;
+  --dur: 250ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #000000;
+    --bg-grouped:  #000000;
+    --bg-item:     #1c1c1e;
+    --label:       #ffffff;
+    --label-2:     #d1d1d6;
+    --label-3:     #98989f;
+    --separator:   #38383a;
+    --accent:      #4da3ff;
+    --success:     #30d158;
+    --warning:     #ff9f0a;
+    --destructive: #ff6961;
+    --glass-tint:  rgb(28 28 30 / 0.72);
+    --glass-edge:  rgb(255 255 255 / 0.12);
+    --shadow:      0 8px 32px rgb(0 0 0 / 0.5);
+  }
+}
+
+@media (prefers-color-scheme: light) and (prefers-contrast: more) {
+  :root {
+    --label-2:     #1c1c1e;
+    --label-3:     #3a3a3c;
+    --separator:   #6c6c70;
+    --accent:      #0036c0;
+    --success:     #145c26;
+    --warning:     #7a3500;
+    --destructive: #9e0014;
+    --glass-edge:  rgb(0 0 0 / 0.4);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --label-2:     #ebebf0;
+    --label-3:     #c7c7cc;
+    --separator:   #8e8e93;
+    --accent:      #82bfff;
+    --success:     #6be38a;
+    --warning:     #ffc266;
+    --destructive: #ff9e99;
+    --glass-edge:  rgb(255 255 255 / 0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur: 120ms; }
+}
+
+/* --- shared base --------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--label); font: var(--body); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Glass is an enhancement for the functional layer only. The default
+   is an opaque surface; translucency is added where supported and
+   removed again when the user asks for less transparency or more
+   contrast. */
+.glass {
+  background: var(--bg-item);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--shadow);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--glass-tint);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .glass {
+    background: var(--bg-item);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

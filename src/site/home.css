@@ -1,0 +1,145 @@
+@import './tokens.css';
+
+/* /home: content layer (grouped lists) under a floating glass
+   navigation layer. Tab bar at the bottom when narrow, sidebar when
+   wide. The two glass groups sit side by side, never on each other. */
+
+body { background: var(--bg-grouped); min-height: 100dvh; font-family: var(--font-sans); }
+
+.skip { position: absolute; left: var(--space); top: -10rem; padding: var(--space) calc(2 * var(--space)); background: var(--bg-item); color: var(--accent); border-radius: var(--radius-capsule); z-index: 10; }
+.skip:focus { top: var(--space); }
+
+svg { width: 1.375rem; height: 1.375rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* --- content ------------------------------------------------------ */
+.content {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: calc(6 * var(--space)) calc(2 * var(--space)) calc(16 * var(--space));
+}
+
+.hero h1 { font: var(--large-title); font-weight: 700; margin: 0; }
+.hero .role { font: var(--title-3); margin: var(--space) 0 0; }
+.hero .meta { font: var(--subheadline); color: var(--label-2); margin: calc(0.5 * var(--space)) 0 0; }
+.intro { margin: calc(3 * var(--space)) 0 0; color: var(--label); max-width: 36em; }
+
+section { margin-top: calc(4 * var(--space)); }
+h2 {
+  font: var(--headline);
+  margin: 0 0 var(--space) calc(2 * var(--space));
+}
+
+/* inset grouped list */
+.group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-item);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+/* separator inset to the text, as in iOS lists */
+.group li + li a { position: relative; }
+.group li + li a::before {
+  content: ""; position: absolute; top: 0; right: 0; left: calc(2 * var(--space));
+  height: 1px; background: var(--separator);
+}
+.group a {
+  display: flex;
+  align-items: center;
+  gap: calc(1.5 * var(--space));
+  min-height: var(--hit-min);
+  padding: calc(1.5 * var(--space)) calc(2 * var(--space));
+  color: var(--label);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.group a:hover { background: color-mix(in srgb, var(--label) 5%, var(--bg-item)); }
+.group a:active { background: color-mix(in srgb, var(--label) 10%, var(--bg-item)); }
+.group a:focus-visible { outline-offset: -3px; border-radius: inherit; }
+.row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.row-title { font: var(--body); }
+.row-sub { font: var(--subheadline); color: var(--label-2); overflow-wrap: anywhere; }
+.mono { font-family: var(--font-mono); font-size: 0.875rem; }
+.chev { width: 1rem; height: 1rem; color: var(--label-3); }
+
+.fine { font: var(--footnote); color: var(--label-3); margin: calc(4 * var(--space)) 0 0 calc(2 * var(--space)); }
+
+/* --- navigation: narrow = floating tab bar at the bottom ------------ */
+.nav {
+  position: fixed;
+  z-index: 5;
+  left: calc(2 * var(--space));
+  right: calc(2 * var(--space));
+  bottom: max(calc(2 * var(--space)), env(safe-area-inset-bottom));
+  display: flex;
+  gap: var(--space);
+  max-width: 28rem;
+  margin: 0 auto;
+}
+.nav ul { list-style: none; margin: 0; padding: calc(0.5 * var(--space)); display: flex; border-radius: var(--radius-capsule); }
+.nav-main { flex: 1; }
+.nav-main li { flex: 1; }
+.nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: calc(var(--hit-min) + 0.75rem);
+  min-width: calc(var(--hit-min) + 0.75rem);
+  padding: 0 var(--space);
+  /* concentric with the capsule: the inner radius is the outer one minus the padding */
+  border-radius: var(--radius-capsule);
+  color: var(--label);
+  font: var(--caption-2);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.nav a:hover { background: color-mix(in srgb, var(--label) 8%, transparent); }
+.nav a[aria-current="page"] { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* scroll edge effect: content fades out before it reaches the bar */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: calc(14 * var(--space));
+  background: linear-gradient(to top, var(--bg-grouped) 35%, transparent);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* --- navigation: wide = floating sidebar ----------------------------- */
+@media (min-width: 56rem) {
+  .nav {
+    top: calc(2 * var(--space));
+    bottom: calc(2 * var(--space));
+    right: auto;
+    width: 15rem;
+    max-width: none;
+    margin: 0;
+    flex-direction: column;
+  }
+  .nav ul { flex-direction: column; border-radius: var(--radius-container); padding: var(--space); gap: 2px; }
+  .nav-main { flex: 1; }
+  .nav-main li { flex: none; }
+  .nav-search { order: -1; }
+  .nav a {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: calc(1.5 * var(--space));
+    min-height: var(--hit-min);
+    padding: 0 calc(1.5 * var(--space));
+    /* concentric: container radius minus the list padding */
+    border-radius: calc(var(--radius-container) - var(--space));
+    font: var(--body);
+  }
+  .nav a svg { color: var(--accent); }
+  .search-label { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+  /* reserve the sidebar's width so content never sits under it */
+  .content { padding-left: calc(15rem + 6 * var(--space)); max-width: calc(var(--content-max) + 15rem + 6 * var(--space)); }
+  body::after { display: none; }
+}
