@@ -101,8 +101,18 @@ a:not([href]) { color: var(--label-3); cursor: default; }  /* placeholder links 
 .hero h1 span + span { color: var(--label-2); }
 .hero .lede { font: var(--title-3); color: var(--label-2); margin: calc(3 * var(--space)) 0 0; max-width: 36rem; }
 .actions { display: flex; flex-wrap: wrap; gap: calc(1.5 * var(--space)); margin-top: calc(4 * var(--space)); }
-/* full-bleed */
-.media-hero { margin-top: calc(8 * var(--space)); aspect-ratio: 21 / 9; min-height: 14rem; width: 100%; }
+/* full-bleed hero photo; the grouped background shows while it loads */
+.hero-figure { margin: calc(8 * var(--space)) 0 0; }
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 9;
+  min-height: 14rem;
+  object-fit: cover;
+  background: var(--bg-grouped);
+}
+.credit { font: var(--caption-1); color: var(--label-3); margin-top: var(--space); }
 
 /* ---------------- blocks: alternating opaque surfaces ---------------- */
 .block { padding-block: calc(12 * var(--space)); }

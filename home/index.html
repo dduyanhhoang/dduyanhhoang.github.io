@@ -54,14 +54,43 @@
           <a class="btn" href="#contact">Get in Touch</a>
         </div>
       </div>
-      <div class="media media-hero" role="img" aria-label="Placeholder hero image"><span aria-hidden="true">Hero image · 21:9</span></div>
+      <!-- Hero image: a different public-domain photo on each visit.
+           Sources and credits: public/hero/CREDITS.md. -->
+      <figure class="hero-figure">
+        <img class="hero-img" id="hero-img" alt="" width="2400" height="1200" fetchpriority="high" decoding="async" />
+        <noscript><img class="hero-img" src="/hero/cliffs.webp" width="2400" height="1390" alt="Cosmic Cliffs in the Carina Nebula: glowing orange gas under a blue, star-filled sky." /></noscript>
+        <figcaption class="wrap credit" id="hero-credit">Image: NASA, ESA, CSA, STScI. Public domain.</figcaption>
+      </figure>
+      <script>
+        /* Runs before the image loads, so only the chosen photo is fetched.
+           Avoids repeating the previous visit's photo when it can. */
+        (function () {
+          var photos = [
+            ['cliffs', 1390, 'Cosmic Cliffs in the Carina Nebula: glowing orange gas under a blue, star-filled sky.', 'NASA, ESA, CSA, STScI (James Webb Space Telescope)'],
+            ['city-lights', 1200, 'Earth at night, with city lights tracing the outlines of the continents.', 'Craig Mayhew and Robert Simmon, NASA GSFC; data: Marc Imhoff, NASA GSFC, and Christopher Elvidge, NOAA NGDC'],
+            ['saturn', 1162, 'Saturn at equinox, its rings seen nearly edge-on against black space.', 'NASA, JPL, Space Science Institute (Cassini)'],
+            ['sombrero', 1345, 'The Sombrero Galaxy in infrared: a glowing blue core inside a thin red ring of dust.', 'NASA, JPL-Caltech and the Hubble Heritage Team (STScI, AURA)'],
+            ['deep-field', 1200, 'The Hubble Ultra Deep Field: thousands of faraway galaxies scattered across black sky.', 'NASA and ESA (Hubble Space Telescope)']
+          ];
+          var last = -1;
+          try { last = Number(localStorage.getItem('hero.last')); } catch (e) {}
+          var i = Math.floor(Math.random() * photos.length);
+          if (i === last) i = (i + 1 + Math.floor(Math.random() * (photos.length - 1))) % photos.length;
+          try { localStorage.setItem('hero.last', String(i)); } catch (e) {}
+          var p = photos[i], img = document.getElementById('hero-img');
+          img.height = p[1];
+          img.alt = p[2];
+          img.src = '/hero/' + p[0] + '.webp';
+          document.getElementById('hero-credit').textContent = 'Image: ' + p[3] + '. Public domain.';
+        })();
+      </script>
     </section>
 
     <!-- Selected work -->
     <section class="block" id="work" aria-labelledby="work-title">
       <div class="wrap">
         <h2 id="work-title" class="block-title">Selected Work</h2>
-        <p class="block-lede">What I’m working on right now. Write-ups are on the way.</p>
+        <p class="block-lede">TBU. The write-ups are still compiling. Please hold.</p>
 
         <div class="filter glass" role="group" aria-label="Filter projects">
           <button type="button" aria-pressed="true" data-filter="all">All</button>
@@ -74,28 +103,28 @@
           <li class="card" data-tags="research">
             <div class="media media-card" role="img" aria-label="Placeholder project image"><span aria-hidden="true">16:10</span></div>
             <div class="card-body">
-              <p class="tag">Research · In progress</p>
-              <h3>Quantum Kernels for EEG</h3>
-              <p>Quantum kernel methods applied to biosignal processing.</p>
+              <p class="tag">Research · TBU</p>
+              <h3>Project TBU</h3>
+              <p>Currently in a superposition of “done” and “not started”. Looking at it collapses it to TBU.</p>
               <a class="link" href="#project-one">Read Overview<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
             </div>
           </li>
           <li class="card" data-tags="research">
             <div class="media media-card alt" role="img" aria-label="Placeholder project image"><span aria-hidden="true">16:10</span></div>
             <div class="card-body">
-              <p class="tag">Research · In progress</p>
-              <h3>QUBO Timetabling</h3>
-              <p>Writing scheduling constraints as a Hamiltonian, so an optimiser can solve them.</p>
-              <a class="link">Write-up coming soon</a>
+              <p class="tag">Research · TBU</p>
+              <h3>Project TBU</h3>
+              <p>The proof is left as an exercise for future me. Future me says TBU.</p>
+              <a class="link">Write-up TBU</a>
             </div>
           </li>
           <li class="card" data-tags="research engineering">
             <div class="media media-card alt2" role="img" aria-label="Placeholder project image"><span aria-hidden="true">16:10</span></div>
             <div class="card-body">
-              <p class="tag">Research · Engineering · In progress</p>
-              <h3>Vietnamese Lip Reading</h3>
-              <p>Dataset work for reading Vietnamese speech from video of the lips.</p>
-              <a class="link">Write-up coming soon</a>
+              <p class="tag">Research · Engineering · TBU</p>
+              <h3>Project TBU</h3>
+              <p>Works on my machine. Waiting until it works on yours too. TBU.</p>
+              <a class="link">Write-up TBU</a>
             </div>
           </li>
         </ul>
@@ -105,9 +134,9 @@
     <!-- Case study: problem, approach, result, links -->
     <article class="block case" id="project-one" aria-labelledby="case-title">
       <div class="wrap">
-        <p class="eyebrow">Overview · Research · In progress</p>
-        <h2 id="case-title" class="block-title">Quantum Kernels for EEG</h2>
-        <p class="block-lede">Can a quantum kernel help a support vector machine tell EEG signals apart?</p>
+        <p class="eyebrow">Overview · TBU</p>
+        <h2 id="case-title" class="block-title">Project TBU</h2>
+        <p class="block-lede">A project so good it needs its own section. The section is TBU.</p>
       </div>
 
       <figure class="media-figure">
@@ -117,22 +146,22 @@
           <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
           <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
         </button>
-        <figcaption class="wrap">Demo video coming soon.</figcaption>
+        <figcaption class="wrap">Demo TBU. The play button works; there is just nothing to play yet.</figcaption>
       </figure>
 
       <div class="wrap steps">
         <section aria-labelledby="s-problem">
-          <h3 id="s-problem">The problem: EEG signals are noisy and hard to separate.</h3>
-          <p>Brain signals carry a lot of noise and change from person to person, so a classifier needs a good way to measure how alike two recordings are.</p>
+          <h3 id="s-problem">The problem: TBU.</h3>
+          <p>Somewhere between a whiteboard full of arrows and a working demo.</p>
         </section>
         <section aria-labelledby="s-approach">
-          <h3 id="s-approach">The approach: let a quantum circuit measure similarity.</h3>
-          <p>A quantum kernel encodes each signal as a quantum state and measures how much two states overlap. A support vector machine then uses that overlap as its kernel.</p>
-          <div class="media media-inline" role="img" aria-label="Diagram placeholder"><span aria-hidden="true">Diagram coming soon</span></div>
+          <h3 id="s-approach">The approach: TBU.</h3>
+          <p>Involves math. Probably more than strictly necessary.</p>
+          <div class="media media-inline" role="img" aria-label="Diagram placeholder"><span aria-hidden="true">Diagram TBU</span></div>
         </section>
         <section aria-labelledby="s-result">
-          <h3 id="s-result">The result: the write-up is in progress.</h3>
-          <p>Numbers go here once the experiments are written up. Nothing is published yet.</p>
+          <h3 id="s-result">The result: TBU.</h3>
+          <p>Results appear here once they stop changing every time I rerun them.</p>
         </section>
         <section aria-labelledby="s-links">
           <h3 id="s-links">Links</h3>
@@ -141,7 +170,7 @@
             <li><a class="btn"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>Repository</a></li>
             <li><a class="btn"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Demo</a></li>
           </ul>
-          <p class="note">Each link goes live once it’s ready.</p>
+          <p class="note">Links TBU.</p>
         </section>
       </div>
     </article>
