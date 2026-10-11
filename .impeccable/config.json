@@ -2,6 +2,25 @@
   "detector": {
     "ignoreRules": [],
     "ignoreFiles": [],
-    "ignoreValues": []
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "home/index.html"
+        ],
+        "createdAt": "2026-10-11T16:28:14.271Z",
+        "reason": "Claude triage: flagged nodes are full-bleed section.block and li.card. Section text sits in .wrap with 16-32px inline and 96px block padding; card media is edge-to-edge by design and card text has 20px padding. Screenshots at 360-1280px show no text near an edge."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "home/index.html"
+        ],
+        "createdAt": "2026-10-11T16:28:14.325Z",
+        "reason": "Claude triage: hero h1 uses --display-1 clamp(2.5rem..5rem), up to ~80px vs 17px body; block titles up to 56px. Detector does not resolve clamp() sizes; rendered hierarchy is steep in screenshots."
+      }
+    ]
   }
 }
