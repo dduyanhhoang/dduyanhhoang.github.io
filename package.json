@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node src/site/finder.test.mjs"
+    "test": "node src/site/shell.test.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
