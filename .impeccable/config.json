@@ -2,25 +2,6 @@
   "detector": {
     "ignoreRules": [],
     "ignoreFiles": [],
-    "ignoreValues": [
-      {
-        "rule": "cramped-padding",
-        "value": "*",
-        "files": [
-          "home/index.html"
-        ],
-        "createdAt": "2026-10-11T15:50:31.187Z",
-        "reason": "Claude triage: grouped-list rows and tab items carry their own 12-16px padding inside zero/4px-padded containers; screenshots at 360-1280px show no text near an edge. 4px tab-bar inset is the concentric capsule from UI/UX SPEC-001."
-      },
-      {
-        "rule": "flat-type-hierarchy",
-        "value": "*",
-        "files": [
-          "home/index.html"
-        ],
-        "createdAt": "2026-10-11T15:50:31.238Z",
-        "reason": "Claude triage: type scale is Apple's iOS text styles as mandated by UI/UX SPEC-001; section headers use Headline (17pt semibold) like Apple grouped lists, Large Title is 34pt (2x body)."
-      }
-    ]
+    "ignoreValues": []
   }
 }
