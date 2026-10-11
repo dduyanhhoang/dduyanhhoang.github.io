@@ -4,238 +4,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Home</title>
-  <meta name="description" content="Placeholder app shell." />
+  <meta name="description" content="Placeholder portfolio." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
   <link rel="stylesheet" href="/src/site/home.css" />
   <script type="module" src="/src/site/home.js"></script>
 </head>
+<!-- Web archetype: content website (UI/UX SPEC-001, Web adapter).
+     Glass only on the sticky nav, the filter group, the control floating
+     on media, and the back-to-top button. Everything else is opaque.
+     All copy is placeholder. Links without href are placeholder links. -->
 <body>
-  <!-- Icons: Lucide (ISC licence), defined once and referenced with <use>. -->
   <svg hidden xmlns="http://www.w3.org/2000/svg">
-    <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
-    <symbol id="i-list" viewBox="0 0 24 24"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></symbol>
-    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></symbol>
-    <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
-    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
-    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></symbol>
-    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
-    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
-    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
-    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
-    <symbol id="i-inbox" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>  </svg>
+    <!-- Lucide icons (ISC licence) -->
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+  </svg>
 
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Functional layer: tab bar (narrow) or sidebar (wide). Search is a
-       separate tab at the trailing end. Links only change the hash; this
-       page links to no other page. -->
-  <nav class="nav" aria-label="Sections">
-    <ul class="nav-main glass">
-      <li><a href="#overview" data-tab="overview"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span>Overview</span></a></li>
-      <li><a href="#items" data-tab="items"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg><span>Items</span></a></li>
-      <li><a href="#settings" data-tab="settings"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span>Settings</span></a></li>
-    </ul>
-    <ul class="nav-search glass">
-      <li><a href="#search" data-tab="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span class="search-label">Search</span></a></li>
-    </ul>
-  </nav>
+  <!-- Functional layer: thin sticky nav, glass -->
+  <header class="topnav glass">
+    <a class="wordmark" href="#top">Placeholder Name</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <main id="main" class="content">
-
-    <!-- ============ Overview ============ -->
-    <section class="screen" id="screen-overview" aria-labelledby="t-overview">
-      <header class="screen-head">
-        <h1 id="t-overview" tabindex="-1">Overview</h1>
-        <div class="toolbar" role="toolbar" aria-label="Overview actions">
-          <div class="tb-group glass">
-            <button type="button" class="tb" data-action="add" aria-label="Add Item" title="Add Item"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-          </div>
-          <div class="tb-group glass">
-            <button type="button" class="tb" data-action="share" aria-label="Share" title="Share"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg></button>
-            <button type="button" class="tb" aria-label="More" title="More" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-more"><svg class="icon" aria-hidden="true"><use href="#i-more"/></svg></button>
-            <ul class="menu glass" id="menu-more" role="menu" aria-label="More" hidden>
-              <li role="none"><button type="button" role="menuitem" data-action="add"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add Item</button></li>
-              <li role="none"><button type="button" role="menuitem" data-action="share"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg>Share</button></li>
-              <li role="separator"></li>
-              <li role="none"><button type="button" role="menuitem" data-go="settings"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>Open Settings</button></li>
-            </ul>
-          </div>
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="eyebrow">Placeholder role · Placeholder field</p>
+        <h1 id="hero-title">A placeholder headline that says what you do.</h1>
+        <p class="lede">One or two placeholder sentences that tell a first-time visitor who this is and why the work below matters.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#work">View Work</a>
+          <a class="btn" href="#contact">Get in Touch</a>
         </div>
-      </header>
+      </div>
+      <div class="media media-hero" role="img" aria-label="Placeholder hero image"><span aria-hidden="true">Hero image · 21:9</span></div>
+    </section>
 
-      <p class="lede">Placeholder summary. Replace this with one sentence that says what this screen is for.</p>
+    <!-- Selected work -->
+    <section class="block" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 id="work-title" class="block-title">Selected Work</h2>
+        <p class="block-lede">A placeholder line introducing the projects.</p>
 
-      <div class="cards">
-        <article class="card">
-          <p class="eyebrow">Placeholder</p>
-          <h2>Primary Card</h2>
-          <p class="sub">Placeholder body text. Each screen has one main job; this card holds it.</p>
-          <button type="button" class="btn btn-primary" data-action="add">Add Item</button>
-        </article>
-        <article class="card">
-          <p class="eyebrow">Placeholder</p>
-          <h2>Secondary Card</h2>
-          <p class="sub">Placeholder body text for supporting content.</p>
-          <button type="button" class="btn" data-go="items">View Items</button>
-        </article>
+        <div class="filter glass" role="group" aria-label="Filter projects">
+          <button type="button" aria-pressed="true" data-filter="all">All</button>
+          <button type="button" aria-pressed="false" data-filter="research">Research</button>
+          <button type="button" aria-pressed="false" data-filter="engineering">Engineering</button>
+        </div>
+        <p class="sr-only" id="filter-status" role="status"></p>
+
+        <ul class="cards" id="cards">
+          <li class="card" data-tags="research">
+            <div class="media media-card" role="img" aria-label="Placeholder project image"><span aria-hidden="true">16:10</span></div>
+            <div class="card-body">
+              <p class="tag">Research</p>
+              <h3>Project One</h3>
+              <p>Placeholder one-line summary of the problem and the result.</p>
+              <a class="link" href="#project-one">Read Case Study<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </li>
+          <li class="card" data-tags="engineering">
+            <div class="media media-card alt" role="img" aria-label="Placeholder project image"><span aria-hidden="true">16:10</span></div>
+            <div class="card-body">
+              <p class="tag">Engineering</p>
+              <h3>Project Two</h3>
+              <p>Placeholder one-line summary of the problem and the result.</p>
+              <a class="link">Case study coming soon</a>
+            </div>
+          </li>
+          <li class="card" data-tags="research engineering">
+            <div class="media media-card alt2" role="img" aria-label="Placeholder project image"><span aria-hidden="true">16:10</span></div>
+            <div class="card-body">
+              <p class="tag">Research · Engineering</p>
+              <h3>Project Three</h3>
+              <p>Placeholder one-line summary of the problem and the result.</p>
+              <a class="link">Case study coming soon</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Case study: problem, approach, result, links -->
+    <article class="block case" id="project-one" aria-labelledby="case-title">
+      <div class="wrap">
+        <p class="eyebrow">Case Study · Research</p>
+        <h2 id="case-title" class="block-title">Project One</h2>
+        <p class="block-lede">A placeholder sentence that states the whole project in one breath.</p>
       </div>
 
-      <figure class="card chart" aria-labelledby="chart-title">
-        <figcaption>
-          <h2 id="chart-title">Placeholder metric rose this week</h2>
-          <p class="sub" id="chart-desc">Daily values, Monday to Sunday. Highest on Sunday.</p>
-        </figcaption>
-        <div class="chart-body" id="chart" aria-busy="true" aria-describedby="chart-desc">
-          <div class="skeleton skeleton-chart" aria-hidden="true"></div>
-          <span class="sr-only">Loading chart</span>
-        </div>
-        <button type="button" class="btn btn-plain" aria-expanded="false" aria-controls="chart-table">Show Data</button>
-        <table id="chart-table" class="data-table" hidden>
-          <caption class="sr-only">Placeholder metric by day</caption>
-          <thead><tr><th scope="col">Day</th><th scope="col">Value</th></tr></thead>
-          <tbody></tbody>
-        </table>
+      <figure class="media-figure">
+        <div class="media media-wide" role="img" aria-label="Placeholder demo video"><span aria-hidden="true">Demo video · 16:9</span></div>
+        <!-- control floating on media: one of the few glass elements -->
+        <button type="button" class="media-control glass" aria-pressed="false" aria-label="Play Demo">
+          <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+          <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+        </button>
+        <figcaption class="wrap">Placeholder caption describing what the video shows.</figcaption>
       </figure>
 
-      <section aria-labelledby="h-activity">
-        <h2 id="h-activity" class="group-head">Recent Activity</h2>
-        <ul class="group" id="activity" aria-busy="true">
-          <li class="row"><span class="skeleton skeleton-line" aria-hidden="true"></span></li>
-          <li class="row"><span class="skeleton skeleton-line" aria-hidden="true"></span></li>
-          <li class="row"><span class="skeleton skeleton-line" aria-hidden="true"></span></li>
-        </ul>
-      </section>
-    </section>
+      <div class="wrap steps">
+        <section aria-labelledby="s-problem">
+          <h3 id="s-problem">The problem: a placeholder statement of what was hard.</h3>
+          <p>Placeholder paragraph. Explain who had the problem and why existing approaches fell short. Keep it to a few sentences.</p>
+        </section>
+        <section aria-labelledby="s-approach">
+          <h3 id="s-approach">The approach: a placeholder summary of the method.</h3>
+          <p>Placeholder paragraph. Describe the key idea and the one decision that mattered most.</p>
+          <div class="media media-inline" role="img" aria-label="Placeholder diagram"><span aria-hidden="true">Diagram · 3:2</span></div>
+        </section>
+        <section aria-labelledby="s-result">
+          <h3 id="s-result">The result: a placeholder outcome with a number.</h3>
+          <dl class="stats">
+            <div><dt>Placeholder metric</dt><dd>00%</dd></div>
+            <div><dt>Placeholder metric</dt><dd>0.0×</dd></div>
+            <div><dt>Placeholder metric</dt><dd>00</dd></div>
+          </dl>
+        </section>
+        <section aria-labelledby="s-links">
+          <h3 id="s-links">Links</h3>
+          <ul class="link-row">
+            <li><a class="btn"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Paper</a></li>
+            <li><a class="btn"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>Repository</a></li>
+            <li><a class="btn"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Demo</a></li>
+          </ul>
+          <p class="note">Placeholder links. Each one goes live when its destination exists.</p>
+        </section>
+      </div>
+    </article>
 
-    <!-- ============ Items ============ -->
-    <section class="screen" id="screen-items" aria-labelledby="t-items" hidden>
-      <header class="screen-head">
-        <h1 id="t-items" tabindex="-1">Items</h1>
-        <div class="toolbar" role="toolbar" aria-label="Item actions">
-          <div class="tb-group glass">
-            <button type="button" class="tb" data-action="add" aria-label="Add Item" title="Add Item"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-          </div>
+    <!-- About -->
+    <section class="block about" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 id="about-title" class="block-title">About</h2>
+        <p class="statement">A placeholder statement, set large, about how you work.</p>
+        <div class="about-body">
+          <p>Placeholder paragraph. Background, focus areas and what you are looking for next. Two or three short sentences read better than one long one.</p>
+          <p>Placeholder paragraph. A second detail worth knowing.</p>
         </div>
-      </header>
-      <ul class="group" id="item-list"></ul>
-      <div class="empty" id="items-empty" hidden>
-        <svg class="icon icon-lg" aria-hidden="true"><use href="#i-inbox"/></svg>
-        <h2>No Items</h2>
-        <p class="sub">Add an item to see it here.</p>
-        <button type="button" class="btn btn-primary" data-action="add">Add Item</button>
       </div>
     </section>
 
-    <!-- ============ Settings ============ -->
-    <section class="screen" id="screen-settings" aria-labelledby="t-settings" hidden>
-      <header class="screen-head">
-        <h1 id="t-settings" tabindex="-1">Settings</h1>
-      </header>
-      <form id="settings-form" novalidate>
-        <h2 class="group-head">Profile</h2>
-        <div class="group">
-          <div class="field">
-            <label for="f-name">Name</label>
-            <input id="f-name" name="name" autocomplete="name" placeholder="Placeholder Name" />
-          </div>
-          <div class="field">
-            <label for="f-email">Email</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" aria-describedby="f-email-err" />
-            <p class="field-error" id="f-email-err" hidden></p>
-          </div>
-        </div>
-
-        <h2 class="group-head">Preferences</h2>
-        <div class="group">
-          <div class="row">
-            <label class="row-title" for="t-one">Placeholder Option</label>
-            <input type="checkbox" role="switch" id="t-one" name="optionOne" checked />
-          </div>
-          <div class="row">
-            <span class="row-title" id="t-two-label">Another Option</span>
-            <button type="button" class="icon-btn" aria-label="About Another Option" aria-expanded="false" aria-controls="help-two"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></button>
-            <input type="checkbox" role="switch" id="t-two" name="optionTwo" aria-labelledby="t-two-label" />
-          </div>
-          <p class="help" id="help-two" hidden>Placeholder help. Explain what this option changes in one or two sentences, right where people need it.</p>
-          <div class="row">
-            <label class="row-title" for="s-one">Placeholder Choice</label>
-            <select id="s-one" name="choice">
-              <option>Automatic</option>
-              <option>Option A</option>
-              <option>Option B</option>
-            </select>
-          </div>
-        </div>
-        <p class="group-foot" id="save-status" role="status">Changes save automatically.</p>
-
-        <div class="group">
-          <button type="button" class="row row-btn destructive" data-action="reset">Reset Settings</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- ============ Search ============ -->
-    <section class="screen" id="screen-search" aria-labelledby="t-search" hidden>
-      <header class="screen-head">
-        <h1 id="t-search" tabindex="-1">Search</h1>
-      </header>
-      <form role="search" id="search-form">
-        <label class="search-field">
-          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-          <span class="sr-only">Search items</span>
-          <input id="q" type="search" placeholder="Search Items" autocomplete="off" enterkeyhint="search" />
-        </label>
-      </form>
-      <section id="recents" aria-labelledby="h-recent">
-        <div class="group-head-row">
-          <h2 id="h-recent" class="group-head">Recent</h2>
-          <button type="button" class="btn btn-plain" data-action="clear-recents">Clear</button>
-        </div>
-        <ul class="group" id="recent-list"></ul>
-        <p class="group-foot" id="recent-empty" hidden>Your recent searches appear here.</p>
-      </section>
-      <section id="results" aria-labelledby="h-results" hidden>
-        <h2 id="h-results" class="group-head">Items</h2>
-        <ul class="group" id="result-list" aria-live="polite"></ul>
-        <div class="empty" id="no-results" hidden>
-          <h2 id="no-results-title">No Results</h2>
-          <p class="sub">Check the spelling or try a new search.</p>
-        </div>
-      </section>
+    <!-- Contact -->
+    <section class="block contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title" class="block-title">Placeholder call to action.</h2>
+        <p class="block-lede">One placeholder line about what kind of message is welcome.</p>
+        <ul class="link-row">
+          <li><a class="btn btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Send Email</a></li>
+          <li><a class="btn">Placeholder Profile</a></li>
+        </ul>
+      </div>
     </section>
   </main>
 
-  <!-- Modal sheet: a self-contained task with a clear way out. -->
-  <dialog class="sheet glass" id="sheet" aria-labelledby="sheet-title">
-    <form method="dialog" id="sheet-form" novalidate>
-      <button type="button" class="grabber" aria-label="Expand Sheet" aria-pressed="false"><span aria-hidden="true"></span></button>
-      <div class="sheet-bar">
-        <button value="cancel" class="btn btn-plain" formnovalidate>Cancel</button>
-        <h2 id="sheet-title">New Item</h2>
-        <button value="add" class="btn btn-plain strong">Add</button>
-      </div>
-      <div class="group">
-        <div class="field">
-          <label for="new-name">Name</label>
-          <input id="new-name" name="name" placeholder="Placeholder Item" aria-describedby="new-name-err" />
-          <p class="field-error" id="new-name-err" hidden></p>
-        </div>
-        <div class="field">
-          <label for="new-detail">Detail</label>
-          <input id="new-detail" name="detail" value="Placeholder detail" />
-        </div>
-      </div>
-    </form>
-  </dialog>
+  <footer class="footer">
+    <div class="wrap">© 2026 Placeholder Name.</div>
+  </footer>
 
-  <!-- Feedback with undo. Stays until acted on; no auto-dismiss timer. -->
-  <div class="toast glass" id="toast" hidden>
-    <p id="toast-msg" role="status"></p>
-    <button type="button" class="btn btn-plain strong" id="toast-undo">Undo</button>
-    <button type="button" class="icon-btn" id="toast-close" aria-label="Dismiss"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
-  </div>
+  <!-- Floating control, glass: appears after the hero -->
+  <a class="to-top glass" href="#top" aria-label="Back to Top" hidden><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
 </body>
 </html>

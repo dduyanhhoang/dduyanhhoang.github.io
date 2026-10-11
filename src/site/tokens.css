@@ -33,6 +33,11 @@
   /* --- type: Apple text styles, iOS default size ------------------ */
   --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Cantarell, Ubuntu, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "JetBrains Mono", "Noto Sans Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  /* Display sizes for content websites ("tiêu đề cỡ rất lớn"). Apple's
+     text styles stop at Large Title, so these two are extra and
+     provisional. */
+  --display-1:   700 clamp(2.5rem, 1.6rem + 4.5vw, 5rem)/1.05 var(--font-sans);
+  --display-2:   700 clamp(2rem, 1.5rem + 2.5vw, 3.5rem)/1.1 var(--font-sans);
   --large-title: 400 2.125rem/1.206 var(--font-sans);   /* 34/41 */
   --title-1:     400 1.75rem/1.214 var(--font-sans);    /* 28/34 */
   --title-2:     400 1.375rem/1.273 var(--font-sans);   /* 22/28 */
@@ -47,7 +52,8 @@
 
   /* --- layout ----------------------------------------------------- */
   --space: 0.5rem;               /* single base step; use calc(n * var(--space)) */
-  --content-max: 42rem;
+  --content-max: 42rem;          /* reading measure */
+  --page-max: 72rem;             /* content website container */
   --hit-min: 2.75rem;            /* 44px */
   --radius-container: 1.5rem;
   --radius-card: 1.25rem;
