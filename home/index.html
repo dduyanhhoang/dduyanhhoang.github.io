@@ -3,79 +3,239 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Home · ddah</title>
-  <meta name="description" content="D Duy Anh Hoang: undergrad researcher and engineer in quantum, AI and speech." />
+  <title>Home</title>
+  <meta name="description" content="Placeholder app shell." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
   <link rel="stylesheet" href="/src/site/home.css" />
+  <script type="module" src="/src/site/home.js"></script>
 </head>
 <body>
+  <!-- Icons: Lucide (ISC licence), defined once and referenced with <use>. -->
+  <svg hidden xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>  </svg>
+
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Functional layer. Icons: Lucide (ISC licence), inline. -->
-  <nav class="nav" aria-label="Site">
+  <!-- Functional layer: tab bar (narrow) or sidebar (wide). Search is a
+       separate tab at the trailing end. Links only change the hash; this
+       page links to no other page. -->
+  <nav class="nav" aria-label="Sections">
     <ul class="nav-main glass">
-      <li><a href="/home/" aria-current="page">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-        <span>Home</span></a></li>
-      <li><a href="/research/">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v16"/><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/></svg>
-        <span>Research</span></a></li>
+      <li><a href="#overview" data-tab="overview"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span>Overview</span></a></li>
+      <li><a href="#items" data-tab="items"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg><span>Items</span></a></li>
+      <li><a href="#settings" data-tab="settings"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span>Settings</span></a></li>
     </ul>
     <ul class="nav-search glass">
-      <li><a href="/">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
-        <span class="search-label">Search</span></a></li>
+      <li><a href="#search" data-tab="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span class="search-label">Search</span></a></li>
     </ul>
   </nav>
 
-  <!-- Content layer -->
   <main id="main" class="content">
-    <header class="hero">
-      <h1>D Duy Anh Hoang</h1>
-      <p class="role">Undergrad researcher and engineer</p>
-      <p class="meta">Quantum, AI, speech · Vietnam</p>
-    </header>
 
-    <p class="intro">
-      Undergraduate in Artificial Intelligence, grounded in applied mathematics.
-      I work on quantum machine learning: quantum kernel methods applied to
-      biosignal processing, optimisation and error correction. Open to research
-      collaborations.
-    </p>
+    <!-- ============ Overview ============ -->
+    <section class="screen" id="screen-overview" aria-labelledby="t-overview">
+      <header class="screen-head">
+        <h1 id="t-overview" tabindex="-1">Overview</h1>
+        <div class="toolbar" role="toolbar" aria-label="Overview actions">
+          <div class="tb-group glass">
+            <button type="button" class="tb" data-action="add" aria-label="Add Item" title="Add Item"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+          </div>
+          <div class="tb-group glass">
+            <button type="button" class="tb" data-action="share" aria-label="Share" title="Share"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg></button>
+            <button type="button" class="tb" aria-label="More" title="More" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-more"><svg class="icon" aria-hidden="true"><use href="#i-more"/></svg></button>
+            <ul class="menu glass" id="menu-more" role="menu" aria-label="More" hidden>
+              <li role="none"><button type="button" role="menuitem" data-action="add"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add Item</button></li>
+              <li role="none"><button type="button" role="menuitem" data-action="share"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg>Share</button></li>
+              <li role="separator"></li>
+              <li role="none"><button type="button" role="menuitem" data-go="settings"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>Open Settings</button></li>
+            </ul>
+          </div>
+        </div>
+      </header>
 
-    <section aria-labelledby="h-pages">
-      <h2 id="h-pages">Pages</h2>
-      <ul class="group">
-        <li><a href="/research/">
-          <span class="row-text"><span class="row-title">Research</span><span class="row-sub">Profile and links, set as a preprint</span></span>
-          <svg class="chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a></li>
-        <li><a href="/">
-          <span class="row-text"><span class="row-title">Find a Page</span><span class="row-sub">Jump to any page from a prompt</span></span>
-          <svg class="chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      </ul>
+      <p class="lede">Placeholder summary. Replace this with one sentence that says what this screen is for.</p>
+
+      <div class="cards">
+        <article class="card">
+          <p class="eyebrow">Placeholder</p>
+          <h2>Primary Card</h2>
+          <p class="sub">Placeholder body text. Each screen has one main job; this card holds it.</p>
+          <button type="button" class="btn btn-primary" data-action="add">Add Item</button>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Placeholder</p>
+          <h2>Secondary Card</h2>
+          <p class="sub">Placeholder body text for supporting content.</p>
+          <button type="button" class="btn" data-go="items">View Items</button>
+        </article>
+      </div>
+
+      <figure class="card chart" aria-labelledby="chart-title">
+        <figcaption>
+          <h2 id="chart-title">Placeholder metric rose this week</h2>
+          <p class="sub" id="chart-desc">Daily values, Monday to Sunday. Highest on Sunday.</p>
+        </figcaption>
+        <div class="chart-body" id="chart" aria-busy="true" aria-describedby="chart-desc">
+          <div class="skeleton skeleton-chart" aria-hidden="true"></div>
+          <span class="sr-only">Loading chart</span>
+        </div>
+        <button type="button" class="btn btn-plain" aria-expanded="false" aria-controls="chart-table">Show Data</button>
+        <table id="chart-table" class="data-table" hidden>
+          <caption class="sr-only">Placeholder metric by day</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Value</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </figure>
+
+      <section aria-labelledby="h-activity">
+        <h2 id="h-activity" class="group-head">Recent Activity</h2>
+        <ul class="group" id="activity" aria-busy="true">
+          <li class="row"><span class="skeleton skeleton-line" aria-hidden="true"></span></li>
+          <li class="row"><span class="skeleton skeleton-line" aria-hidden="true"></span></li>
+          <li class="row"><span class="skeleton skeleton-line" aria-hidden="true"></span></li>
+        </ul>
+      </section>
     </section>
 
-    <section aria-labelledby="h-contact">
-      <h2 id="h-contact">Contact</h2>
-      <ul class="group">
-        <li><a href="mailto:dduyanhhoang@gmail.com">
-          <span class="row-text"><span class="row-title">Email</span><span class="row-sub mono">dduyanhhoang@gmail.com</span></span>
-          <svg class="chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a></li>
-        <li><a href="https://github.com/dduyanhhoang">
-          <span class="row-text"><span class="row-title">GitHub</span><span class="row-sub mono">github.com/dduyanhhoang</span></span>
-          <svg class="chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a></li>
-        <li><a href="https://www.linkedin.com/in/dduyanhhoang/">
-          <span class="row-text"><span class="row-title">LinkedIn</span><span class="row-sub mono">linkedin.com/in/dduyanhhoang</span></span>
-          <svg class="chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a></li>
-        <li><a href="https://orcid.org/0009-0006-9245-8896">
-          <span class="row-text"><span class="row-title">ORCID</span><span class="row-sub mono">orcid.org/0009-0006-9245-8896</span></span>
-          <svg class="chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      </ul>
+    <!-- ============ Items ============ -->
+    <section class="screen" id="screen-items" aria-labelledby="t-items" hidden>
+      <header class="screen-head">
+        <h1 id="t-items" tabindex="-1">Items</h1>
+        <div class="toolbar" role="toolbar" aria-label="Item actions">
+          <div class="tb-group glass">
+            <button type="button" class="tb" data-action="add" aria-label="Add Item" title="Add Item"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+          </div>
+        </div>
+      </header>
+      <ul class="group" id="item-list"></ul>
+      <div class="empty" id="items-empty" hidden>
+        <svg class="icon icon-lg" aria-hidden="true"><use href="#i-inbox"/></svg>
+        <h2>No Items</h2>
+        <p class="sub">Add an item to see it here.</p>
+        <button type="button" class="btn btn-primary" data-action="add">Add Item</button>
+      </div>
     </section>
 
-    <footer class="fine">© 2026 D Duy Anh Hoang.</footer>
+    <!-- ============ Settings ============ -->
+    <section class="screen" id="screen-settings" aria-labelledby="t-settings" hidden>
+      <header class="screen-head">
+        <h1 id="t-settings" tabindex="-1">Settings</h1>
+      </header>
+      <form id="settings-form" novalidate>
+        <h2 class="group-head">Profile</h2>
+        <div class="group">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" autocomplete="name" placeholder="Placeholder Name" />
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" aria-describedby="f-email-err" />
+            <p class="field-error" id="f-email-err" hidden></p>
+          </div>
+        </div>
+
+        <h2 class="group-head">Preferences</h2>
+        <div class="group">
+          <div class="row">
+            <label class="row-title" for="t-one">Placeholder Option</label>
+            <input type="checkbox" role="switch" id="t-one" name="optionOne" checked />
+          </div>
+          <div class="row">
+            <span class="row-title" id="t-two-label">Another Option</span>
+            <button type="button" class="icon-btn" aria-label="About Another Option" aria-expanded="false" aria-controls="help-two"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></button>
+            <input type="checkbox" role="switch" id="t-two" name="optionTwo" aria-labelledby="t-two-label" />
+          </div>
+          <p class="help" id="help-two" hidden>Placeholder help. Explain what this option changes in one or two sentences, right where people need it.</p>
+          <div class="row">
+            <label class="row-title" for="s-one">Placeholder Choice</label>
+            <select id="s-one" name="choice">
+              <option>Automatic</option>
+              <option>Option A</option>
+              <option>Option B</option>
+            </select>
+          </div>
+        </div>
+        <p class="group-foot" id="save-status" role="status">Changes save automatically.</p>
+
+        <div class="group">
+          <button type="button" class="row row-btn destructive" data-action="reset">Reset Settings</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ Search ============ -->
+    <section class="screen" id="screen-search" aria-labelledby="t-search" hidden>
+      <header class="screen-head">
+        <h1 id="t-search" tabindex="-1">Search</h1>
+      </header>
+      <form role="search" id="search-form">
+        <label class="search-field">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <span class="sr-only">Search items</span>
+          <input id="q" type="search" placeholder="Search Items" autocomplete="off" enterkeyhint="search" />
+        </label>
+      </form>
+      <section id="recents" aria-labelledby="h-recent">
+        <div class="group-head-row">
+          <h2 id="h-recent" class="group-head">Recent</h2>
+          <button type="button" class="btn btn-plain" data-action="clear-recents">Clear</button>
+        </div>
+        <ul class="group" id="recent-list"></ul>
+        <p class="group-foot" id="recent-empty" hidden>Your recent searches appear here.</p>
+      </section>
+      <section id="results" aria-labelledby="h-results" hidden>
+        <h2 id="h-results" class="group-head">Items</h2>
+        <ul class="group" id="result-list" aria-live="polite"></ul>
+        <div class="empty" id="no-results" hidden>
+          <h2 id="no-results-title">No Results</h2>
+          <p class="sub">Check the spelling or try a new search.</p>
+        </div>
+      </section>
+    </section>
   </main>
+
+  <!-- Modal sheet: a self-contained task with a clear way out. -->
+  <dialog class="sheet glass" id="sheet" aria-labelledby="sheet-title">
+    <form method="dialog" id="sheet-form" novalidate>
+      <button type="button" class="grabber" aria-label="Expand Sheet" aria-pressed="false"><span aria-hidden="true"></span></button>
+      <div class="sheet-bar">
+        <button value="cancel" class="btn btn-plain" formnovalidate>Cancel</button>
+        <h2 id="sheet-title">New Item</h2>
+        <button value="add" class="btn btn-plain strong">Add</button>
+      </div>
+      <div class="group">
+        <div class="field">
+          <label for="new-name">Name</label>
+          <input id="new-name" name="name" placeholder="Placeholder Item" aria-describedby="new-name-err" />
+          <p class="field-error" id="new-name-err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="new-detail">Detail</label>
+          <input id="new-detail" name="detail" value="Placeholder detail" />
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Feedback with undo. Stays until acted on; no auto-dismiss timer. -->
+  <div class="toast glass" id="toast" hidden>
+    <p id="toast-msg" role="status"></p>
+    <button type="button" class="btn btn-plain strong" id="toast-undo">Undo</button>
+    <button type="button" class="icon-btn" id="toast-close" aria-label="Dismiss"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
 </body>
 </html>
