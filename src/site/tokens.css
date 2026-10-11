@@ -26,6 +26,9 @@
   --glass-tint:    rgb(255 255 255 / 0.72);
   --glass-edge:    rgb(0 0 0 / 0.08);
   --shadow:        0 8px 32px rgb(0 0 0 / 0.12);
+  --shadow-sm:     0 2px 6px rgb(0 0 0 / 0.2);
+  --knob:          #ffffff;   /* switch thumb, both schemes */
+  --scrim:         rgb(0 0 0 / 0.3);  /* behind modal sheets */
 
   /* --- type: Apple text styles, iOS default size ------------------ */
   --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Cantarell, Ubuntu, sans-serif;
@@ -72,6 +75,7 @@
     --glass-tint:  rgb(28 28 30 / 0.72);
     --glass-edge:  rgb(255 255 255 / 0.12);
     --shadow:      0 8px 32px rgb(0 0 0 / 0.5);
+    --scrim:       rgb(0 0 0 / 0.55);
   }
 }
 
@@ -107,6 +111,8 @@
 
 /* --- shared base --------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
+/* `hidden` must win over any component's display value. */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--label); font: var(--body); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
