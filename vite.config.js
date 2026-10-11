@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         research: 'research/index.html',
+        home: 'home/index.html',
       },
     },
   },
