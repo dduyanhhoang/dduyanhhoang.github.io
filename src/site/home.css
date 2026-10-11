@@ -95,8 +95,11 @@ a:not([href]) { color: var(--label-3); cursor: default; }  /* placeholder links 
 
 /* ---------------- hero ---------------- */
 .hero { padding-top: calc(8 * var(--space)); }
-.hero h1 { font: var(--display-1); letter-spacing: -0.02em; margin: 0; max-width: 16ch; }
-.hero .lede { font: var(--title-3); color: var(--label-2); margin: calc(2 * var(--space)) 0 0; max-width: 36rem; }
+.hero h1 { font: var(--display-1); letter-spacing: -0.02em; margin: 0; max-width: 22ch; }
+/* one sentence per line; the second steps back in colour, not size */
+.hero h1 span { display: block; }
+.hero h1 span + span { color: var(--label-2); }
+.hero .lede { font: var(--title-3); color: var(--label-2); margin: calc(3 * var(--space)) 0 0; max-width: 36rem; }
 .actions { display: flex; flex-wrap: wrap; gap: calc(1.5 * var(--space)); margin-top: calc(4 * var(--space)); }
 /* full-bleed */
 .media-hero { margin-top: calc(8 * var(--space)); aspect-ratio: 21 / 9; min-height: 14rem; width: 100%; }
@@ -173,10 +176,6 @@ a:not([href]) { color: var(--label-3); cursor: default; }  /* placeholder links 
 .steps p { color: var(--label-2); margin: calc(1.5 * var(--space)) 0 0; }
 .media-inline { aspect-ratio: 3 / 2; border-radius: var(--radius-card); margin-top: calc(3 * var(--space)); }
 
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: calc(3 * var(--space)); margin: calc(3 * var(--space)) 0 0; }
-.stats div { display: flex; flex-direction: column-reverse; }
-.stats dt { font: var(--footnote); color: var(--label-2); }
-.stats dd { font: var(--display-2); margin: 0; }
 
 .link-row { display: flex; flex-wrap: wrap; gap: calc(1.5 * var(--space)); list-style: none; margin: calc(3 * var(--space)) 0 0; padding: 0; }
 .note { font: var(--footnote); color: var(--label-3); }
